@@ -1,0 +1,32 @@
+---
+name: theme
+menu: IOptionMain
+---
+
+import { Playground, Props } from "docz";
+import { Component } from './Component.jsx'
+
+## 介绍
+
+作者没有提供介绍。
+
+## 类型
+
+```json
+{
+  "anyOf": [
+    {
+      "$ref": "#/definitions/Partial<{seriesColor:string[];backgroundColor:string;color:string;axisNameColor:string;axisLabelColor:string;axisLineColor:string;axisSplitLineColor:string;axisTickColor:string;tooltipBackgroundColor:string;tooltipColor:string;tooltipItemTitleColor:string;}>"
+    },
+    {
+      "type": "string"
+    }
+  ]
+}
+```
+
+## 用法
+
+<Playground>
+  <Component></Component>
+</Playground>

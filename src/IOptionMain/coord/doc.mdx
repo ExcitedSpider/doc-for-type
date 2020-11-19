@@ -1,0 +1,37 @@
+---
+name: coord
+menu: IOptionMain/Components
+---
+
+import { Playground, Props } from "docz";
+import { Component } from './Component.jsx'
+
+## 介绍
+
+### submenu
+
+作者没有提供介绍。
+
+## 类型
+
+```json
+{
+  "anyOf": [
+    {
+      "$ref": "#/definitions/IOptionModelCoordBase<never>"
+    },
+    {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/IOptionModelCoordBase<never>"
+      }
+    }
+  ]
+}
+```
+
+## 用法
+
+<Playground>
+  <Component></Component>
+</Playground>
