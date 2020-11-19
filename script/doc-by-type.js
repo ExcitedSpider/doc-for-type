@@ -6,7 +6,6 @@ const fs = require('fs');
 const mkdirp = require('mkdirp');
 const { join } = require('path');
 const { render } = require('mustache');
-const tosource = require('tosource');
 
 const { filePath, fileRoot, typeName, menu } = yargs(hideBin(process.argv)).argv;
 
@@ -24,33 +23,27 @@ const schema = TJS.generateSchema(program, typeName, {
   ignoreErrors: true,
 });
 
-const mdxTemplate = fs.readFileSync(join(__dirname, './mdx.mustache'), { encoding: 'utf8' });
-const jsxTemplate = fs.readFileSync(join(__dirname, './jsx.mustache'), { encoding: 'utf8' });
+const mdTemplate = fs.readFileSync(join(__dirname, '../src/template/md.mustache'), {
+  encoding: 'utf8',
+});
 
 Object.keys(schema.properties).forEach(async (name) => {
-  const dirPath = join(__dirname, `../src/${docMenu}/${name}`);
-  const mdxPath = `${dirPath}/doc.mdx`;
-  const jsxPath = `${dirPath}/Component.jsx`;
-  if (fs.existsSync(mdxPath) || fs.existsSync(jsxPath)) {
+  const dirPath = join(__dirname, `../docs/${docMenu}/${name}`);
+  const mdxPath = `${dirPath}/doc.md`;
+  if (fs.existsSync(mdxPath)) {
+    console.log('already exist doc on', dirPath);
     return;
   }
-
-  console.log('create doc on', dirPath);
+  console.log('create new doc on', dirPath);
 
   await mkdirp(dirPath);
 
   fs.writeFileSync(
     mdxPath,
-    render(mdxTemplate, {
+    render(mdTemplate, {
       name,
       menu: docMenu,
       typeDesc: JSON.stringify(schema.properties[name], null, 2),
-    })
-  );
-  fs.writeFileSync(
-    jsxPath,
-    render(jsxTemplate, {
-      propTypes: tosource({}),
     })
   );
 });

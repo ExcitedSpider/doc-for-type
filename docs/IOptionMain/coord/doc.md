@@ -1,14 +1,9 @@
 ---
 name: coord
-menu: IOptionMain/Components
+menu: IOptionMain
 ---
 
-import { Playground, Props } from "docz";
-import { Component } from './Component.jsx'
-
 ## 介绍
-
-### submenu
 
 作者没有提供介绍。
 
@@ -32,6 +27,7 @@ import { Component } from './Component.jsx'
 
 ## 用法
 
-<Playground>
-  <Component></Component>
-</Playground>
+需要提供一个外部的demo。
+
+可以参考:
+* [codepen embedded](https://blog.codepen.io/documentation/embedded-pens/)

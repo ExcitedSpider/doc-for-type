@@ -10,24 +10,19 @@
     "package.json"
   ],
   "scripts": {
-    "dev": "docz dev",
-    "build": "docz build",
-    "doc-by-type": "node script/doc-by-type"
+    "doc-by-type": "node script/doc-by-type",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
-  "dependencies": {
-    "@emotion/core": "^10.0.14",
-    "@emotion/styled": "^10.0.14",
-    "docz": "latest",
-    "mkdirp": "^1.0.4",
-    "mustache": "^4.0.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "tosource": "^2.0.0-alpha.2",
-    "typescript-json-schema": "^0.43.0",
-    "yargs": "^16.1.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/react": "^16.8.23",
-    "@types/react-dom": "^16.8.4"
+    "@types/react-dom": "^16.8.4",
+    "vuepress": "^1.7.1",
+    "vuepress-plugin-demo-block": "^0.7.2",
+    "mkdirp": "^1.0.4",
+    "mustache": "^4.0.1",
+    "typescript-json-schema": "^0.43.0",
+    "yargs": "^16.1.1"
   }
 }
