@@ -9,6 +9,18 @@ const { render } = require('mustache');
 
 const { filePath, fileRoot, typeName, menu } = yargs(hideBin(process.argv)).argv;
 
+if (!filePath) {
+  throw new Error(
+    'Necessary arg filePath not provided! Use --file-path to specify the file that want to extract type from.'
+  );
+}
+
+if (!typeName) {
+  throw new Error(
+    'Necessary arg typeName not provided! Use --type-name to specify the type name that want ot extract.'
+  );
+}
+
 const docMenu = menu || typeName;
 
 const program = TJS.getProgramFromFiles(
