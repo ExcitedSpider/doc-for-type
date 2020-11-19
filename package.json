@@ -11,18 +11,20 @@
   ],
   "scripts": {
     "dev": "docz dev",
-    "build": "docz build"
+    "build": "docz build",
+    "doc-by-type": "node script/doc-by-type"
   },
   "dependencies": {
     "@emotion/core": "^10.0.14",
     "@emotion/styled": "^10.0.14",
     "docz": "latest",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "typescript-json-schema": "^0.43.0",
+    "yargs": "^16.1.1"
   },
   "devDependencies": {
     "@types/react": "^16.8.23",
-    "@types/react-dom": "^16.8.4",
-    "typescript-json-schema": "^0.43.0"
+    "@types/react-dom": "^16.8.4"
   }
 }
