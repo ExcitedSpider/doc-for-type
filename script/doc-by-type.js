@@ -39,9 +39,54 @@ const mdTemplate = fs.readFileSync(join(__dirname, '../src/template/md.mustache'
   encoding: 'utf8',
 });
 
+function buildProps(schema, propName) {
+  function findAndReplaceRefObj(refTypeSpecObj) {
+    if (!refTypeSpecObj.$ref) {
+      return refTypeSpecObj;
+    }
+    const refPath = refTypeSpecObj.$ref;
+    const refName = refPath.match(/^#\/definitions\/(.*)$/)[1];
+
+    const defObj = schema.definitions[refName] || {};
+
+    return defObj;
+  }
+
+  function tranverseType(propTypeSpec) {
+    if (propTypeSpec.$ref) {
+      const ObjWithNoRef = tranverseType(findAndReplaceRefObj(propTypeSpec));
+
+      return ObjWithNoRef;
+    }
+    if (propTypeSpec.anyOf && Array.isArray(propTypeSpec.anyOf)) {
+      return {
+        anyOf: Object.keys(propTypeSpec.anyOf).map((childName) =>
+          tranverseType(propTypeSpec.anyOf[childName])
+        ),
+      };
+    }
+    if (propTypeSpec.type === 'object') {
+      const objectTypeProp = { ...propTypeSpec.properties };
+      Object.keys(propTypeSpec.properties).forEach((iPropName) => {
+        const replacedObjSpec = findAndReplaceRefObj(propTypeSpec.properties[iPropName]);
+        objectTypeProp[iPropName] = tranverseType(replacedObjSpec);
+      });
+      return { type: 'object', properties: objectTypeProp };
+    }
+    if (propTypeSpec.type === 'array') {
+      const itemType = findAndReplaceRefObj(propTypeSpec.items);
+      return { type: 'array', items: tranverseType(itemType) };
+    }
+    return propTypeSpec;
+  }
+
+  return tranverseType({ ...schema.properties[propName] });
+}
 Object.keys(schema.properties).forEach(async (name) => {
+  // getTypeDesc(filePath, name);
   const dirPath = join(__dirname, `../docs/${docMenu}/${name}`);
   const mdxPath = `${dirPath}/doc.md`;
+  console.log('doc-by-type:86', JSON.stringify(buildProps(schema, name)));
   if (fs.existsSync(mdxPath)) {
     console.log('already exist doc on', dirPath);
     return;
@@ -55,7 +100,7 @@ Object.keys(schema.properties).forEach(async (name) => {
     render(mdTemplate, {
       name,
       menu: docMenu,
-      typeDesc: JSON.stringify(schema.properties[name], null, 2),
+      typeDesc: JSON.stringify(buildProps(schema, name), null, 2),
     })
   );
 });

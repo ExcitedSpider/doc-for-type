@@ -18,11 +18,10 @@
   "devDependencies": {
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
-    "vuepress": "^1.7.1",
-    "vuepress-plugin-demo-block": "^0.7.2",
     "mkdirp": "^1.0.4",
     "mustache": "^4.0.1",
     "typescript-json-schema": "^0.43.0",
+    "vuepress": "^1.7.1",
     "yargs": "^16.1.1"
   }
 }
