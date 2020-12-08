@@ -71,7 +71,7 @@ async function buildFileContentMap(option) {
   const fileContentMap = {};
 
   Object.keys(schema.properties).forEach(async (name) => {
-    const dirPath = join(__dirname, GENERATE_ROOT_DIR, `/${optionMenu}/${name}`);
+    const dirPath = join(GENERATE_ROOT_DIR, `/${optionMenu}/${name}`);
     const mdxPath = `${dirPath}/doc.md`;
 
     if (!customRender) {
