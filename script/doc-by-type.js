@@ -9,50 +9,73 @@ const { render } = require('mustache');
 
 const GENERATE_ROOT_DIR = join(__dirname, '../docs/');
 
-/** 将 schema 对象的 propName prop 构建为完整的对象（去除所有的 ref） */
-function buildProps(schema, propName) {
-  function findAndReplaceRefObj(refTypeSpecObj) {
-    if (!refTypeSpecObj.$ref) {
-      return refTypeSpecObj;
-    }
-    const refPath = refTypeSpecObj.$ref;
-    const refName = refPath.match(/^#\/definitions\/(.*)$/)[1];
-
-    const defObj = schema.definitions[refName] || {};
-
-    return defObj;
+/**
+ * 将 {$ref: string} 这种引用类型转换为被引用的类型（非递归）
+ * @param refTypeSpecObj 引用类型的对象
+ * @param definitions 定义列表
+ */
+function findAndReplaceRefObj(refTypeSpecObj, definitions) {
+  if (!refTypeSpecObj.$ref) {
+    return refTypeSpecObj;
   }
+  const refPath = refTypeSpecObj.$ref;
+  const refName = refPath.match(/^#\/definitions\/(.*)$/)[1];
 
-  function tranverseType(propTypeSpec) {
-    if (propTypeSpec.$ref) {
-      const ObjWithNoRef = tranverseType(findAndReplaceRefObj(propTypeSpec));
+  const defObj = definitions[refName] || {};
 
-      return ObjWithNoRef;
-    }
-    if (propTypeSpec.anyOf && Array.isArray(propTypeSpec.anyOf)) {
-      return {
-        anyOf: Object.keys(propTypeSpec.anyOf).map((childName) =>
-          tranverseType(propTypeSpec.anyOf[childName])
-        ),
-      };
-    }
-    if (propTypeSpec.type === 'object') {
-      const objectTypeProp = { ...propTypeSpec.properties };
+  return defObj;
+}
 
+/**
+ * 将 {$ref: string} 这种引用类型转换为被引用的类型（递归）
+ * @param refTypeSpecObj 引用类型的对象
+ * @param definitions 定义列表
+ */
+function tranverseAndReplaceRefObj(propTypeSpec, definitions) {
+  if (propTypeSpec.$ref) {
+    const ObjWithNoRef = tranverseAndReplaceRefObj(
+      findAndReplaceRefObj(propTypeSpec, definitions),
+      definitions
+    );
+
+    return ObjWithNoRef;
+  }
+  if (propTypeSpec.anyOf && Array.isArray(propTypeSpec.anyOf)) {
+    return {
+      anyOf: Object.keys(propTypeSpec.anyOf).map((childName) =>
+        tranverseAndReplaceRefObj(propTypeSpec.anyOf[childName], definitions)
+      ),
+    };
+  }
+  if (propTypeSpec.type === 'object') {
+    const objectTypeProp = { ...propTypeSpec.properties };
+
+    if (propTypeSpec.properties) {
       Object.keys(propTypeSpec.properties).forEach((iPropName) => {
-        const replacedObjSpec = findAndReplaceRefObj(propTypeSpec.properties[iPropName]);
-        objectTypeProp[iPropName] = tranverseType(replacedObjSpec);
+        const replacedObjSpec = findAndReplaceRefObj(
+          propTypeSpec.properties[iPropName],
+          definitions
+        );
+        objectTypeProp[iPropName] = tranverseAndReplaceRefObj(replacedObjSpec, definitions);
       });
       return { type: 'object', properties: objectTypeProp };
     }
-    if (propTypeSpec.type === 'array') {
-      const itemType = findAndReplaceRefObj(propTypeSpec.items);
-      return { type: 'array', items: tranverseType(itemType) };
-    }
-    return propTypeSpec;
+    // 有可能缺失 properties 的情况（用户直接定义 type A = object）
+    return { type: 'object' };
   }
+  if (propTypeSpec.type === 'array') {
+    const itemType = findAndReplaceRefObj(propTypeSpec.items, definitions);
+    return { type: 'array', items: tranverseAndReplaceRefObj(itemType, definitions) };
+  }
+  return propTypeSpec;
+}
 
-  return tranverseType({ ...schema.properties[propName] });
+/**
+ * 将 schema 对象的 propName prop 构建为完整的对象（去除所有的 ref）
+ * fieldName: 处理 schema 中的哪一个字段：默认 'properties'
+ */
+function buildProps(schema, propName, fieldName = 'properties') {
+  return tranverseAndReplaceRefObj({ ...schema[fieldName][propName] }, schema.definitions);
 }
 
 /**
@@ -70,20 +93,44 @@ async function buildFileContentMap(option) {
 
   const fileContentMap = {};
 
-  Object.keys(schema.properties).forEach(async (name) => {
-    const dirPath = join(GENERATE_ROOT_DIR, `/${optionMenu}/${name}`);
-    const mdxPath = `${dirPath}/doc.md`;
+  function handleProperties(subSchema, menu = optionMenu) {
+    Object.keys(subSchema.properties).forEach(async (name) => {
+      const dirPath = join(GENERATE_ROOT_DIR, `/${menu}/${name}`);
+      const mdxPath = `${dirPath}/doc.md`;
 
-    if (!customRender) {
-      fileContentMap[mdxPath] = render(template, {
-        name,
-        menu: optionMenu,
-        typeDesc: JSON.stringify(buildProps(schema, name), null, 2),
+      if (!customRender) {
+        fileContentMap[mdxPath] = render(template, {
+          name,
+          menu,
+          typeDesc: JSON.stringify(buildProps(subSchema, name), null, 2),
+        });
+      } else {
+        fileContentMap[mdxPath] = customRender(subSchema, name, optionMenu);
+      }
+    });
+  }
+
+  function handleRecursiveUnion(schema, menu) {
+    if (schema.anyOf) {
+      schema.anyOf.forEach((subSchema, index) => {
+        const indexMenu = `${menu}/${index}`;
+        if (subSchema.anyOf) {
+          handleRecursiveUnion(subSchema, indexMenu);
+        } else if (subSchema.type === 'object' && subSchema.properties) {
+          handleProperties(subSchema, indexMenu);
+        }
       });
-    } else {
-      fileContentMap[mdxPath] = customRender(schema, name, optionMenu);
+    } else if (schema.properties) {
+      handleProperties(schema, menu);
     }
-  });
+  }
+
+  if (schema.anyOf) {
+    const schemaWithNoRef = tranverseAndReplaceRefObj({ anyOf: schema.anyOf }, schema.definitions);
+    handleRecursiveUnion(schemaWithNoRef, optionMenu);
+  } else {
+    handleProperties(schema);
+  }
 
   return fileContentMap;
 }
