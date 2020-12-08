@@ -4,41 +4,12 @@ const { hideBin } = require('yargs/helpers');
 const TJS = require('typescript-json-schema');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
-const { join } = require('path');
+const { join, dirname } = require('path');
 const { render } = require('mustache');
 
-const { filePath, fileRoot, typeName, menu } = yargs(hideBin(process.argv)).argv;
+const GENERATE_ROOT_DIR = join(__dirname, '../docs/');
 
-if (!filePath) {
-  throw new Error(
-    'Necessary arg filePath not provided! Use --file-path to specify the file that want to extract type from.'
-  );
-}
-
-if (!typeName) {
-  throw new Error(
-    'Necessary arg typeName not provided! Use --type-name to specify the type name that want ot extract.'
-  );
-}
-
-const docMenu = menu || typeName;
-
-const program = TJS.getProgramFromFiles(
-  [filePath],
-  {
-    ignoreErrors: true,
-  },
-  fileRoot
-);
-
-const schema = TJS.generateSchema(program, typeName, {
-  ignoreErrors: true,
-});
-
-const mdTemplate = fs.readFileSync(join(__dirname, '../src/template/md.mustache'), {
-  encoding: 'utf8',
-});
-
+/** 将 schema 对象的 propName prop 构建为完整的对象（去除所有的 ref） */
 function buildProps(schema, propName) {
   function findAndReplaceRefObj(refTypeSpecObj) {
     if (!refTypeSpecObj.$ref) {
@@ -67,6 +38,7 @@ function buildProps(schema, propName) {
     }
     if (propTypeSpec.type === 'object') {
       const objectTypeProp = { ...propTypeSpec.properties };
+
       Object.keys(propTypeSpec.properties).forEach((iPropName) => {
         const replacedObjSpec = findAndReplaceRefObj(propTypeSpec.properties[iPropName]);
         objectTypeProp[iPropName] = tranverseType(replacedObjSpec);
@@ -82,25 +54,105 @@ function buildProps(schema, propName) {
 
   return tranverseType({ ...schema.properties[propName] });
 }
-Object.keys(schema.properties).forEach(async (name) => {
-  // getTypeDesc(filePath, name);
-  const dirPath = join(__dirname, `../docs/${docMenu}/${name}`);
-  const mdxPath = `${dirPath}/doc.md`;
-  console.log('doc-by-type:86', JSON.stringify(buildProps(schema, name)));
-  if (fs.existsSync(mdxPath)) {
-    console.log('already exist doc on', dirPath);
-    return;
+
+/**
+ * 构造出 schema 对应的文件-内容列表
+ * @param {
+ *  template: 用于构造内容的mustache模版
+ *  render: 用于构造内容的渲染函数
+ *  menu: 文件所在的目录
+ *  schema: 内容 schema
+ * } option
+ * @returns 文件-内容表，例如{'dir/a.md': '#你好'}
+ */
+async function buildFileContentMap(option) {
+  const { template, menu: optionMenu, schema, render: customRender } = option;
+
+  const fileContentMap = {};
+
+  Object.keys(schema.properties).forEach(async (name) => {
+    const dirPath = join(__dirname, GENERATE_ROOT_DIR, `/${optionMenu}/${name}`);
+    const mdxPath = `${dirPath}/doc.md`;
+
+    if (!customRender) {
+      fileContentMap[mdxPath] = render(template, {
+        name,
+        menu: optionMenu,
+        typeDesc: JSON.stringify(buildProps(schema, name), null, 2),
+      });
+    } else {
+      fileContentMap[mdxPath] = customRender(schema, name, optionMenu);
+    }
+  });
+
+  return fileContentMap;
+}
+
+/**
+ * 将文件内容表写到文件系统上
+ * @param fileContentMap 文件-内容Map，例如{'dir/a.md': '#你好'}
+ */
+async function mapToFiles(fileContentMap) {
+  Object.keys(fileContentMap).forEach(async (filePath) => {
+    if (fs.existsSync(filePath)) {
+      console.log('already exist doc on', filePath);
+      return;
+    }
+
+    const dirPath = dirname(filePath);
+    console.log('create new doc on', dirPath);
+    await mkdirp(dirPath);
+    return new Promise((resolve, reject) => {
+      fs.writeFile(filePath, fileContentMap[filePath], (error) => {
+        if (error) {
+          reject(error);
+        }
+        resolve();
+      });
+    });
+  });
+}
+
+async function main() {
+  const { filePath, fileRoot, typeName, menu } = yargs(hideBin(process.argv)).argv;
+
+  if (!filePath) {
+    throw new Error(
+      'Necessary arg filePath not provided! Use --file-path to specify the file that want to extract type from.'
+    );
   }
-  console.log('create new doc on', dirPath);
 
-  await mkdirp(dirPath);
+  if (!typeName) {
+    throw new Error(
+      'Necessary arg typeName not provided! Use --type-name to specify the type name that want ot extract.'
+    );
+  }
 
-  fs.writeFileSync(
-    mdxPath,
-    render(mdTemplate, {
-      name,
-      menu: docMenu,
-      typeDesc: JSON.stringify(buildProps(schema, name), null, 2),
-    })
+  const docMenu = menu || typeName;
+
+  const program = TJS.getProgramFromFiles(
+    [filePath],
+    {
+      ignoreErrors: true,
+    },
+    fileRoot
   );
-});
+
+  const schema = TJS.generateSchema(program, typeName, {
+    ignoreErrors: true,
+  });
+
+  const mdTemplate = fs.readFileSync(join(__dirname, '../src/template/md.mustache'), {
+    encoding: 'utf8',
+  });
+
+  const fileContentMap = await buildFileContentMap({
+    template: mdTemplate,
+    menu: docMenu,
+    schema,
+  });
+
+  await mapToFiles(fileContentMap);
+}
+
+main();
