@@ -1,25 +1,35 @@
 /** node script/doc-by-type.js --path <type-export-file> --type-name <type-name or *> --root <optional-file-root> */
-import * as yargs from 'yargs';
-import TJS from 'typescript-json-schema';
-import fs from 'fs';
-import mkdirp from 'mkdirp';
-import { join, dirname } from 'path';
-import ejs from 'ejs';
-import { FileContentMap, SchemaRenderer } from './type';
+import * as yargs from "yargs";
+import TJS from "typescript-json-schema";
+import fs from "fs";
+import mkdirp from "mkdirp";
+import { join, dirname } from "path";
+import ejs from "ejs";
+import { FileContentMap, SchemaRenderer, RefDefinition } from "./type";
 
-const GENERATE_ROOT_DIR = join(__dirname, '../docs/');
+const GENERATE_ROOT_DIR = join(__dirname, "../docs/");
 
 /**
  * 将 {$ref: string} 这种引用类型转换为被引用的类型（非递归）
  * @param refTypeSpecObj 引用类型的对象
  * @param definitions 定义列表
  */
-function findAndReplaceRefObj(refTypeSpecObj, definitions) {
-  if (!refTypeSpecObj.$ref) {
+function findAndReplaceRefObj(
+  refTypeSpecObj: TJS.DefinitionOrBoolean,
+  definitions: RefDefinition
+) {
+  if (typeof refTypeSpecObj === "boolean") {
     return refTypeSpecObj;
   }
   const refPath = refTypeSpecObj.$ref;
-  const refName = refPath.match(/^#\/definitions\/(.*)$/)[1];
+  if (!refPath) {
+    return refTypeSpecObj;
+  }
+  const refName = refPath.match(/^#\/definitions\/(.*)$/)?.[1];
+
+  if (!refName) {
+    return refTypeSpecObj;
+  }
 
   const defObj = definitions[refName] || {};
 
@@ -31,7 +41,14 @@ function findAndReplaceRefObj(refTypeSpecObj, definitions) {
  * @param refTypeSpecObj 引用类型的对象
  * @param definitions 定义列表
  */
-function tranverseAndReplaceRefObj(propTypeSpec, definitions) {
+function tranverseAndReplaceRefObj(
+  propTypeSpec: TJS.DefinitionOrBoolean,
+  definitions: RefDefinition
+): TJS.DefinitionOrBoolean {
+  if (typeof propTypeSpec === "boolean") {
+    return propTypeSpec;
+  }
+
   if (propTypeSpec.$ref) {
     const ObjWithNoRef = tranverseAndReplaceRefObj(
       findAndReplaceRefObj(propTypeSpec, definitions),
@@ -40,32 +57,53 @@ function tranverseAndReplaceRefObj(propTypeSpec, definitions) {
 
     return ObjWithNoRef;
   }
-  if (propTypeSpec.anyOf && Array.isArray(propTypeSpec.anyOf)) {
+  if (propTypeSpec.anyOf) {
+    const typeList = propTypeSpec.anyOf;
     return {
-      anyOf: Object.keys(propTypeSpec.anyOf).map((childName) =>
-        tranverseAndReplaceRefObj(propTypeSpec.anyOf[childName], definitions)
+      anyOf: typeList.map((child) =>
+        tranverseAndReplaceRefObj(child, definitions)
       ),
     };
   }
-  if (propTypeSpec.type === 'object') {
+  if (propTypeSpec.type === "object") {
     const objectTypeProp = { ...propTypeSpec.properties };
 
-    if (propTypeSpec.properties) {
-      Object.keys(propTypeSpec.properties).forEach((iPropName) => {
+    const properties = propTypeSpec.properties;
+    if (properties) {
+      Object.keys(properties).forEach((iPropName) => {
         const replacedObjSpec = findAndReplaceRefObj(
-          propTypeSpec.properties[iPropName],
+          properties[iPropName],
           definitions
         );
-        objectTypeProp[iPropName] = tranverseAndReplaceRefObj(replacedObjSpec, definitions);
+        objectTypeProp[iPropName] = tranverseAndReplaceRefObj(
+          replacedObjSpec,
+          definitions
+        );
       });
-      return { type: 'object', properties: objectTypeProp };
+      return { type: "object", properties: objectTypeProp };
     }
     // 有可能缺失 properties 的情况（用户直接定义 type A = object）
-    return { type: 'object' };
+    return { type: "object" };
   }
-  if (propTypeSpec.type === 'array') {
-    const itemType = findAndReplaceRefObj(propTypeSpec.items, definitions);
-    return { type: 'array', items: tranverseAndReplaceRefObj(itemType, definitions) };
+  if (propTypeSpec.type === "array") {
+    const arrayItems = propTypeSpec.items;
+    if (!arrayItems || typeof arrayItems === "boolean") {
+      return propTypeSpec;
+    }
+    if (!Array.isArray(arrayItems)) {
+      const itemType = findAndReplaceRefObj(arrayItems, definitions);
+      return {
+        type: "array",
+        items: tranverseAndReplaceRefObj(itemType, definitions),
+      };
+    } else {
+      return {
+        type: "array",
+        items: arrayItems.map((itemType) =>
+          tranverseAndReplaceRefObj(itemType, definitions)
+        ),
+      };
+    }
   }
   return propTypeSpec;
 }
@@ -74,8 +112,19 @@ function tranverseAndReplaceRefObj(propTypeSpec, definitions) {
  * 将 schema 对象的 propName prop 构建为完整的对象（去除所有的 ref）
  * fieldName: 处理 schema 中的哪一个字段：默认 'properties'
  */
-function buildProps(schema: TJS.Definition, propName: string, fieldName = 'properties') {
-  return tranverseAndReplaceRefObj({ ...schema[fieldName][propName] }, schema.definitions);
+function buildProps(schema: TJS.DefinitionOrBoolean, propName: string) {
+  if (typeof schema === "boolean" || typeof schema === "string") {
+    return schema;
+  }
+  if (!schema.definitions || !schema.properties) {
+    return schema.properties || {};
+  }
+
+  const propDef = schema.properties[propName];
+  if (!propDef || typeof propDef === "boolean") {
+    return propDef || {};
+  }
+  return tranverseAndReplaceRefObj({ ...propDef }, schema.definitions);
 }
 
 /**
@@ -84,15 +133,19 @@ function buildProps(schema: TJS.Definition, propName: string, fieldName = 'prope
  */
 async function buildFileContentMap(option: {
   render: SchemaRenderer;
-  name: string;
   menu: string;
-  schema: TJS.Definition;
+  schema: TJS.DefinitionOrBoolean;
 }) {
   const { menu: optionMenu, schema, render: customRender } = option;
 
   const fileContentMap: FileContentMap = {};
 
-  function handleProperties(subSchema, menu = optionMenu) {
+  function handleProperties(subSchema: TJS.Definition, menu = optionMenu) {
+    if (!subSchema || !subSchema.properties) {
+      const mdxPath = `${menu}/doc.md`;
+      fileContentMap[mdxPath] = subSchema;
+      return;
+    }
     Object.keys(subSchema.properties).forEach(async (name) => {
       const dirPath = join(GENERATE_ROOT_DIR, `/${menu}/${name}`);
       const mdxPath = `${dirPath}/doc.md`;
@@ -101,13 +154,13 @@ async function buildFileContentMap(option: {
     });
   }
 
-  function handleRecursiveUnion(schema, menu) {
+  function handleRecursiveUnion(schema: TJS.Definition, menu: string) {
     if (schema.anyOf) {
       schema.anyOf.forEach((subSchema, index) => {
         const indexMenu = `${menu}/${index}`;
         if (subSchema.anyOf) {
           handleRecursiveUnion(subSchema, indexMenu);
-        } else if (subSchema.type === 'object' && subSchema.properties) {
+        } else if (subSchema.type === "object" && subSchema.properties) {
           handleProperties(subSchema, indexMenu);
         }
       });
@@ -117,7 +170,10 @@ async function buildFileContentMap(option: {
   }
 
   if (schema.anyOf) {
-    const schemaWithNoRef = tranverseAndReplaceRefObj({ anyOf: schema.anyOf }, schema.definitions);
+    const schemaWithNoRef = tranverseAndReplaceRefObj(
+      { anyOf: schema.anyOf },
+      schema.definitions
+    );
     handleRecursiveUnion(schemaWithNoRef, optionMenu);
   } else {
     handleProperties(schema);
@@ -130,15 +186,15 @@ async function buildFileContentMap(option: {
  * 将文件内容表写到文件系统上
  * @param fileContentMap 文件-内容Map，例如{'dir/a.md': '#你好'}
  */
-async function mapToFiles(fileContentMap) {
+async function mapToFiles(fileContentMap: FileContentMap) {
   Object.keys(fileContentMap).forEach(async (filePath) => {
     if (fs.existsSync(filePath)) {
-      console.log('already exist doc on', filePath);
+      console.log("already exist doc on", filePath);
       return;
     }
 
     const dirPath = dirname(filePath);
-    console.log('create new doc on', dirPath);
+    console.log("create new doc on", dirPath);
     await mkdirp(dirPath);
     return new Promise((resolve, reject) => {
       fs.writeFile(filePath, fileContentMap[filePath], (error) => {
@@ -165,30 +221,32 @@ function generateSchema(filePath: string, fileRoot: string, typeName: string) {
   });
 
   if (!schema) {
-    throw new Error('Cannot generate schema, find reason from previous error stack');
+    throw new Error(
+      "Cannot generate schema, find reason from previous error stack"
+    );
   }
   return schema;
 }
 
 async function main() {
-  const { path: filePath = '', root: fileRoot = '', typeName, menu } = yargs
-    .option('path', {
-      alias: 'p',
-      type: 'string',
+  const { path: filePath = "", root: fileRoot = "", typeName, menu } = yargs
+    .option("path", {
+      alias: "p",
+      type: "string",
       demandOption: true,
     })
-    .option('root', {
-      alias: 'r',
-      type: 'string',
+    .option("root", {
+      alias: "r",
+      type: "string",
     })
-    .option('typeName', {
-      alias: 't',
-      type: 'string',
+    .option("typeName", {
+      alias: "t",
+      type: "string",
       demandOption: true,
     })
-    .option('menu', {
-      alias: 'm',
-      type: 'string',
+    .option("menu", {
+      alias: "m",
+      type: "string",
     }).argv;
 
   const docMenu = menu || typeName;
@@ -196,12 +254,16 @@ async function main() {
   const schema = generateSchema(filePath, fileRoot, typeName);
 
   const ejsTemplate = ejs.compile(
-    fs.readFileSync(join(__dirname, '../src/template/md.ejs'), {
-      encoding: 'utf8',
+    fs.readFileSync(join(__dirname, "../src/template/md.ejs"), {
+      encoding: "utf8",
     })
   );
 
-  const renderByEJS = (subSchema: TJS.Definition, name: string, menu: string) => {
+  const renderByEJS = (
+    subSchema: TJS.DefinitionOrBoolean,
+    name: string,
+    menu: string
+  ) => {
     return ejsTemplate({
       name,
       menu,
