@@ -7,6 +7,9 @@ module.exports = {
   ],
   plugins: ['demo-block'],
   themeConfig: {
+    /** 列出全部标题 */
+    displayAllHeaders: true,
+    sidebarDepth: 5,
     /** 开放搜索 */
     search: true,
     searchMaxSuggestions: 10,
@@ -15,7 +18,6 @@ module.exports = {
     prevLinks: false,
     /** 侧边栏导航配置 */
     sidebar: [
-      '/',
       {
         title: 'IOptionMain',
         collapsable: true,

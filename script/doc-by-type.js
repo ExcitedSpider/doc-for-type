@@ -6,6 +6,7 @@ const fs = require('fs');
 const mkdirp = require('mkdirp');
 const { join, dirname } = require('path');
 const { render } = require('mustache');
+const ejs = require('ejs');
 
 const GENERATE_ROOT_DIR = join(__dirname, '../docs/');
 
@@ -102,7 +103,8 @@ async function buildFileContentMap(option) {
         fileContentMap[mdxPath] = render(template, {
           name,
           menu,
-          typeDesc: JSON.stringify(buildProps(subSchema, name), null, 2),
+          // typeDesc: JSON.stringify(buildProps(subSchema, name), null, 2),
+          typeDesc: buildProps(subSchema, name),
         });
       } else {
         fileContentMap[mdxPath] = customRender(subSchema, name, optionMenu);
@@ -160,6 +162,21 @@ async function mapToFiles(fileContentMap) {
   });
 }
 
+function generateSchema(filePath, fileRoot, typeName) {
+  const program = TJS.getProgramFromFiles(
+    [filePath],
+    {
+      ignoreErrors: true,
+    },
+    fileRoot
+  );
+
+  const schema = TJS.generateSchema(program, typeName, {
+    ignoreErrors: true,
+  });
+  return schema;
+}
+
 async function main() {
   const { filePath, fileRoot, typeName, menu } = yargs(hideBin(process.argv)).argv;
 
@@ -177,24 +194,24 @@ async function main() {
 
   const docMenu = menu || typeName;
 
-  const program = TJS.getProgramFromFiles(
-    [filePath],
-    {
-      ignoreErrors: true,
-    },
-    fileRoot
+  const schema = generateSchema(filePath, fileRoot, typeName);
+
+  const ejsTemplate = ejs.compile(
+    fs.readFileSync(join(__dirname, '../src/template/md.ejs'), {
+      encoding: 'utf8',
+    })
   );
 
-  const schema = TJS.generateSchema(program, typeName, {
-    ignoreErrors: true,
-  });
-
-  const mdTemplate = fs.readFileSync(join(__dirname, '../src/template/md.mustache'), {
-    encoding: 'utf8',
-  });
+  const renderByEJS = (subSchema, name, menu) => {
+    return ejsTemplate({
+      name,
+      menu,
+      typeDesc: buildProps(subSchema, name),
+    });
+  };
 
   const fileContentMap = await buildFileContentMap({
-    template: mdTemplate,
+    render: renderByEJS,
     menu: docMenu,
     schema,
   });
