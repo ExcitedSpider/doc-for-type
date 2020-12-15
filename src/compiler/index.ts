@@ -117,7 +117,7 @@ function buildProps(schema: TJS.DefinitionOrBoolean, propName: string) {
     return schema;
   }
   if (!schema.definitions || !schema.properties) {
-    return schema.properties || {};
+    return (schema.properties || {})[propName];
   }
 
   const propDef = schema.properties[propName];
