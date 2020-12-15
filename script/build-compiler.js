@@ -7,8 +7,8 @@ const buildCompiler = async () => {
     plugins: [typescript()],
   });
 
-  bundle.write({
-    dir: "bin",
+  await bundle.write({
+    file: 'bin/doc-by-type.js',
     format: "cjs",
   });
 };

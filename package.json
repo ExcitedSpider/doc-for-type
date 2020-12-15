@@ -13,7 +13,7 @@
     "doc-by-type": "node script/doc-by-type",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "build:tools": "tsc"
+    "build:tools": "node script/build-compiler.js"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.0.0",

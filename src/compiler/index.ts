@@ -138,12 +138,16 @@ async function buildFileContentMap(option: {
 }) {
   const { menu: optionMenu, schema, render: customRender } = option;
 
+  if (typeof schema === "boolean") {
+    return;
+  }
+
   const fileContentMap: FileContentMap = {};
 
   function handleProperties(subSchema: TJS.Definition, menu = optionMenu) {
     if (!subSchema || !subSchema.properties) {
       const mdxPath = `${menu}/doc.md`;
-      fileContentMap[mdxPath] = subSchema;
+      fileContentMap[mdxPath] = JSON.stringify(subSchema, null, 2);
       return;
     }
     Object.keys(subSchema.properties).forEach(async (name) => {
@@ -158,6 +162,9 @@ async function buildFileContentMap(option: {
     if (schema.anyOf) {
       schema.anyOf.forEach((subSchema, index) => {
         const indexMenu = `${menu}/${index}`;
+        if (typeof subSchema === "boolean") {
+          return;
+        }
         if (subSchema.anyOf) {
           handleRecursiveUnion(subSchema, indexMenu);
         } else if (subSchema.type === "object" && subSchema.properties) {
@@ -172,8 +179,11 @@ async function buildFileContentMap(option: {
   if (schema.anyOf) {
     const schemaWithNoRef = tranverseAndReplaceRefObj(
       { anyOf: schema.anyOf },
-      schema.definitions
+      schema.definitions || {}
     );
+    if (typeof schemaWithNoRef === "boolean") {
+      return;
+    }
     handleRecursiveUnion(schemaWithNoRef, optionMenu);
   } else {
     handleProperties(schema);
@@ -277,7 +287,7 @@ async function main() {
     schema,
   });
 
-  await mapToFiles(fileContentMap);
+  await mapToFiles(fileContentMap || {});
 }
 
 main();

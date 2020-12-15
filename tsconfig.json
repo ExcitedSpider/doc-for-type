@@ -7,7 +7,5 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "skipLibCheck": false,
-    "jsx": "react",
-    "noEmitOnError": true
   }
 }
