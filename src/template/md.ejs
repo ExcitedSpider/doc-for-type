@@ -5,11 +5,17 @@ menu: <%- menu %>
 <%
   const getPropsByType = (typeDef)=>{
     if(typeDef.type==='object'){
-      return {...typeDef.properties}
+      return {...getPropsByType(typeDef.properties)}
     }else if(typeDef.type ==='array'){
-      return {...typeDef.items}
+      return {type: 'array', items: {...getPropsByType(typeDef.items)}}
+    }else if(typeof typeDef === 'object'){
+      const map = {}
+      Object.keys(typeDef).forEach(key => {
+        Object.assign(map, {...getPropsByType(typeDef[key])})
+      });
+      return typeDef
     }else{
-      return {[typeDef.type]: [typeDef.type]}
+      return typeDef
     }
   }
 
@@ -22,6 +28,7 @@ menu: <%- menu %>
     }else {
       Object.assign(map, getPropsByType(typeDesc))
     }
+
     return map
   }
 

@@ -1,29 +1,10 @@
-# Typescript Docz example
+# 类型自动生成文档
 
-## Using `create-docz-app`
+## TODO
 
-```sh
-npx create-docz-app docz-app-typescript --example typescript
-# or
-yarn create docz-app docz-app-typescript --example typescript
-```
-
-## Download manually
-
-```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/typescript
-mv typescript docz-typescript-example
-cd docz-typescript-example
-```
-
-## Setup
-
-```sh
-yarn # npm i
-```
-
-## Run
-
-```sh
-yarn dev # npm run dev
-```
+- [ ] 仅能展开到两层
+- [ ] 每一个逻辑都要处理 `properties` `anyof` `array` 太麻烦了
+  - **归一化**
+- [ ] 需要展开的配置项目没有根页面
+- [ ] 自动侧边栏生成问题
+- [ ] 支持注释 hint
