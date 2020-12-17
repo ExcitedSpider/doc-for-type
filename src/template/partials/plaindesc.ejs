@@ -1,0 +1,13 @@
+* 类型: `<%- type -%>`
+<% if(subTypes.length>0){subTypes.forEach(subType=>{ _%>
+  * 可选: `<%- subType -%>`
+<% })} _%> 
+<%_ if(desc){	_%>
+* 描述: <%- desc _%> 
+<%_ } -%> 
+<%_ if(example){	_%>
+* 示例:
+  ```js
+  <%- example _%> 
+  ```
+<% } %> 

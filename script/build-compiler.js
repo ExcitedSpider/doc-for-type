@@ -23,7 +23,7 @@ buildCompiler();
 if (env === "development") {
   rollup
     .watch({
-      input: "src/compiler/index.ts",
+      input: ["src/compiler/index.ts", "src/compiler/renderer.ts", "src/**"],
       watch: {
         include: "src/**",
       },

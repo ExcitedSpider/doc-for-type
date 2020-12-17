@@ -1,0 +1,14 @@
+# <%- name %>
+
+<%- include('partials/plaindesc') -%> 
+<%_ children.forEach(child=>{ _%> 
+## <%- child.name %> 
+
+<%- include('partials/plaindesc', {...child}) %> 
+
+<%_ child.children.forEach(gChild => { _%>
+### <%- gChild.name %> 
+
+<%- include('partials/plaindesc', {...gChild}) %> 
+
+<%_ })});_%>
