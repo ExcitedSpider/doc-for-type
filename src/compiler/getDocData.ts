@@ -16,7 +16,7 @@ export function getDocDataFromNormalized(
     };
   }
 
-  const { properties, items } = schemaWithNoRef;
+  const { properties, items, description, examples } = schemaWithNoRef;
 
   if (schemaWithNoRef.anyOf) {
     const subTypes: string[] = [];
@@ -36,8 +36,8 @@ export function getDocDataFromNormalized(
       type: "union",
       subTypes,
       name: typeName || "",
-      example: "",
-      desc: "",
+      example: examples?.toString() || "",
+      desc: description || "",
       children: schemaWithNoRef.anyOf.map((unionType) =>
         getDocDataFromNormalized(unionType, (unionType as any).type)
       ),
@@ -49,8 +49,8 @@ export function getDocDataFromNormalized(
       type: "object",
       subTypes: [],
       name: typeName || "",
-      example: "",
-      desc: "",
+      example: examples?.toString() || "",
+      desc: description || "",
       children: Object.keys(properties).map((propKey) =>
         getDocDataFromNormalized(properties[propKey], propKey)
       ),
@@ -62,8 +62,8 @@ export function getDocDataFromNormalized(
       return {
         type: "array",
         name: typeName || "",
-        example: "",
-        desc: "",
+        example: examples?.toString() || "",
+        desc: description || "",
         children: [],
         subTypes: [],
       };
@@ -73,8 +73,8 @@ export function getDocDataFromNormalized(
       return {
         type: "array",
         name: typeName || "",
-        example: "",
-        desc: "",
+        example: examples?.toString() || "",
+        desc: description || "",
         children: [],
         subTypes: [],
       };
@@ -85,15 +85,15 @@ export function getDocDataFromNormalized(
       return {
         type: "array",
         name: typeName || "",
-        example: "",
-        desc: "",
+        example: examples?.toString() || "",
+        desc: description || "",
         subTypes: [],
         children: [
           {
             type: items.type || "",
             name: (items.type as any) || "",
-            example: "",
-            desc: "",
+            example: examples?.toString() || "",
+            desc: description || "",
             children: [],
             subTypes: [],
           },
@@ -104,8 +104,8 @@ export function getDocDataFromNormalized(
     return {
       type: "array",
       name: typeName || "",
-      example: "",
-      desc: "",
+      example: examples?.toString() || "",
+      desc: description || "",
       subTypes: [],
       children: Object.keys(properties).map((propKey) =>
         getDocDataFromNormalized(properties[propKey], propKey)
@@ -116,8 +116,8 @@ export function getDocDataFromNormalized(
   return {
     type: schemaWithNoRef["type"] || "unknown",
     name: typeName || "",
-    example: "",
-    desc: "",
+    example: examples?.toString() || "",
+    desc: description || "",
     subTypes: [],
     children: [],
   };

@@ -8,7 +8,7 @@ export const successLogger = (args: {
   menu: string;
 }) => {
   console.log(
-    emoji.find("✅").emoji,
+    emoji.find("😎").emoji,
     chalk.green(
       `Generate type description doc for '${args.path}:${args.typeName}' in '${args.menu}/${args.typeName}.md'`
     )

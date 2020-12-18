@@ -18,5 +18,7 @@ export function generateSchema(filePath: string, fileRoot: string, typeName: str
       "Cannot generate schema, find reason from previous error stack"
     );
   }
+
+  console.log(JSON.stringify(schema, null, 2))
   return schema;
 }

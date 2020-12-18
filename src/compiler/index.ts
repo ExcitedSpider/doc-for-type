@@ -3,7 +3,7 @@ import * as yargs from "yargs";
 import { flow, curryRight } from "lodash";
 import { join } from "path";
 import { normalize } from "./normalize";
-import { generateSchema } from "./generateSchame";
+import { generateSchema } from "./generateSchema";
 import { getDocDataFromNormalized } from "./getDocData";
 import { renderByEjs } from "./renderer";
 import { successLogger, errorLogger } from './logger';
