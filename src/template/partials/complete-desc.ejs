@@ -1,0 +1,22 @@
+
+<%- new Array(level).fill('#').join('') %> <%- name -%>
+
+* 类型: `<%- type -%>`
+<%_ if(subTypes.length>0){subTypes.forEach(subType=>{ _%>
+  * 可选: `<%- subType -%>`
+<%_ })} _%> 
+* 描述: <%- desc || '暂无描述' -%> 
+<%_ if(example){	_%>
+* 示例:
+  ```js
+  <%- example _%> 
+  ```
+<%_ } 
+   if(level<=3){ 
+    children.forEach(child=>{ _%> 
+<%-   include('complete-desc', {...child, level: level+1}) _%> 
+<%_   })} else if(children.length > 0){ _%> 
+* 子类型描述
+<%- include('breif-desc', {types: children}) _%>
+
+<% } _%>

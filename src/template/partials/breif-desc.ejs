@@ -1,0 +1,9 @@
+  ```js
+  {
+    <%_ types.forEach(subType => {  _%>
+    <%- subType.name %>:<%- subType.type %>,
+    <%_ if(subType.desc){_%>
+      > <%- subType.desc _%> 
+    <%_ }}); _%>
+  }
+  ```

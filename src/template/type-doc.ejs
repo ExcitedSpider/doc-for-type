@@ -1,18 +1,1 @@
-# <%- name %>
-
-<%- include('partials/list-desc') -%> 
-<%_ children.forEach(child=>{ _%> 
-## <%- child.name %> 
-
-<%- include('partials/list-desc', {...child}) %> 
-
-<%_ child.children.forEach(gChild => { _%>
-### <%- gChild.name %> 
-
-<%- include('partials/list-desc', {...gChild}) %> 
-<%_ if(gChild.children.length>0){ _%>
-```JSON
-<%- JSON.stringify(gChild.children, null,2) %> 
-```
-
-<%_ }})}); _%>
+<%- include('partials/complete-desc', {name, subTypes, example, children, level:1}) -%> 
