@@ -32,7 +32,7 @@ async function main() {
     generateSchema,
     normalize,
     curryRight(getDocDataFromNormalized)(typeName || "MainType"),
-    curryRight(renderByEjs)(join(__dirname, "../src/template/typeDoc.ejs")),
+    curryRight(renderByEjs)(join(__dirname, "../src/template/type-doc.ejs"), join(__dirname, `../docs/${typeName}.md`)),
   ]);
 
   const schema = getTypeDocDataFromFile(filePath, fileRoot, typeName);
