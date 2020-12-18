@@ -930,6 +930,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/node-emoji@^1.8.1":
+  "integrity" "sha512-0fRfA90FWm6KJfw6P9QGyo0HDTCmthZ7cWaBQndITlaWLTZ6njRyKwrwpzpg+n6kBXBIGKeUHEQuBx7bphGJkA=="
+  "resolved" "http://mirrors.tencent.com/npm/@types%2fnode-emoji/-/node-emoji-1.8.1.tgz"
+  "version" "1.8.1"
+
 "@types/node@*":
   "integrity" "sha512-JsoLXFppG62tWTklIoO4knA+oDTYsmqWxHRvd4lpmfQRNhX6osheUOWETP2jMoV/2bEHuMra8Pp3Dmo/stBFcw=="
   "resolved" "http://mirrors.tencent.com/npm/@types%2fnode/-/node-14.14.9.tgz"
@@ -4955,6 +4960,11 @@
   dependencies:
     "lodash._reinterpolate" "^3.0.0"
 
+"lodash.toarray@^4.4.0":
+  "integrity" "sha1-JMS/zWsvuji/0FlNsRedjptlZWE="
+  "resolved" "http://mirrors.tencent.com/npm/lodash.toarray/-/lodash.toarray-4.4.0.tgz"
+  "version" "4.4.0"
+
 "lodash.uniq@^4.5.0":
   "integrity" "sha1-0CJTc662Uq3BvILklFM5qEJ1R3M="
   "resolved" "http://mirrors.tencent.com/npm/lodash.uniq/-/lodash.uniq-4.5.0.tgz"
@@ -5388,6 +5398,13 @@
   "version" "2.3.2"
   dependencies:
     "lower-case" "^1.1.1"
+
+"node-emoji@^1.10.0":
+  "integrity" "sha512-Yt3384If5H6BYGVHiHwTL+99OzJKHhgp82S8/dktEK73T26BazdgZ4JZh92xSVtGNJvz9UbXdNAc5hcrXV42vw=="
+  "resolved" "http://mirrors.tencent.com/npm/node-emoji/-/node-emoji-1.10.0.tgz"
+  "version" "1.10.0"
+  dependencies:
+    "lodash.toarray" "^4.4.0"
 
 "node-forge@^0.10.0":
   "integrity" "sha512-PPmu8eEeG9saEUvI97fm4OYxXVB6bFvyNTyiUOBichBpFG8A1Ljw3bY62+5oOjDEMHRnd0Y7HQ+x7uzxOzC6JA=="

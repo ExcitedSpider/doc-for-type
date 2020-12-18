@@ -1,11 +1,12 @@
 /** node script/doc-by-type.js --path <type-export-file> --type-name <type-name or *> --root <optional-file-root> */
 import * as yargs from "yargs";
+import { flow, curryRight } from "lodash";
+import { join } from "path";
 import { normalize } from "./normalize";
 import { generateSchema } from "./generateSchame";
 import { getDocDataFromNormalized } from "./getDocData";
 import { renderByEjs } from "./renderer";
-import { flow, curryRight } from "lodash";
-import { join } from "path";
+import { successLogger, errorLogger } from './logger';
 
 async function main() {
   const { path: filePath = "", root: fileRoot = "", typeName, menu } = yargs
@@ -28,8 +29,9 @@ async function main() {
       type: "string",
     }).argv;
 
-  const docPath = join(__dirname, '../docs', menu || '', `${typeName}.md`)
-  const templatePath = join(__dirname, "../src/template/type-doc.ejs")
+  const docPath = join(__dirname, "../docs", menu || "", `${typeName}.md`);
+  const templatePath = join(__dirname, "../src/template/type-doc.ejs");
+
 
   const getTypeDocDataFromFile = flow([
     generateSchema,
@@ -38,7 +40,17 @@ async function main() {
     curryRight(renderByEjs)(templatePath, docPath),
   ]);
 
-  getTypeDocDataFromFile(filePath, fileRoot, typeName)
+  try {
+    getTypeDocDataFromFile(filePath, fileRoot, typeName);
+    successLogger({
+      path: filePath,
+      root: fileRoot,
+      typeName,
+      menu: menu || '.',
+    });
+  } catch (error) {
+    errorLogger(error)
+  }
 }
 
 main();
