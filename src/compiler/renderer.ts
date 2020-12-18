@@ -1,5 +1,7 @@
 import ejs from "ejs";
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync, existsSync } from "fs";
+import { dirname } from "path";
+import mkdirp from "mkdirp";
 
 export const renderByEjs = (
   data: any,
@@ -12,6 +14,13 @@ export const renderByEjs = (
     filename: templatePath,
   });
 
-  console.log(renderedString);
-  writeFileSync(saveFilePath, renderedString)
+  const dirPath = dirname(saveFilePath);
+
+  if (!existsSync(dirPath)) {
+    mkdirp(dirPath).then(()=>{
+      writeFileSync(saveFilePath, renderedString)
+    });
+  } else {
+    writeFileSync(saveFilePath, renderedString);
+  }
 };

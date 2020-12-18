@@ -28,16 +28,17 @@ async function main() {
       type: "string",
     }).argv;
 
+  const docPath = join(__dirname, '../docs', menu || '', `${typeName}.md`)
+  const templatePath = join(__dirname, "../src/template/type-doc.ejs")
+
   const getTypeDocDataFromFile = flow([
     generateSchema,
     normalize,
     curryRight(getDocDataFromNormalized)(typeName || "MainType"),
-    curryRight(renderByEjs)(join(__dirname, "../src/template/type-doc.ejs"), join(__dirname, `../docs/${typeName}.md`)),
+    curryRight(renderByEjs)(templatePath, docPath),
   ]);
 
-  const schema = getTypeDocDataFromFile(filePath, fileRoot, typeName);
-
-  console.log(JSON.stringify(schema, null, 2));
+  getTypeDocDataFromFile(filePath, fileRoot, typeName)
 }
 
 main();

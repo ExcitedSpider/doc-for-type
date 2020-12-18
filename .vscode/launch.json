@@ -12,7 +12,7 @@
         "<node_internals>/**"
       ],
       "program": "${workspaceFolder}/bin/doc-by-type.js",
-      "args": ["--path", "test/testType.ts", "--type-name", "A"],
+      "args": ["--path", "test/testType.ts", "--type-name", "A", "--menu", "exampleType"],
       "outputCapture": "console",
       "sourceMaps": true
     }
