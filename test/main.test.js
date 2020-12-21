@@ -11,7 +11,7 @@ const spwanStdIO = (...spwanArgs) => {
     });
 
     cp.stderr.on("data", (data) => {
-      stderr.write(data)
+      stderr.write(data);
       rej(data);
     });
 
@@ -21,23 +21,32 @@ const spwanStdIO = (...spwanArgs) => {
   });
 };
 
-const CLI_PATH = join(__dirname, "../lib/doc4type/bin");
-
-test("type-union", async () => {
-  const testDir = join(__dirname, "./type-union");
+const spwanDoc4Type = async (dir, typename) => {
   await spwanStdIO(
     "node",
     [
       CLI_PATH,
       "--output",
-      `${testDir}/schema.md`,
+      `${dir}/schema.md`,
       "--path",
-      `${testDir}/main.ts`,
+      `${dir}/main.ts`,
       "--type-name",
-      "MyObject",
+      typename,
     ],
     {
       cwd: "../",
     }
   );
+};
+
+const CLI_PATH = join(__dirname, "../lib/doc4type/bin");
+
+test("type-union", async () => {
+  const testDir = join(__dirname, "./type-union");
+  await spwanDoc4Type(testDir, 'MyObject')
+});
+
+test("complex-type", async () => {
+  const testDir = join(__dirname, "./complex-type");
+  await spwanDoc4Type(testDir, 'IComplex')
 });

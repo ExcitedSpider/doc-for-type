@@ -21,7 +21,7 @@ const buildCompiler = async () => {
       /** 支持 import ejs 文件，获得文件路径 */
       filePath({
         include: ['**/*.ejs']
-      })
+      }),
     ],
   });
   await cliBundle.write({
@@ -39,7 +39,7 @@ const buildCompiler = async () => {
       }),
       filePath({
         include: ['**/*.ejs']
-      })
+      }),
     ],
   });
 

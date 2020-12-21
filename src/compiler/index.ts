@@ -7,8 +7,7 @@ import { generateSchema } from "./generateSchema";
 import { getDocDataFromNormalized } from "./getDocData";
 import { renderByEjs } from "./renderer";
 import { successLogger, errorLogger } from "./logger";
-
-import templatePath from '../template/type-doc.ejs'
+import templatePath from "../../public/template/type-doc.ejs";
 
 export async function doc4Type(option: {
   path: string;
