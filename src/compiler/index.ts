@@ -8,6 +8,8 @@ import { getDocDataFromNormalized } from "./getDocData";
 import { renderByEjs } from "./renderer";
 import { successLogger, errorLogger } from "./logger";
 
+import templatePath from '../template/type-doc.ejs'
+
 export async function doc4Type(option: {
   path: string;
   root: string;
@@ -18,12 +20,13 @@ export async function doc4Type(option: {
   const { path, root, typeName, menu, output } = option;
   const docPath =
     output || join(__dirname, "../../docs", menu || "", `${typeName}.md`);
-  const templatePath = join(__dirname, "../../src/template/type-doc.ejs");
 
   const getTypeDocDataFromFile = flow([
     generateSchema,
     normalize,
-    curryRight(getDocDataFromNormalized)((typeName || "MainType") as any) as any,
+    curryRight(getDocDataFromNormalized)(
+      (typeName || "MainType") as any
+    ) as any,
     curryRight(renderByEjs)(templatePath, docPath),
   ]);
 
@@ -74,4 +77,6 @@ async function cliMain() {
   });
 }
 
-cliMain();
+if (process.env.APP_TARGET === "CLI") {
+  cliMain();
+}
