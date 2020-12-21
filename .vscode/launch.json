@@ -11,8 +11,8 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}/bin/doc-by-type.js",
-      "args": ["--path", "test/complex-type/main.ts", "--type-name", "IComplex", "--menu", "complex-type"],
+      "program": "${workspaceFolder}/lib/doc4type/bin/index.js",
+      "args": ["--path", "test/type-intersection/main.ts", "--type-name", "MyObject"],
       "outputCapture": "console",
       "sourceMaps": true
     }

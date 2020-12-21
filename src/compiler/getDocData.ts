@@ -18,10 +18,12 @@ export function getDocDataFromNormalized(
 
   const { properties, items, description, examples } = schemaWithNoRef;
 
-  if (schemaWithNoRef.anyOf) {
+  if (schemaWithNoRef.anyOf || schemaWithNoRef.allOf) {
     const subTypes: string[] = [];
 
-    schemaWithNoRef.anyOf.forEach((unionType) => {
+    const typeList = schemaWithNoRef.anyOf || schemaWithNoRef.allOf || []
+
+    typeList.forEach((unionType) => {
       if (typeof unionType === "boolean") {
         subTypes.push(BOOL_TYPE);
       } else if (unionType.type) {
@@ -33,12 +35,12 @@ export function getDocDataFromNormalized(
     });
 
     return {
-      type: "union",
+      type: schemaWithNoRef.anyOf ? "union" : "intersection",
       subTypes,
       name: typeName || "",
       example: examples?.toString() || "",
       desc: description || "",
-      children: schemaWithNoRef.anyOf.map((unionType) =>
+      children: typeList.map((unionType) =>
         getDocDataFromNormalized(unionType, (unionType as any).type)
       ),
     };

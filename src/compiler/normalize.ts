@@ -49,10 +49,10 @@ function tranverseAndReplaceRefObj(
 
     return ObjWithNoRef;
   }
-  if (propTypeSpec.anyOf) {
-    const typeList = propTypeSpec.anyOf;
+  if (propTypeSpec.anyOf || propTypeSpec.allOf) {
+    const typeList = propTypeSpec.anyOf || propTypeSpec.allOf || [];
     return {
-      anyOf: typeList.map((child) =>
+      [propTypeSpec.anyOf ? "anyOf" : "allOf"]: typeList.map((child) =>
         tranverseAndReplaceRefObj(child, definitions)
       ),
     };
@@ -106,8 +106,7 @@ export function normalize(
   if (typeof defOrBool === "boolean") {
     return defOrBool;
   }
-  
-  
+
   const { properties, items, definitions, anyOf } = defOrBool;
   const defWithNoRef = defOrBool;
 

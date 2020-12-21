@@ -21,6 +21,11 @@ const spwanStdIO = (...spwanArgs) => {
   });
 };
 
+/**
+ * 测试一个文件夹下的 case
+ * @param {*} dir 测试文件夹
+ * @param {*} typename 提取的类型名称
+ */
 const spwanDoc4Type = async (dir, typename) => {
   await spwanStdIO(
     "node",
@@ -41,12 +46,17 @@ const spwanDoc4Type = async (dir, typename) => {
 
 const CLI_PATH = join(__dirname, "../lib/doc4type/bin");
 
+test("complex-type", async () => {
+  const testDir = join(__dirname, "./complex-type");
+  await spwanDoc4Type(testDir, 'IComplex')
+});
+
 test("type-union", async () => {
   const testDir = join(__dirname, "./type-union");
   await spwanDoc4Type(testDir, 'MyObject')
 });
 
-test("complex-type", async () => {
-  const testDir = join(__dirname, "./complex-type");
-  await spwanDoc4Type(testDir, 'IComplex')
+test("type-intersection", async () => {
+  const testDir = join(__dirname, "./type-intersection");
+  await spwanDoc4Type(testDir, 'MyObject')
 });
