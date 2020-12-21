@@ -19,6 +19,5 @@ export function generateSchema(filePath: string, fileRoot: string, typeName: str
     );
   }
 
-  console.log(JSON.stringify(schema, null, 2))
   return schema;
 }

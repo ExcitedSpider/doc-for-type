@@ -2,11 +2,14 @@
   "compilerOptions": {
     "target": "es2015",
     "lib": ["es6"],
+    "module": "ES2015",
     "moduleResolution": "node",
     "strict": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "skipLibCheck": false,
-    "sourceMap": true
-  }
+    "sourceMap": true,
+    "declaration": true
+  },
+  "include": ["src"]
 }

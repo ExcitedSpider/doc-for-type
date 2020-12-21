@@ -1,5 +1,5 @@
 
-# A
+# IComplex
 * 类型: `union`
   * 可选: `object`
   * 可选: `array`
@@ -9,30 +9,30 @@
 * 类型: `object`
 * 描述: 暂无描述 
 
-### b1
+### IB1
 * 类型: `object`
-* 描述: 暂无描述 
+* 描述: this is IB1 
 
-#### b11
+#### IB11
 * 类型: `object`
 * 描述: 暂无描述 
 * 子类型描述
   ```js
   {
-    b111:string,
-    b112:string,
+    IB111:string,
+    IB112:string,
   }
   ```
 
-#### b12
+#### IB12
 * 类型: `string`
 * 描述: 暂无描述 
 
-### b2
+### IB2
 * 类型: `number`
-* 描述: 暂无描述 
+* 描述: don't use @description 
 
-### b3
+### IB3
 * 类型: `object`
 * 描述: 暂无描述 
 
@@ -42,8 +42,8 @@
 * 子类型描述
   ```js
   {
-    c1:string,
-    c2:number,
+    IC1:string,
+    IC2:number,
   }
   ```
 
@@ -51,11 +51,11 @@
 * 类型: `array`
 * 描述: 暂无描述 
 
-### c1
+### IC1
 * 类型: `string`
 * 描述: 暂无描述 
 
-### c2
+### IC2
 * 类型: `number`
 * 描述: 暂无描述 
  

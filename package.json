@@ -16,16 +16,21 @@
     "build:tools": "node script/build-compiler.js"
   },
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^11.0.1",
     "@rollup/plugin-typescript": "^8.0.0",
     "@types/ejs": "^3.0.5",
     "@types/lodash": "^4.14.165",
     "@types/mkdirp": "^1.0.1",
+    "@types/node-emoji": "^1.8.1",
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
     "@types/yargs": "^15.0.11",
     "ejs": "^3.1.5",
+    "jest": "^27.0.0-next.1",
     "mkdirp": "^1.0.4",
     "rollup": "^2.34.2",
+    "rollup-plugin-typescript2": "^0.29.0",
+    "tslib": "^1.14.1",
     "typescript": "^4.1.2",
     "typescript-json-schema": "^0.43.0",
     "vuepress": "^1.7.1",
@@ -33,7 +38,6 @@
     "yargs": "^16.1.1"
   },
   "dependencies": {
-    "@types/node-emoji": "^1.8.1",
     "chalk": "^2.4.2",
     "lodash": "^4.17.20",
     "node-emoji": "^1.10.0"

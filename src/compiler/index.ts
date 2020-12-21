@@ -6,14 +6,50 @@ import { normalize } from "./normalize";
 import { generateSchema } from "./generateSchema";
 import { getDocDataFromNormalized } from "./getDocData";
 import { renderByEjs } from "./renderer";
-import { successLogger, errorLogger } from './logger';
+import { successLogger, errorLogger } from "./logger";
 
-async function main() {
-  const { path: filePath = "", root: fileRoot = "", typeName, menu } = yargs
+export async function doc4Type(option: {
+  path: string;
+  root: string;
+  typeName: string;
+  menu?: string;
+  output?: string;
+}) {
+  const { path, root, typeName, menu, output } = option;
+  const docPath =
+    output || join(__dirname, "../../docs", menu || "", `${typeName}.md`);
+  const templatePath = join(__dirname, "../../src/template/type-doc.ejs");
+
+  const getTypeDocDataFromFile = flow([
+    generateSchema,
+    normalize,
+    curryRight(getDocDataFromNormalized)((typeName || "MainType") as any) as any,
+    curryRight(renderByEjs)(templatePath, docPath),
+  ]);
+
+  try {
+    getTypeDocDataFromFile(path, root, typeName);
+    successLogger({
+      path,
+      root,
+      typeName,
+      menu: menu || ".",
+    });
+  } catch (error) {
+    errorLogger(error);
+  }
+}
+
+async function cliMain() {
+  const { path = "", root = "", typeName, menu, output } = yargs
     .option("path", {
       alias: "p",
       type: "string",
       demandOption: true,
+    })
+    .option("output", {
+      alias: "o",
+      type: "string",
     })
     .option("root", {
       alias: "r",
@@ -29,28 +65,13 @@ async function main() {
       type: "string",
     }).argv;
 
-  const docPath = join(__dirname, "../docs", menu || "", `${typeName}.md`);
-  const templatePath = join(__dirname, "../src/template/type-doc.ejs");
-
-
-  const getTypeDocDataFromFile = flow([
-    generateSchema,
-    normalize,
-    curryRight(getDocDataFromNormalized)(typeName || "MainType"),
-    curryRight(renderByEjs)(templatePath, docPath),
-  ]);
-
-  try {
-    getTypeDocDataFromFile(filePath, fileRoot, typeName);
-    successLogger({
-      path: filePath,
-      root: fileRoot,
-      typeName,
-      menu: menu || '.',
-    });
-  } catch (error) {
-    errorLogger(error)
-  }
+  doc4Type({
+    path,
+    root,
+    typeName,
+    menu,
+    output,
+  });
 }
 
-main();
+cliMain();
