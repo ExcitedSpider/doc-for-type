@@ -60,3 +60,13 @@ test("type-intersection", async () => {
   const testDir = join(__dirname, "./type-intersection");
   await spwanDoc4Type(testDir, 'MyObject')
 });
+
+test("import-type", async ()=>{
+  const testDir = join(__dirname, "./import-type");
+  await spwanDoc4Type(testDir, 'MyObject')
+})
+
+test("type-union-tagged", async ()=>{
+  const testDir = join(__dirname, "./type-union-tagged");
+  await spwanDoc4Type(testDir, 'Shape')
+})

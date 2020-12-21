@@ -12,7 +12,7 @@
         "<node_internals>/**"
       ],
       "program": "${workspaceFolder}/lib/doc4type/bin/index.js",
-      "args": ["--path", "test/type-intersection/main.ts", "--type-name", "MyObject"],
+      "args": ["--path", "test/anonymous-type/main.ts", "--type-name", "MyObject"],
       "outputCapture": "console",
       "sourceMaps": true
     }

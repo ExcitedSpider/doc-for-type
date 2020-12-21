@@ -82,24 +82,16 @@ export function getDocDataFromNormalized(
       };
     }
 
-    const { properties } = items;
+    const { properties, type } = items;
     if (!properties) {
       return {
-        type: "array",
+        // 简单类型
+        type: `${type}[]`,
         name: typeName || "",
         example: examples?.toString() || "",
         desc: description || "",
         subTypes: [],
-        children: [
-          {
-            type: items.type || "",
-            name: (items.type as any) || "",
-            example: examples?.toString() || "",
-            desc: description || "",
-            children: [],
-            subTypes: [],
-          },
-        ],
+        children: [],
       };
     }
 
