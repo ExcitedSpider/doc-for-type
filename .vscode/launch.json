@@ -12,7 +12,7 @@
         "<node_internals>/**"
       ],
       "program": "${workspaceFolder}/lib/doc4type/bin/index.js",
-      "args": ["--path", "test/anonymous-type/main.ts", "--type-name", "MyObject"],
+      "args": ["--path", "test/type-union-tagged/main.ts", "--type-name", "Shape"],
       "outputCapture": "console",
       "sourceMaps": true
     }

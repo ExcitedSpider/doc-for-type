@@ -5,11 +5,11 @@
 
 ## value
 * 类型: `intersection`
-  * 可选: `object`
-  * 可选: `object`
+  * 可选: `Type1: object`
+  * 可选: `Type2: object`
 * 描述: 暂无描述 
 
-### object
+### Type1
 * 类型: `object`
 * 描述: 暂无描述 
 
@@ -21,7 +21,7 @@
 * 类型: `number`
 * 描述: 暂无描述 
 
-### object
+### Type2
 * 类型: `object`
 * 描述: 暂无描述 
 

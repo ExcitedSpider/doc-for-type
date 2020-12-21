@@ -1,5 +1,5 @@
 import TJS from "typescript-json-schema";
-import { RefDefinition, TypeDefWithNoRef } from "./type";
+import { RefDefinition, TypeDefWithNoRef, DefinitionWithName } from "./type";
 
 /**
  * 将 {$ref: string} 这种引用类型转换为被引用的类型（非递归）
@@ -25,6 +25,9 @@ function findAndReplaceRefObj(
 
   const defObj = definitions[refName] || {};
 
+  if (typeof defObj === "object") {
+    return { ...defObj, name: refName };
+  }
   return defObj;
 }
 
@@ -34,9 +37,9 @@ function findAndReplaceRefObj(
  * @param definitions 定义列表
  */
 function tranverseAndReplaceRefObj(
-  propTypeSpec: TJS.DefinitionOrBoolean,
+  propTypeSpec: DefinitionWithName,
   definitions: RefDefinition
-): TJS.DefinitionOrBoolean {
+): DefinitionWithName {
   if (typeof propTypeSpec === "boolean") {
     return propTypeSpec;
   }
@@ -52,6 +55,7 @@ function tranverseAndReplaceRefObj(
   if (propTypeSpec.anyOf || propTypeSpec.allOf) {
     const typeList = propTypeSpec.anyOf || propTypeSpec.allOf || [];
     return {
+      ...propTypeSpec,
       [propTypeSpec.anyOf ? "anyOf" : "allOf"]: typeList.map((child) =>
         tranverseAndReplaceRefObj(child, definitions)
       ),
@@ -72,10 +76,14 @@ function tranverseAndReplaceRefObj(
           definitions
         );
       });
-      return { type: "object", properties: objectTypeProp };
+      return {
+        ...propTypeSpec,
+        type: "object",
+        properties: objectTypeProp,
+      };
     }
     // 有可能缺失 properties 的情况（用户直接定义 type A = object）
-    return { type: "object" };
+    return { ...propTypeSpec, type: "object" };
   }
   if (propTypeSpec.type === "array") {
     const arrayItems = propTypeSpec.items;
@@ -85,11 +93,13 @@ function tranverseAndReplaceRefObj(
     if (!Array.isArray(arrayItems)) {
       const itemType = findAndReplaceRefObj(arrayItems, definitions);
       return {
+        ...propTypeSpec,
         type: "array",
         items: tranverseAndReplaceRefObj(itemType, definitions),
       };
     } else {
       return {
+        ...propTypeSpec,
         type: "array",
         items: arrayItems.map((itemType) =>
           tranverseAndReplaceRefObj(itemType, definitions)
@@ -116,7 +126,9 @@ export function normalize(
 
   // 处理 union
   if (anyOf) {
-    defWithNoRef.anyOf = anyOf.map((unionItem) => normalize(unionItem));
+    defWithNoRef.anyOf = anyOf.map((unionItem) =>
+      tranverseAndReplaceRefObj(unionItem, definitions)
+    );
   }
 
   // 处理 object

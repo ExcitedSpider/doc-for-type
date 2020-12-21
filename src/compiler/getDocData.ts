@@ -21,7 +21,7 @@ export function getDocDataFromNormalized(
   if (schemaWithNoRef.anyOf || schemaWithNoRef.allOf) {
     const subTypes: string[] = [];
 
-    const typeList = schemaWithNoRef.anyOf || schemaWithNoRef.allOf || []
+    const typeList = schemaWithNoRef.anyOf || schemaWithNoRef.allOf || [];
 
     typeList.forEach((unionType) => {
       if (typeof unionType === "boolean") {
@@ -29,7 +29,8 @@ export function getDocDataFromNormalized(
       } else if (unionType.type) {
         const newTypes = Array.isArray(unionType.type)
           ? unionType.type
-          : [unionType.type];
+          /** 如果非匿名类型，则显示名称 */
+          : [(unionType as any).name ? `${(unionType as any).name}: ${unionType.type}` : unionType.type]; 
         subTypes.splice(subTypes.length, 0, ...newTypes);
       }
     });
@@ -41,7 +42,10 @@ export function getDocDataFromNormalized(
       example: examples?.toString() || "",
       desc: description || "",
       children: typeList.map((unionType) =>
-        getDocDataFromNormalized(unionType, (unionType as any).type)
+        getDocDataFromNormalized(
+          unionType,
+          (unionType as any).name || (unionType as any).type
+        )
       ),
     };
   }
@@ -54,7 +58,10 @@ export function getDocDataFromNormalized(
       example: examples?.toString() || "",
       desc: description || "",
       children: Object.keys(properties).map((propKey) =>
-        getDocDataFromNormalized(properties[propKey], propKey)
+        getDocDataFromNormalized(
+          properties[propKey],
+          (properties[propKey] as any)?.name || propKey
+        )
       ),
     };
   }
@@ -102,7 +109,10 @@ export function getDocDataFromNormalized(
       desc: description || "",
       subTypes: [],
       children: Object.keys(properties).map((propKey) =>
-        getDocDataFromNormalized(properties[propKey], propKey)
+        getDocDataFromNormalized(
+          properties[propKey],
+          (properties[propKey] as any)?.name || propKey
+        )
       ),
     };
   }

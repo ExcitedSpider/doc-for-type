@@ -23,5 +23,6 @@ export type TypeDocData = {
   children?: TypeDocData[]
 }
 
+export type DefinitionWithName = (Definition & { name?: string }) | boolean;
 /** 去掉所有 $ref 的 schema */
-export type TypeDefWithNoRef = DefinitionOrBoolean
+export type TypeDefWithNoRef = DefinitionWithName
