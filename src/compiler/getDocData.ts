@@ -29,8 +29,8 @@ export function getDocDataFromNormalized(
       } else if (unionType.type) {
         const newTypes = Array.isArray(unionType.type)
           ? unionType.type
-          /** 如果非匿名类型，则显示名称 */
-          : [(unionType as any).name ? `${(unionType as any).name}: ${unionType.type}` : unionType.type]; 
+          /** 如果非匿名类型，则优先显示名称 */
+          : [(unionType as any).name ? (unionType as any).name : unionType.type]; 
         subTypes.splice(subTypes.length, 0, ...newTypes);
       }
     });

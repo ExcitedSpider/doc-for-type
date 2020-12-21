@@ -5,8 +5,8 @@
 
 ## value
 * 类型: `intersection`
-  * 可选: `Type1: object`
-  * 可选: `Type2: object`
+  * 可选: `Type1`
+  * 可选: `Type2`
 * 描述: 暂无描述 
 
 ### Type1

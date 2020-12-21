@@ -1,9 +1,9 @@
 
 # Shape
 * 类型: `union`
-  * 可选: `Square: object`
-  * 可选: `Rectangle: object`
-  * 可选: `Circle: object`
+  * 可选: `Square`
+  * 可选: `Rectangle`
+  * 可选: `Circle`
 * 描述: 暂无描述 
 
 ## Square
