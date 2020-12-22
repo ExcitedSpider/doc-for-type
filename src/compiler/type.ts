@@ -15,14 +15,18 @@ export type RefDefinition = {
 };
 
 export type TypeDocData = {
-  type: string | string[],
-  name: string,
-  subTypes: string[],
-  example: string, 
-  desc: string,
-  children?: TypeDocData[]
-}
+  type: string | string[];
+  name: string;
+  subTypes: string[];
+  example: string;
+  link: string;
+  quote: string;
+  desc: string;
+  children?: TypeDocData[];
+};
 
-export type DefinitionWithName = (Definition & { name?: string }) | boolean;
+export type DefinitionWithName =
+  | (Definition & { name?: string; link?: string; quote?: string })
+  | boolean;
 /** 去掉所有 $ref 的 schema */
-export type TypeDefWithNoRef = DefinitionWithName
+export type TypeDefWithNoRef = DefinitionWithName;

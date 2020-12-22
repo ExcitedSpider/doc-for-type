@@ -18,7 +18,7 @@
 * 类型: `number`
 * 描述: 暂无描述 
 
-## Rectangle
+## [Rectangle](#Rectangle)
 * 类型: `object`
 * 描述: 暂无描述 
 
@@ -37,6 +37,10 @@
 ## Circle
 * 类型: `object`
 * 描述: 暂无描述 
+* 示例:
+```js
+{ kind: 'circle', radius: 5} 
+```
 
 ### kind
 * 类型: `string`

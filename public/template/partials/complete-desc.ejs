@@ -1,5 +1,5 @@
 
-<%- new Array(level).fill('#').join('') %> <%- name -%>
+<%- new Array(level).fill('#').join('') %> <%- !link? name: `[${name}](${link})` -%>
 
 * 类型: `<%- type -%>`
 <%_ if(subTypes.length>0){subTypes.forEach(subType=>{ _%>
@@ -16,7 +16,8 @@
     children.forEach(child=>{ _%> 
 <%-   include('complete-desc', {...child, level: level+1}) _%> 
 <%_   })} else if(children.length > 0){ _%> 
+<%_ if(!link){_%>
 * 子类型描述
 <%- include('breif-desc', {types: children}) _%>
 
-<% } _%>
+<% }} _%>
