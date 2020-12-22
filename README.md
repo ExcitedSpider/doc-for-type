@@ -54,7 +54,7 @@ interface Circle {
 
 ### @link
 
-生成链接，用于处理一些比较复杂深层的类型
+生成链接，用于处理一些比较复杂深层的类型。使用了 @link 的类型，将不会生成 json 子类型描述。
 
 输入：
 
@@ -85,5 +85,6 @@ interface Circle {
 - [x] 支持注释 hint
 - [x] @link 的支持
 - [x] test case
-- [ ] @public 公共片段渲染
+- [ ] @quote 公共片段渲染
 - [ ] 文档更新的问题
+- [ ] 支持输出 JSON

@@ -23,9 +23,7 @@ export async function doc4Type(option: {
   const getTypeDocDataFromFile = flow([
     generateSchema,
     normalize,
-    curryRight(getDocDataFromNormalized)(
-      (typeName || "MainType") as any
-    ) as any,
+    curryRight(getDocDataFromNormalized)(typeName),
     curryRight(renderByEjs)(templatePath, docPath),
   ]);
 
@@ -43,7 +41,7 @@ export async function doc4Type(option: {
 }
 
 async function cliMain() {
-  const { path = "", root = "", typeName, menu, output } = yargs
+  const { path = "", root = "", typeName, menu, output, format } = yargs
     .option("path", {
       alias: "p",
       type: "string",
@@ -65,6 +63,11 @@ async function cliMain() {
     .option("menu", {
       alias: "m",
       type: "string",
+    })
+    .option("format", {
+      alias: "f",
+      type: "string",
+      default: "markdown",
     }).argv;
 
   doc4Type({

@@ -4,7 +4,7 @@
   * 可选: `Square`
   * 可选: `Rectangle`
   * 可选: `Circle`
-* 描述: 暂无描述 
+* 描述: 绘制的图形基本类
 
 ## Square
 * 类型: `object`

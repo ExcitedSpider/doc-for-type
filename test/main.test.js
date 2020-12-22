@@ -1,6 +1,7 @@
 const { join } = require("path");
 const { spawn } = require("child_process");
 const { stdout, stderr } = require("process");
+const { describe } = require("yargs");
 
 const spwanStdIO = (...spwanArgs) => {
   return new Promise((res, rej) => {
@@ -48,25 +49,25 @@ const CLI_PATH = join(__dirname, "../lib/doc4type/bin");
 
 test("complex-type", async () => {
   const testDir = join(__dirname, "./complex-type");
-  await spwanDoc4Type(testDir, 'IComplex')
+  await spwanDoc4Type(testDir, "IComplex");
 });
 
 test("type-union", async () => {
   const testDir = join(__dirname, "./type-union");
-  await spwanDoc4Type(testDir, 'MyObject')
+  await spwanDoc4Type(testDir, "MyObject");
 });
 
 test("type-intersection", async () => {
   const testDir = join(__dirname, "./type-intersection");
-  await spwanDoc4Type(testDir, 'MyObject')
+  await spwanDoc4Type(testDir, "MyObject");
 });
 
-test("import-type", async ()=>{
+test("import-type", async () => {
   const testDir = join(__dirname, "./import-type");
-  await spwanDoc4Type(testDir, 'MyObject')
-})
+  await spwanDoc4Type(testDir, "MyObject");
+});
 
-test("type-union-tagged", async ()=>{
+test("type-union-tagged", async () => {
   const testDir = join(__dirname, "./type-union-tagged");
-  await spwanDoc4Type(testDir, 'Shape')
-})
+  await spwanDoc4Type(testDir, "Shape");
+});

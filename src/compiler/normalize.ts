@@ -1,5 +1,5 @@
 import TJS from "typescript-json-schema";
-import { RefDefinition, TypeDefWithNoRef, DefinitionWithName } from "./type";
+import { RefDefinition, DefinitionWithName } from "./type";
 
 /**
  * 将 {$ref: string} 这种引用类型转换为被引用的类型（非递归）
@@ -112,7 +112,7 @@ function tranverseAndReplaceRefObj(
 
 export function normalize(
   defOrBool: TJS.DefinitionOrBoolean
-): TypeDefWithNoRef {
+): DefinitionWithName {
   if (typeof defOrBool === "boolean") {
     return defOrBool;
   }

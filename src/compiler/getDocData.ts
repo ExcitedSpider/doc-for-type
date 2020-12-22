@@ -16,7 +16,7 @@ const defaultData = {
 
 export function getDocDataFromNormalized(
   schemaWithNoRef: TypeDefWithNoRef,
-  typeName?: string
+  typeName: string
 ): TypeDocData {
   if (typeof schemaWithNoRef === "boolean") {
     return {

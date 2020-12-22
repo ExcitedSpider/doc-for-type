@@ -12,7 +12,7 @@
         "<node_internals>/**"
       ],
       "program": "${workspaceFolder}/lib/doc4type/bin/index.js",
-      "args": ["--path", "test/type-union-tagged/main.ts", "--type-name", "Shape"],
+      "args": ["--path", "test/complex-type/main.ts", "--type-name", "IComplex"],
       "outputCapture": "console",
       "sourceMaps": true
     }
