@@ -24,4 +24,5 @@ type ISubC = {
   IC2?: number;
 }[];
 
+/** @example lugangxiaozhen */
 export type IComplex = ISubB | ISubC;

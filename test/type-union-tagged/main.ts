@@ -2,7 +2,7 @@
  * 绘制正方形
  * @example
  * // 在图表中绘制一个 10 * 10 px 的正方形
- * { kind: 'square', size: 10} 
+ * { kind: 'square', size: 10}
  */
 interface Square {
   /** 类型枚举 */
@@ -11,9 +11,9 @@ interface Square {
   size: number;
 }
 
-/** 
+/**
  * 绘制矩形
- * @link #Rectangle 
+ * @link #Rectangle
  */
 interface Rectangle {
   /** 类型枚举 */
@@ -24,7 +24,7 @@ interface Rectangle {
   height: number;
 }
 
-/** 
+/**
  * 绘制圆形
  * @example { kind: 'circle', radius: 5}
  */
@@ -33,5 +33,8 @@ interface Circle {
   radius: number;
 }
 
-/** 绘制的图形基本类 */
+/** @description 绘制的图形基本类 */
 type Shape = Square | Rectangle | Circle;
+
+/** 绘制的图形基本类 */
+type Shape2 = { kind: string; size: number };

@@ -1,7 +1,7 @@
 /** node script/doc-by-type.js --path <type-export-file> --type-name <type-name or *> --root <optional-file-root> */
 import * as yargs from "yargs";
 import { flowRight, curryRight } from "lodash";
-import { join } from "path";
+import { join, dirname } from "path";
 import { normalize } from "./normalize";
 import { generateSchema } from "./generateSchema";
 import { getDocDataFromNormalized } from "./getDocData";
@@ -17,8 +17,7 @@ export async function doc4Type(option: {
   output?: string;
 }) {
   const { path, root, typeName, menu, output } = option;
-  const docPath =
-    output || join(__dirname, "../../docs", menu || "", `${typeName}.md`);
+  const docPath = output || join(dirname(path), 'schema.md');
 
   const getTypeDocDataFromFile = flowRight([
     curryRight(renderByEjs)(templatePath, docPath),

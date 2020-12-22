@@ -1,5 +1,10 @@
 # 类型自动生成文档
 
+## TIP
+
+- 推荐多使用 `Interface`，这样可以在编译解析时保留接口名称，而 `Type` 会被丢弃。 
+- 顶层 `Type` 的注释信息存在 bug，无法解析
+
 ## 注释 API
 
 ### @description
@@ -88,3 +93,4 @@ interface Circle {
 - [ ] @quote 公共片段渲染
 - [ ] 文档更新的问题
 - [ ] 支持输出 JSON
+- [ ] 顶层 union type 问题
