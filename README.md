@@ -93,4 +93,4 @@ interface Circle {
 - [ ] @quote 公共片段渲染
 - [ ] 文档更新的问题
 - [ ] 支持输出 JSON
-- [ ] 顶层 union type 问题
+- [ ] 顶层 union type 问题 - 已提 issue

@@ -3,6 +3,11 @@
   "name": "doc-for-type",
   "version": "0.0.1",
   "license": "MIT",
+  "files": [
+    "lib",
+    "public"
+  ],
+  "main": "lib/index.js",
   "scripts": {
     "doc-by-type": "node script/doc-by-type",
     "docs:dev": "vuepress dev docs-example",
@@ -17,6 +22,7 @@
     "@types/mkdirp": "^1.0.1",
     "@types/node-emoji": "^1.8.1",
     "@types/yargs": "^15.0.11",
+    "chokidar": "^2.1.8",
     "ejs": "^3.1.5",
     "jest": "^27.0.0-next.1",
     "mkdirp": "^1.0.4",

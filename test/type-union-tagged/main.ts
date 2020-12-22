@@ -36,5 +36,5 @@ interface Circle {
 /** @description 绘制的图形基本类 */
 type Shape = Square | Rectangle | Circle;
 
-/** 绘制的图形基本类 */
+/** The shape for test  */
 type Shape2 = { kind: string; size: number };

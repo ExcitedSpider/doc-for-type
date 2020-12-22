@@ -1,7 +1,9 @@
 const rollup = require("rollup");
 const typescript = require("rollup-plugin-typescript2");
 const replace = require("@rollup/plugin-replace");
-const filePath = require('./rollup-plugin-file-path')
+const filePath = require("./rollup-plugin-file-path");
+const chokidar = require("chokidar");
+const chalk = require('chalk')
 
 const env = process.env.NODE_ENV || "development";
 
@@ -20,7 +22,7 @@ const buildCompiler = async () => {
       }),
       /** 支持 import ejs 文件，获得文件路径 */
       filePath({
-        include: ['**/*.ejs']
+        include: ["**/*.ejs"],
       }),
     ],
   });
@@ -38,7 +40,7 @@ const buildCompiler = async () => {
         "process.env.APP_TARGET": "'API'",
       }),
       filePath({
-        include: ['**/*.ejs']
+        include: ["**/*.ejs"],
       }),
     ],
   });
@@ -54,27 +56,16 @@ const buildCompiler = async () => {
     sourcemap: "inline",
   });
 
-  console.log("build success for bin/doc-by-type.js");
+  console.log(chalk.green("build success"));
 };
 
 buildCompiler();
 
 if (env === "development") {
-  rollup
-    .watch({
-      input: [
-        "src/compiler/index.ts",
-        "src/compiler/renderer.ts",
-        "src/compiler/generateSchema.ts",
-        "src/compiler/getDocData.ts",
-      ],
-      watch: {
-        include: "src/**",
-      },
-    })
-    .addListener("change", async () => {
-      await buildCompiler();
-    });
+  chokidar.watch("src").on("change", () => {
+    console.log(chalk.green("file change, rebuiding..."));
+    buildCompiler();
+  });
 
   console.log("start watch");
 }
