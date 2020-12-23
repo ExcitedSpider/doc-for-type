@@ -50,7 +50,7 @@ interface Circle {
 输出：
 
 ```md
-## Circle
+## Circle 
 * 类型: `object`
 * 描述: 暂无描述 
 * 示例:
@@ -79,6 +79,51 @@ interface Circle {
 ## [Circle](/components/Circle)
 * 类型: `object`
 * 描述: 暂无描述 
+```
+
+### @default
+
+生成默认值描述。
+
+输入:
+
+```ts
+interface MyObject {
+  /**
+   * @default true
+   */
+  varBoolean: boolean;
+  /**
+   * @default 123
+   */
+  varInteger: number;
+  /**
+   * @default "foo"
+   */
+  varString: string;
+}
+```
+
+输出:
+
+```md
+## varBoolean <small>`required`</small> 
+
+* 类型: `boolean`
+* 描述: 暂无描述 
+* 默认值: `true`
+
+## varInteger <small>`required`</small> 
+
+* 类型: `number`
+* 描述: 暂无描述 
+* 默认值: `123`
+
+## varFloat <small>`required`</small> 
+
+* 类型: `number`
+* 描述: 暂无描述 
+* 默认值: `3.21`
 ```
 
 ## TODO
