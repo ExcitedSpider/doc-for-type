@@ -27,11 +27,11 @@
     IB112:string,
   }
   ```
-
 #### IB12 <small>`required`</small> 
 
 * 类型: `string`
 * 描述: 暂无描述 
+* 默认值: `'hehe'`
 
 ### IB2 <small>`required`</small> 
 
@@ -54,7 +54,6 @@
     IC2:number,
   }
   ```
-
 ## array  
 
 * 类型: `object[]`

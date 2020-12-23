@@ -14,6 +14,7 @@ const defaultData = {
   children: [],
   isRequired: false,
   required: [],
+  default: null
 };
 
 function mergeRequiredIntoChildren(
@@ -46,12 +47,15 @@ export function getDocDataFromNormalized(
       subTypes: [],
       example: "",
       link: "",
-      quote: "",
       desc: "",
+      defaultValue: "",
     };
   }
 
   const { properties, items, description, required } = schemaWithNoRef;
+
+  /** default 是 js 关键字，需要换一个名字  */
+  const defaultValue = schemaWithNoRef['default']?.toString() || ''
 
   const extraInfo = omit(schemaWithNoRef, [
     "anyOf",
@@ -96,6 +100,7 @@ export function getDocDataFromNormalized(
             (unionType as any).name || (unionType as any).type
           )
         ),
+        defaultValue,
       },
       defaultData
     );
@@ -117,6 +122,7 @@ export function getDocDataFromNormalized(
             )
           )
         ),
+        defaultValue
       },
       defaultData
     );
@@ -130,6 +136,7 @@ export function getDocDataFromNormalized(
           type: "array",
           name: typeName,
           desc: description,
+          defaultValue
         },
         defaultData
       );
@@ -142,6 +149,7 @@ export function getDocDataFromNormalized(
           type: "array",
           name: typeName,
           desc: description,
+          defaultValue
         },
         defaultData
       );
@@ -156,6 +164,7 @@ export function getDocDataFromNormalized(
           type: `${type}[]`,
           name: typeName,
           desc: description,
+          defaultValue
         },
         defaultData
       );
@@ -176,6 +185,7 @@ export function getDocDataFromNormalized(
             )
           )
         ),
+        defaultValue
       },
       defaultData
     );
@@ -187,6 +197,7 @@ export function getDocDataFromNormalized(
       type: schemaWithNoRef["type"],
       name: typeName,
       desc: description,
+      defaultValue
     },
     defaultData
   );

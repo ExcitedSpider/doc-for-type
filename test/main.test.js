@@ -81,3 +81,8 @@ test("item-props-required", async () => {
   const testDir = join(__dirname, "./item-props-required");
   await spwanDoc4Type(testDir, "MyObject");
 });
+
+test("annotation-default", async () => {
+  const testDir = join(__dirname, "./annotation-default");
+  await spwanDoc4Type(testDir, "MyObject");
+});

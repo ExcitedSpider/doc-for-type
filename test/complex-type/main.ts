@@ -10,6 +10,7 @@ type ISubB = {
       IB111: string;
       IB112: string;
     };
+    /** @default 'hehe' */
     IB12: string;
   };
   /** don't use @description */

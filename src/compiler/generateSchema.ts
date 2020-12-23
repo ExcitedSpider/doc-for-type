@@ -1,5 +1,7 @@
 import TJS from "typescript-json-schema";
 
+const annotationKeywords = ['link','public', 'example'];
+
 export function generateSchema(filePath: string, fileRoot: string, typeName: string) {
   const program = TJS.getProgramFromFiles(
     [filePath],
@@ -11,8 +13,8 @@ export function generateSchema(filePath: string, fileRoot: string, typeName: str
 
   const schema = TJS.generateSchema(program, typeName, {
     ignoreErrors: true,
-    validationKeywords: ['link','public', 'example'],
-    required: true,
+    validationKeywords: annotationKeywords,
+    required: true
   });
 
   if (!schema) {

@@ -20,10 +20,10 @@ export type TypeDocData = {
   subTypes: string[];
   example: string;
   link: string;
-  quote: string;
   desc: string;
   children?: TypeDocData[];
   isRequired?: boolean;
+  defaultValue?: string | null;
 };
 
 export type DefinitionWithName =

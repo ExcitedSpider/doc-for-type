@@ -3,7 +3,7 @@
 ## TIP
 
 - 推荐多使用 `Interface`，这样可以在编译解析时保留接口名称，而 `Type` 会被丢弃。 
-- 顶层 `Type` 的注释信息存在 bug，无法解析
+- 顶层 `Type` 的注释信息存在 bug，无法解析 <- 依赖库的问题，等待PR
 
 ## 注释 API
 
@@ -91,8 +91,11 @@ interface Circle {
 - [x] @link 的支持
 - [x] test case
 - [x] @quote 公共片段渲染 - 不做，因为 markdown 标准语法中没有引用外部片段的定义。
-- [ ] required 的支持
-- [ ] default 的支持
+- [x] required 的支持
+- [x] default 的支持
+- [ ] ejs 可读性太差
 - [ ] 支持输出 JSON
+- [ ] 自定义生成的文档片段格式
+- [ ] Union 类型的文档生成如何与 Object prop 区分
 - [ ] 顶层 union type 问题 - 已提 issue
 - [ ] 文档更新的问题 - 待解决

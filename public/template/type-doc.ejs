@@ -1,1 +1,15 @@
-<%- include('partials/complete-desc', {name, subTypes, example, children, level:1}) -%> 
+<%_ /*
+  template data object:
+  {
+    type: string | string[];
+    name: string;
+    subTypes: string[];
+    example: string;
+    link: string;
+    desc: string;
+    children?: TypeDocData[];
+    isRequired?: boolean;
+    level: number;
+  }
+*/ _%> 
+<%- include('partials/complete-desc', {name, subTypes, example, children, level:1, isRequired, link, defaultValue}) -%> 
