@@ -1,8 +1,26 @@
 # Doc-4-Type
 
-一个根据 typescript 类型+代码注释自动生成代码文档的工具。支持生成 markdown, html, 以及 json。
+根据 TypeScript 类型+代码注释自动生成代码文档的工具。支持生成的文档类型包括 markdown, html, 以及 json。
 
-## 背景
+与 markdown 静态页面生成器(e.g. [vuepress](https://vuepress.vuejs.org/))搭配使用，可以实现类型文档自动化。可以查看 example 中的示例。
+
+## Type as Doc / 类型即文档
+
+传说中有一句话叫"类型是最好的注释"。例如以下类型，不看任何注释，我们也可以清晰明了地知道这个图形绘制配置项对象大概怎么使用。
+
+```ts
+Shape {
+  type: 'circle' | 'square',
+  width: number,
+  height: number,
+  fill: Color,
+  stroke: Color
+}
+```
+
+更进一步，我们希望可以做到类型直接生成文档，所以有了本项目。
+
+## Background
 
 Inspired and builds upon [typescript-json-schema](https://github.com/YousefED/typescript-json-schema).
 
@@ -177,3 +195,4 @@ interface MyObject {
 - [x] 顶层 union type 问题 - 已提 issue
 - [ ] 发布 npm 包
 - [ ] 发布主页
+- [ ] 复杂文档片段的生成
