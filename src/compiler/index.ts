@@ -14,11 +14,10 @@ export async function doc4Type(option: {
   path: string;
   root: string;
   typeName: string;
-  menu?: string;
   output?: string;
   format: OuputFormat;
 }) {
-  const { path, root, typeName, menu, output, format } = option;
+  const { path, root, typeName, output, format } = option;
   const docPath = output || join(dirname(path), "schema");
 
   const getTypeDocDataFromFile = flowRight([
@@ -35,7 +34,6 @@ export async function doc4Type(option: {
       root,
       typeName,
       output,
-      menu: menu || ".",
       format,
     });
   } catch (error) {
@@ -53,31 +51,32 @@ async function cliMain() {
   const { path = "", root = "", typeName, menu, output, format } = yargs
     .options({
       path: {
-        alias: "p",
+        alias: ["p", "input"],
         type: "string",
+        desc: 'The path of input file',
         demandOption: true,
       },
       output: {
         alias: "o",
+        desc: 'The path of output file',
         type: "string",
       },
       root: {
         alias: "r",
+        desc: 'The root of files',
         type: "string",
       },
       typeName: {
         alias: "t",
         type: "string",
+        desc: 'The type name that to be doc',
         demandOption: true,
-      },
-      menu: {
-        alias: "m",
-        type: "string",
       },
       format: {
         alias: "f",
         type: "string",
         default: "markdown",
+        desc: `The doc format, one of: [${Object.keys(OuputFormat).join(',')}]`,
       },
     })
     .help().argv;
@@ -88,7 +87,6 @@ async function cliMain() {
     path,
     root,
     typeName,
-    menu,
     output,
     format: outputFormat || OuputFormat.markdown,
   });
