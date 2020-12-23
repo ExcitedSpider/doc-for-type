@@ -3,10 +3,10 @@ import { join, dirname } from "path";
 import { normalize } from "./normalize";
 import { generateSchema } from "./generateSchema";
 import { getDocDataFromNormalized } from "./getDocData";
-import { ejsRender } from "./ejsRender";
-import { remarkRender } from "./remarkRender";
+import { renderer } from "./renderer";
 import { errorLogger, successLogger } from "./logger";
 import { OuputFormat } from "./type";
+import { write2fs } from './writer2fs'
 
 export * from "./type";
 export * from "./const";
@@ -22,8 +22,8 @@ export async function doc4Type(option: {
   const docPath = output || join(dirname(path), "schema");
 
   const getTypeDocDataFromFile = flowRight([
-    curryRight(remarkRender)(docPath, format),
-    curryRight(ejsRender)(format),
+    curryRight(write2fs)(format, docPath),
+    curryRight(renderer)(format),
     curryRight(getDocDataFromNormalized)(typeName),
     normalize,
     generateSchema,

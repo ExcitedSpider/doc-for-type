@@ -62,6 +62,23 @@ const spwanDoc4Type = async (dir, typename) => {
       {
         cwd: "../",
       }
+    ),
+    spwanStdIO(
+      "node",
+      [
+        CLI_PATH,
+        "--output",
+        `${dir}/schema`,
+        "--path",
+        `${dir}/main.ts`,
+        "--type-name",
+        typename,
+        "--format",
+        "html",
+      ],
+      {
+        cwd: "../",
+      }
     )
   ]);
 };

@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import emoji from "node-emoji";
 import { OuputFormat } from "./type";
-import { extName } from "./const";
+import { extNameMap } from "./const";
 
 export const successLogger = (args: {
   path: string;
@@ -14,7 +14,7 @@ export const successLogger = (args: {
   const outputPath =
     args.output ||
     `${args.menu}/${args.typeName}${
-      extName[args.format || OuputFormat.markdown]
+      extNameMap[args.format || OuputFormat.markdown]
     }`;
 
   args.output ||

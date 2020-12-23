@@ -33,5 +33,5 @@ export type DefinitionWithName =
 export type TypeDefWithNoRef = DefinitionWithName;
 
 export enum OuputFormat {
-  'markdown', 'json'
+  'markdown', 'json', 'html'
 }

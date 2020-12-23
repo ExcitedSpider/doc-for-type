@@ -143,6 +143,7 @@ interface MyObject {
 - [ ] ejs 可读性太差
 - [x] 输出 JSON
   - [x] 支持文件名后缀自动生成
+  - [ ] 接 remark 库，可以让用户指定 markdown 拓展
 - [ ] 输出其他更多格式
 - [ ] 提供 dir + name 替代 outputPath ？感觉似乎没有必要
 - [ ] 自定义生成的文档片段格式

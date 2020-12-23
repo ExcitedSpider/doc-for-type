@@ -1,68 +1,68 @@
+# Shape
 
-# Shape  
+*   类型: `union`
+    *   可选: `Square`
+    *   可选: `Rectangle`
+    *   可选: `Circle`
+*   描述: 暂无描述
 
-* 类型: `union`
-  * 可选: `Square`
-  * 可选: `Rectangle`
-  * 可选: `Circle`
-* 描述: 暂无描述 
+## Square
 
-## Square  
+*   类型: `object`
+*   描述: 绘制正方形
+*   示例:
 
-* 类型: `object`
-* 描述: 绘制正方形 
-* 示例:
 ```js
 // 在图表中绘制一个 10 * 10 px 的正方形
 { kind: 'square', size: 10} 
 ```
 
-### kind <small>`required`</small> 
+### kind <sup>required</sup>
 
-* 类型: `string`
-* 描述: 类型枚举 
+*   类型: `string`
+*   描述: 类型枚举
 
-### size <small>`required`</small> 
+### size <sup>required</sup>
 
-* 类型: `number`
-* 描述: 尺寸 
+*   类型: `number`
+*   描述: 尺寸
 
-## [Rectangle](#Rectangle)  
+## [Rectangle](#Rectangle)
 
-* 类型: `object`
-* 描述: 绘制矩形 
+*   类型: `object`
+*   描述: 绘制矩形
 
-### kind <small>`required`</small> 
+### kind <sup>required</sup>
 
-* 类型: `string`
-* 描述: 类型枚举 
+*   类型: `string`
+*   描述: 类型枚举
 
-### width <small>`required`</small> 
+### width <sup>required</sup>
 
-* 类型: `number`
-* 描述: 宽度 
+*   类型: `number`
+*   描述: 宽度
 
-### height <small>`required`</small> 
+### height <sup>required</sup>
 
-* 类型: `number`
-* 描述: 高度 
+*   类型: `number`
+*   描述: 高度
 
-## Circle  
+## Circle
 
-* 类型: `object`
-* 描述: 绘制圆形 
-* 示例:
+*   类型: `object`
+*   描述: 绘制圆形
+*   示例:
+
 ```js
 { kind: 'circle', radius: 5} 
 ```
 
-### kind <small>`required`</small> 
+### kind <sup>required</sup>
 
-* 类型: `string`
-* 描述: 暂无描述 
+*   类型: `string`
+*   描述: 暂无描述
 
-### radius <small>`required`</small> 
+### radius <sup>required</sup>
 
-* 类型: `number`
-* 描述: 暂无描述 
- 
+*   类型: `number`
+*   描述: 暂无描述

@@ -14,7 +14,7 @@
   }
 */ _%> 
 
-<%- new Array(level).fill('#').join('') %> <%- !link? name: `[${name}](${link})` -%> <%- isRequired? '<small>`required`</small>': ''%> 
+<%- new Array(level).fill('#').join('') %> <%- !link? name: `[${name}](${link})` -%> <%- isRequired? '<sup>required</sup>': ''%> 
 
 * 类型: `<%- type -%>`
 <%_ if(subTypes.length>0){subTypes.forEach(subType=>{ -%>

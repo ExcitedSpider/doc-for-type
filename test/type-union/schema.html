@@ -1,0 +1,30 @@
+<h1>MyObject</h1>
+<ul>
+<li>类型: <code>object</code></li>
+<li>描述: Hello</li>
+</ul>
+<h2>var1 <sup>required</sup></h2>
+<ul>
+<li>类型: <code>string,number</code></li>
+<li>描述: Simple union (generates "type": [...])</li>
+</ul>
+<h2>var2 <sup>required</sup></h2>
+<ul>
+<li>类型: <code>union</code>
+<ul>
+<li>可选: <code>array</code></li>
+<li>可选: <code>string</code></li>
+</ul>
+</li>
+<li>描述: Non-simple union (generates a "oneOf"/"anyOf")</li>
+</ul>
+<h3>array</h3>
+<ul>
+<li>类型: <code>number[]</code></li>
+<li>描述: 暂无描述</li>
+</ul>
+<h3>string</h3>
+<ul>
+<li>类型: <code>string</code></li>
+<li>描述: 暂无描述</li>
+</ul>

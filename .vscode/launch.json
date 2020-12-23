@@ -11,8 +11,8 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}/lib/doc4type/bin/index.js",
-      "args": ["--path", "test/annotation-default/main.ts", "--type-name", "MyObject","--format", "json"],
+      "program": "${workspaceFolder}/lib/doc4type/bin/doc4type",
+      "args": ["--path", "test/annotation-default/main.ts", "--type-name", "MyObject","--format", "html"],
       "outputCapture": "console",
       "sourceMaps": true
     }
