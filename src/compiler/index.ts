@@ -3,9 +3,9 @@ import { join, dirname } from "path";
 import { normalize } from "./normalize";
 import { generateSchema } from "./generateSchema";
 import { getDocDataFromNormalized } from "./getDocData";
-import { renderByEjs } from "./primativeRender";
+import { ejsRender } from "./ejsRender";
+import { remarkRender } from "./remarkRender";
 import { errorLogger, successLogger } from "./logger";
-import templatePath from "../../public/template/type-doc.ejs";
 import { OuputFormat } from "./type";
 
 export * from "./type";
@@ -22,7 +22,8 @@ export async function doc4Type(option: {
   const docPath = output || join(dirname(path), "schema");
 
   const getTypeDocDataFromFile = flowRight([
-    curryRight(renderByEjs)(templatePath, docPath, format),
+    curryRight(remarkRender)(docPath, format),
+    curryRight(ejsRender)(format),
     curryRight(getDocDataFromNormalized)(typeName),
     normalize,
     generateSchema,

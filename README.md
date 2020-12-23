@@ -144,7 +144,7 @@ interface MyObject {
 - [x] 输出 JSON
   - [x] 支持文件名后缀自动生成
 - [ ] 输出其他更多格式
-- [ ] 提供 dir + name 替代 outputPath
+- [ ] 提供 dir + name 替代 outputPath ？感觉似乎没有必要
 - [ ] 自定义生成的文档片段格式
 - [ ] Union 类型的文档生成如何与 Object prop 区分
 - [ ] 顶层 union type 问题 - 已提 issue
