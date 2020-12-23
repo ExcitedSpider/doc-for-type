@@ -1,5 +1,20 @@
 
-<%- new Array(level).fill('#').join('') %> <%- !link? name: `[${name}](${link})` -%>
+<%_ /*
+  template data object:
+  {
+    type: string | string[];
+    name: string;
+    subTypes: string[];
+    example: string;
+    link: string;
+    quote: string;
+    desc: string;
+    children?: TypeDocData[];
+    isRequired?: boolean;
+    level: number;
+  }
+*/ _%> 
+<%- new Array(level).fill('#').join('') %> <%- !link? name: `[${name}](${link})` -%> <%- isRequired? '<small>`required`</small>': ''%> 
 
 * 类型: `<%- type -%>`
 <%_ if(subTypes.length>0){subTypes.forEach(subType=>{ _%>

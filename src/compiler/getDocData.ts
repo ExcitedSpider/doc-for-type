@@ -12,7 +12,28 @@ const defaultData = {
   quote: "",
   desc: "",
   children: [],
+  isRequired: false,
+  required: [],
 };
+
+function mergeRequiredIntoChildren(
+  required: string[],
+  children: TypeDocData[]
+) {
+  if (required.length === 0 || children.length === 0) {
+    return children;
+  }
+  const mergedChildren = children.slice();
+  /** TODO: n^2 查找，需要验证是否需要优化 */
+  required.forEach((field) => {
+    const child = mergedChildren.find((child) => child.name === field);
+    if (child) {
+      child.isRequired = true;
+    }
+  });
+
+  return mergedChildren;
+}
 
 export function getDocDataFromNormalized(
   schemaWithNoRef: TypeDefWithNoRef,
@@ -30,9 +51,16 @@ export function getDocDataFromNormalized(
     };
   }
 
-  const { properties, items, description } = schemaWithNoRef;
+  const { properties, items, description, required } = schemaWithNoRef;
 
-  const extraInfo = omit(schemaWithNoRef, ['anyOf', 'allOf', 'name', 'type', 'definitions', 'properties'])
+  const extraInfo = omit(schemaWithNoRef, [
+    "anyOf",
+    "allOf",
+    "name",
+    "type",
+    "definitions",
+    "properties",
+  ]);
 
   if (schemaWithNoRef.anyOf || schemaWithNoRef.allOf) {
     const subTypes: string[] = [];
@@ -80,10 +108,13 @@ export function getDocDataFromNormalized(
         type: "object",
         name: typeName,
         desc: description,
-        children: Object.keys(properties).map((propKey) =>
-          getDocDataFromNormalized(
-            properties[propKey],
-            (properties[propKey] as any)?.name || propKey
+        children: mergeRequiredIntoChildren(
+          required || [],
+          Object.keys(properties).map((propKey) =>
+            getDocDataFromNormalized(
+              properties[propKey],
+              (properties[propKey] as any)?.name || propKey
+            )
           )
         ),
       },
@@ -116,7 +147,7 @@ export function getDocDataFromNormalized(
       );
     }
 
-    const { properties, type } = items;
+    const { properties, type, required } = items;
     if (!properties) {
       return defaults(
         {
@@ -133,13 +164,16 @@ export function getDocDataFromNormalized(
     return defaults(
       {
         ...extraInfo,
-        type: "array",
+        type: `${type}[]`,
         name: typeName,
         desc: description,
-        children: Object.keys(properties).map((propKey) =>
-          getDocDataFromNormalized(
-            properties[propKey],
-            (properties[propKey] as any)?.name || propKey
+        children: mergeRequiredIntoChildren(
+          required || [],
+          Object.keys(properties).map((propKey) =>
+            getDocDataFromNormalized(
+              properties[propKey],
+              (properties[propKey] as any)?.name || propKey
+            )
           )
         ),
       },
@@ -147,10 +181,13 @@ export function getDocDataFromNormalized(
     );
   }
 
-  return defaults({
-    ...extraInfo,
-    type: schemaWithNoRef["type"],
-    name: typeName,
-    desc: description,
-  }, defaultData);
+  return defaults(
+    {
+      ...extraInfo,
+      type: schemaWithNoRef["type"],
+      name: typeName,
+      desc: description,
+    },
+    defaultData
+  );
 }

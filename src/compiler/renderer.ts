@@ -1,10 +1,11 @@
 import ejs from "ejs";
 import { readFileSync, writeFileSync, existsSync } from "fs";
 import { dirname } from "path";
+import { TypeDocData } from './type'
 import mkdirp from "mkdirp";
 
 export const renderByEjs = (
-  data: any,
+  data: TypeDocData,
   templatePath: string,
   saveFilePath: string
 ) => {

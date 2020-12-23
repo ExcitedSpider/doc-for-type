@@ -1,12 +1,14 @@
 
-# Shape
+# Shape  
+
 * 类型: `union`
   * 可选: `Square`
   * 可选: `Rectangle`
   * 可选: `Circle`
 * 描述: 暂无描述 
 
-## Square
+## Square  
+
 * 类型: `object`
 * 描述: 绘制正方形 
 * 示例:
@@ -15,31 +17,38 @@
 { kind: 'square', size: 10} 
 ```
 
-### kind
+### kind <small>`required`</small> 
+
 * 类型: `string`
 * 描述: 类型枚举 
 
-### size
+### size <small>`required`</small> 
+
 * 类型: `number`
 * 描述: 尺寸 
 
-## [Rectangle](#Rectangle)
+## [Rectangle](#Rectangle)  
+
 * 类型: `object`
 * 描述: 绘制矩形 
 
-### kind
+### kind <small>`required`</small> 
+
 * 类型: `string`
 * 描述: 类型枚举 
 
-### width
+### width <small>`required`</small> 
+
 * 类型: `number`
 * 描述: 宽度 
 
-### height
+### height <small>`required`</small> 
+
 * 类型: `number`
 * 描述: 高度 
 
-## Circle
+## Circle  
+
 * 类型: `object`
 * 描述: 绘制圆形 
 * 示例:
@@ -47,11 +56,13 @@
 { kind: 'circle', radius: 5} 
 ```
 
-### kind
+### kind <small>`required`</small> 
+
 * 类型: `string`
 * 描述: 暂无描述 
 
-### radius
+### radius <small>`required`</small> 
+
 * 类型: `number`
 * 描述: 暂无描述 
  

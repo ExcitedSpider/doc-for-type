@@ -23,6 +23,7 @@ export type TypeDocData = {
   quote: string;
   desc: string;
   children?: TypeDocData[];
+  isRequired?: boolean;
 };
 
 export type DefinitionWithName =

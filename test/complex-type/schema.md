@@ -1,19 +1,23 @@
 
-# IComplex
+# IComplex  
+
 * 类型: `union`
   * 可选: `object`
   * 可选: `array`
 * 描述: 暂无描述 
 
-## object
+## object  
+
 * 类型: `object`
 * 描述: 暂无描述 
 
-### IB1
+### IB1 <small>`required`</small> 
+
 * 类型: `object`
 * 描述: this is IB1 
 
-#### IB11
+#### IB11 <small>`required`</small> 
+
 * 类型: `object`
 * 描述: 暂无描述 
 * 子类型描述
@@ -24,20 +28,24 @@
   }
   ```
 
-#### IB12
+#### IB12 <small>`required`</small> 
+
 * 类型: `string`
 * 描述: 暂无描述 
 
-### IB2
+### IB2 <small>`required`</small> 
+
 * 类型: `number`
 * 描述: don't use @description 
 
-### IB3
+### IB3 <small>`required`</small> 
+
 * 类型: `object`
 * 描述: 暂无描述 
 
-#### foo
-* 类型: `array`
+#### foo <small>`required`</small> 
+
+* 类型: `object[]`
 * 描述: 暂无描述 
 * 子类型描述
   ```js
@@ -47,15 +55,18 @@
   }
   ```
 
-## array
-* 类型: `array`
+## array  
+
+* 类型: `object[]`
 * 描述: 暂无描述 
 
-### IC1
+### IC1 <small>`required`</small> 
+
 * 类型: `string`
 * 描述: 暂无描述 
 
-### IC2
+### IC2  
+
 * 类型: `number`
 * 描述: 暂无描述 
  

@@ -11,7 +11,8 @@ export function generateSchema(filePath: string, fileRoot: string, typeName: str
 
   const schema = TJS.generateSchema(program, typeName, {
     ignoreErrors: true,
-    validationKeywords: ['link','public', 'example']
+    validationKeywords: ['link','public', 'example'],
+    required: true,
   });
 
   if (!schema) {

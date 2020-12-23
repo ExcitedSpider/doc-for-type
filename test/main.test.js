@@ -71,3 +71,13 @@ test("type-union-tagged", async () => {
   const testDir = join(__dirname, "./type-union-tagged");
   await spwanDoc4Type(testDir, "Shape");
 });
+
+test("props-required", async () => {
+  const testDir = join(__dirname, "./props-required");
+  await spwanDoc4Type(testDir, "MyObject");
+});
+
+test("item-props-required", async () => {
+  const testDir = join(__dirname, "./item-props-required");
+  await spwanDoc4Type(testDir, "MyObject");
+});

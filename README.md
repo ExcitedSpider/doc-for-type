@@ -90,7 +90,9 @@ interface Circle {
 - [x] 支持注释 hint
 - [x] @link 的支持
 - [x] test case
-- [ ] @quote 公共片段渲染
-- [ ] 文档更新的问题
+- [x] @quote 公共片段渲染 - 不做，因为 markdown 标准语法中没有引用外部片段的定义。
+- [ ] required 的支持
+- [ ] default 的支持
 - [ ] 支持输出 JSON
 - [ ] 顶层 union type 问题 - 已提 issue
+- [ ] 文档更新的问题 - 待解决
