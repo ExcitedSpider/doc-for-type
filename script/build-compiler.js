@@ -2,6 +2,7 @@ const rollup = require("rollup");
 const typescript = require("rollup-plugin-typescript2");
 const replace = require("@rollup/plugin-replace");
 const filePath = require("./rollup-plugin-file-path");
+const banner = require('rollup-plugin-license');
 const chokidar = require("chokidar");
 const chalk = require('chalk')
 
@@ -24,6 +25,13 @@ const buildCompiler = async () => {
       filePath({
         include: ["**/*.ejs"],
       }),
+      /** add excutable banner */
+      banner({
+        banner: {
+          commentStyle: 'none',
+          content: '#!/usr/bin/env node'
+        }
+      })
     ],
   });
   await cliBundle.write({
