@@ -12,7 +12,7 @@
         "<node_internals>/**"
       ],
       "program": "${workspaceFolder}/lib/doc4type/bin/index.js",
-      "args": ["--path", "test/annotation-default/main.ts", "--type-name", "MyObject"],
+      "args": ["--path", "test/annotation-default/main.ts", "--type-name", "MyObject","--format", "json"],
       "outputCapture": "console",
       "sourceMaps": true
     }

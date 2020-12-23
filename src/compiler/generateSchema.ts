@@ -1,4 +1,5 @@
 import TJS from "typescript-json-schema";
+import { omit } from 'lodash'
 
 const annotationKeywords = ['link','public', 'example'];
 
@@ -23,5 +24,5 @@ export function generateSchema(filePath: string, fileRoot: string, typeName: str
     );
   }
 
-  return schema;
+  return omit(schema, ['$schema']);
 }

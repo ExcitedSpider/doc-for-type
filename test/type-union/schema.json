@@ -1,0 +1,87 @@
+{
+  "description": "Hello",
+  "required": [
+    "var1",
+    "var2"
+  ],
+  "type": "object",
+  "name": "MyObject",
+  "desc": "Hello",
+  "children": [
+    {
+      "description": "Simple union (generates \"type\": [...])",
+      "type": [
+        "string",
+        "number"
+      ],
+      "name": "var1",
+      "desc": "Simple union (generates \"type\": [...])",
+      "defaultValue": "",
+      "subTypes": [],
+      "example": "",
+      "link": "",
+      "quote": "",
+      "children": [],
+      "isRequired": true,
+      "required": [],
+      "default": null
+    },
+    {
+      "description": "Non-simple union (generates a \"oneOf\"/\"anyOf\")",
+      "type": "union",
+      "subTypes": [
+        "array",
+        "string"
+      ],
+      "name": "var2",
+      "desc": "Non-simple union (generates a \"oneOf\"/\"anyOf\")",
+      "children": [
+        {
+          "items": {
+            "type": "number"
+          },
+          "type": "number[]",
+          "name": "array",
+          "desc": "",
+          "defaultValue": "",
+          "subTypes": [],
+          "example": "",
+          "link": "",
+          "quote": "",
+          "children": [],
+          "isRequired": false,
+          "required": [],
+          "default": null
+        },
+        {
+          "type": "string",
+          "name": "string",
+          "desc": "",
+          "defaultValue": "",
+          "subTypes": [],
+          "example": "",
+          "link": "",
+          "quote": "",
+          "children": [],
+          "isRequired": false,
+          "required": [],
+          "default": null
+        }
+      ],
+      "defaultValue": "",
+      "example": "",
+      "link": "",
+      "quote": "",
+      "isRequired": true,
+      "required": [],
+      "default": null
+    }
+  ],
+  "defaultValue": "",
+  "subTypes": [],
+  "example": "",
+  "link": "",
+  "quote": "",
+  "isRequired": false,
+  "default": null
+}

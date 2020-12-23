@@ -23,21 +23,22 @@
     "@types/node-emoji": "^1.8.1",
     "@types/yargs": "^15.0.11",
     "chokidar": "^2.1.8",
-    "ejs": "^3.1.5",
     "jest": "^27.0.0-next.1",
-    "mkdirp": "^1.0.4",
     "rollup": "^2.34.2",
     "rollup-plugin-typescript2": "^0.29.0",
     "typescript": "^4.1.2",
     "typescript-json-schema": "^0.43.0",
     "vuepress": "^1.7.1",
-    "vuepress-bar": "^0.3.1",
-    "yargs": "^16.1.1"
+    "vuepress-bar": "^0.3.1"
   },
   "dependencies": {
     "chalk": "^2.4.2",
+    "ejs": "^3.1.5",
     "lodash": "^4.17.20",
-    "node-emoji": "^1.10.0"
+    "mkdirp": "^1.0.4",
+    "node-emoji": "^1.10.0",
+    "remark": "^13.0.0",
+    "yargs": "^16.1.1"
   },
   "jest": {
     "testEnvironment": "node"

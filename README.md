@@ -134,13 +134,17 @@ interface MyObject {
 - [x] 自动侧边栏生成问题
 - [x] 支持注释 hint
 - [x] @link 的支持
+- [ ] 文档更新的问题 - 很难解决
 - [x] test case
 - [x] @quote 公共片段渲染 - 不做，因为 markdown 标准语法中没有引用外部片段的定义。
 - [x] required 的支持
+  - [ ] required 可配置是否开启
 - [x] default 的支持
 - [ ] ejs 可读性太差
-- [ ] 支持输出 JSON
+- [x] 输出 JSON
+  - [x] 支持文件名后缀自动生成
+- [ ] 输出其他更多格式
+- [ ] 提供 dir + name 替代 outputPath
 - [ ] 自定义生成的文档片段格式
 - [ ] Union 类型的文档生成如何与 Object prop 区分
 - [ ] 顶层 union type 问题 - 已提 issue
-- [ ] 文档更新的问题 - 待解决

@@ -3,7 +3,7 @@
 ## TIP
 
 - 推荐多使用 `Interface`，这样可以在编译解析时保留接口名称，而 `Type` 会被丢弃。 
-- 顶层 `Type` 的注释信息存在 bug，无法解析
+- 顶层 `Type` 的注释信息存在 bug，无法解析 <- 依赖库的问题，等待PR
 
 ## 注释 API
 
@@ -50,7 +50,7 @@ interface Circle {
 输出：
 
 ```md
-## Circle
+## Circle 
 * 类型: `object`
 * 描述: 暂无描述 
 * 示例:
@@ -81,6 +81,51 @@ interface Circle {
 * 描述: 暂无描述 
 ```
 
+### @default
+
+生成默认值描述。
+
+输入:
+
+```ts
+interface MyObject {
+  /**
+   * @default true
+   */
+  varBoolean: boolean;
+  /**
+   * @default 123
+   */
+  varInteger: number;
+  /**
+   * @default "foo"
+   */
+  varString: string;
+}
+```
+
+输出:
+
+```md
+## varBoolean <small>`required`</small> 
+
+* 类型: `boolean`
+* 描述: 暂无描述 
+* 默认值: `true`
+
+## varInteger <small>`required`</small> 
+
+* 类型: `number`
+* 描述: 暂无描述 
+* 默认值: `123`
+
+## varFloat <small>`required`</small> 
+
+* 类型: `number`
+* 描述: 暂无描述 
+* 默认值: `3.21`
+```
+
 ## TODO
 
 - [x] 仅能展开到两层
@@ -90,7 +135,13 @@ interface Circle {
 - [x] 支持注释 hint
 - [x] @link 的支持
 - [x] test case
-- [ ] @quote 公共片段渲染
-- [ ] 文档更新的问题
+- [x] @quote 公共片段渲染 - 不做，因为 markdown 标准语法中没有引用外部片段的定义。
+- [x] required 的支持
+  - [ ] required 可配置是否开启
+- [x] default 的支持
+- [ ] ejs 可读性太差
 - [ ] 支持输出 JSON
+- [ ] 自定义生成的文档片段格式
+- [ ] Union 类型的文档生成如何与 Object prop 区分
 - [ ] 顶层 union type 问题 - 已提 issue
+- [ ] 文档更新的问题 - 待解决

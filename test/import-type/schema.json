@@ -1,0 +1,78 @@
+{
+  "type": "union",
+  "subTypes": [
+    "object",
+    "string"
+  ],
+  "name": "MyObject",
+  "desc": "",
+  "children": [
+    {
+      "required": [
+        "value1",
+        "value2"
+      ],
+      "type": "object",
+      "name": "object",
+      "desc": "",
+      "children": [
+        {
+          "type": "number",
+          "name": "value1",
+          "desc": "",
+          "defaultValue": "",
+          "subTypes": [],
+          "example": "",
+          "link": "",
+          "quote": "",
+          "children": [],
+          "isRequired": true,
+          "required": [],
+          "default": null
+        },
+        {
+          "type": "number",
+          "name": "value2",
+          "desc": "",
+          "defaultValue": "",
+          "subTypes": [],
+          "example": "",
+          "link": "",
+          "quote": "",
+          "children": [],
+          "isRequired": true,
+          "required": [],
+          "default": null
+        }
+      ],
+      "defaultValue": "",
+      "subTypes": [],
+      "example": "",
+      "link": "",
+      "quote": "",
+      "isRequired": false,
+      "default": null
+    },
+    {
+      "type": "string",
+      "name": "string",
+      "desc": "",
+      "defaultValue": "",
+      "subTypes": [],
+      "example": "",
+      "link": "",
+      "quote": "",
+      "children": [],
+      "isRequired": false,
+      "required": [],
+      "default": null
+    }
+  ],
+  "defaultValue": "",
+  "example": "",
+  "link": "",
+  "quote": "",
+  "isRequired": false,
+  "required": [],
+  "default": null
+}

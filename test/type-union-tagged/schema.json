@@ -1,0 +1,189 @@
+{
+  "type": "union",
+  "subTypes": [
+    "Square",
+    "Rectangle",
+    "Circle"
+  ],
+  "name": "Shape",
+  "desc": "",
+  "children": [
+    {
+      "description": "绘制正方形",
+      "example": "// 在图表中绘制一个 10 * 10 px 的正方形\n{ kind: 'square', size: 10}",
+      "required": [
+        "kind",
+        "size"
+      ],
+      "type": "object",
+      "name": "Square",
+      "desc": "绘制正方形",
+      "children": [
+        {
+          "description": "类型枚举",
+          "enum": [
+            "square"
+          ],
+          "type": "string",
+          "name": "kind",
+          "desc": "类型枚举",
+          "defaultValue": "",
+          "subTypes": [],
+          "example": "",
+          "link": "",
+          "quote": "",
+          "children": [],
+          "isRequired": true,
+          "required": [],
+          "default": null
+        },
+        {
+          "description": "尺寸",
+          "type": "number",
+          "name": "size",
+          "desc": "尺寸",
+          "defaultValue": "",
+          "subTypes": [],
+          "example": "",
+          "link": "",
+          "quote": "",
+          "children": [],
+          "isRequired": true,
+          "required": [],
+          "default": null
+        }
+      ],
+      "defaultValue": "",
+      "subTypes": [],
+      "link": "",
+      "quote": "",
+      "isRequired": false,
+      "default": null
+    },
+    {
+      "description": "绘制矩形",
+      "link": "#Rectangle",
+      "required": [
+        "height",
+        "kind",
+        "width"
+      ],
+      "type": "object",
+      "name": "Rectangle",
+      "desc": "绘制矩形",
+      "children": [
+        {
+          "description": "类型枚举",
+          "enum": [
+            "rectangle"
+          ],
+          "type": "string",
+          "name": "kind",
+          "desc": "类型枚举",
+          "defaultValue": "",
+          "subTypes": [],
+          "example": "",
+          "link": "",
+          "quote": "",
+          "children": [],
+          "isRequired": true,
+          "required": [],
+          "default": null
+        },
+        {
+          "description": "宽度",
+          "type": "number",
+          "name": "width",
+          "desc": "宽度",
+          "defaultValue": "",
+          "subTypes": [],
+          "example": "",
+          "link": "",
+          "quote": "",
+          "children": [],
+          "isRequired": true,
+          "required": [],
+          "default": null
+        },
+        {
+          "description": "高度",
+          "type": "number",
+          "name": "height",
+          "desc": "高度",
+          "defaultValue": "",
+          "subTypes": [],
+          "example": "",
+          "link": "",
+          "quote": "",
+          "children": [],
+          "isRequired": true,
+          "required": [],
+          "default": null
+        }
+      ],
+      "defaultValue": "",
+      "subTypes": [],
+      "example": "",
+      "quote": "",
+      "isRequired": false,
+      "default": null
+    },
+    {
+      "description": "绘制圆形",
+      "example": "{ kind: 'circle', radius: 5}",
+      "required": [
+        "kind",
+        "radius"
+      ],
+      "type": "object",
+      "name": "Circle",
+      "desc": "绘制圆形",
+      "children": [
+        {
+          "enum": [
+            "circle"
+          ],
+          "type": "string",
+          "name": "kind",
+          "desc": "",
+          "defaultValue": "",
+          "subTypes": [],
+          "example": "",
+          "link": "",
+          "quote": "",
+          "children": [],
+          "isRequired": true,
+          "required": [],
+          "default": null
+        },
+        {
+          "type": "number",
+          "name": "radius",
+          "desc": "",
+          "defaultValue": "",
+          "subTypes": [],
+          "example": "",
+          "link": "",
+          "quote": "",
+          "children": [],
+          "isRequired": true,
+          "required": [],
+          "default": null
+        }
+      ],
+      "defaultValue": "",
+      "subTypes": [],
+      "link": "",
+      "quote": "",
+      "isRequired": false,
+      "default": null
+    }
+  ],
+  "defaultValue": "",
+  "example": "",
+  "link": "",
+  "quote": "",
+  "isRequired": false,
+  "required": [],
+  "default": null
+}

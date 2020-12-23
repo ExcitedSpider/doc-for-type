@@ -1,0 +1,262 @@
+{
+  "type": "union",
+  "subTypes": [
+    "object",
+    "array"
+  ],
+  "name": "IComplex",
+  "desc": "",
+  "children": [
+    {
+      "required": [
+        "IB1",
+        "IB2",
+        "IB3"
+      ],
+      "type": "object",
+      "name": "object",
+      "desc": "",
+      "children": [
+        {
+          "description": "this is IB1",
+          "required": [
+            "IB11",
+            "IB12"
+          ],
+          "type": "object",
+          "name": "IB1",
+          "desc": "this is IB1",
+          "children": [
+            {
+              "link": "",
+              "required": [
+                "IB111",
+                "IB112"
+              ],
+              "type": "object",
+              "name": "IB11",
+              "desc": "",
+              "children": [
+                {
+                  "type": "string",
+                  "name": "IB111",
+                  "desc": "",
+                  "defaultValue": "",
+                  "subTypes": [],
+                  "example": "",
+                  "link": "",
+                  "quote": "",
+                  "children": [],
+                  "isRequired": true,
+                  "required": [],
+                  "default": null
+                },
+                {
+                  "type": "string",
+                  "name": "IB112",
+                  "desc": "",
+                  "defaultValue": "",
+                  "subTypes": [],
+                  "example": "",
+                  "link": "",
+                  "quote": "",
+                  "children": [],
+                  "isRequired": true,
+                  "required": [],
+                  "default": null
+                }
+              ],
+              "defaultValue": "",
+              "subTypes": [],
+              "example": "",
+              "quote": "",
+              "isRequired": true,
+              "default": null
+            },
+            {
+              "default": "'hehe'",
+              "type": "string",
+              "name": "IB12",
+              "desc": "",
+              "defaultValue": "'hehe'",
+              "subTypes": [],
+              "example": "",
+              "link": "",
+              "quote": "",
+              "children": [],
+              "isRequired": true,
+              "required": []
+            }
+          ],
+          "defaultValue": "",
+          "subTypes": [],
+          "example": "",
+          "link": "",
+          "quote": "",
+          "isRequired": true,
+          "default": null
+        },
+        {
+          "description": "don't use @description",
+          "type": "number",
+          "name": "IB2",
+          "desc": "don't use @description",
+          "defaultValue": "",
+          "subTypes": [],
+          "example": "",
+          "link": "",
+          "quote": "",
+          "children": [],
+          "isRequired": true,
+          "required": [],
+          "default": null
+        },
+        {
+          "required": [
+            "foo"
+          ],
+          "type": "object",
+          "name": "IB3",
+          "desc": "",
+          "children": [
+            {
+              "items": {
+                "type": "object",
+                "properties": {
+                  "IC1": {
+                    "type": "string"
+                  },
+                  "IC2": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "IC1"
+                ]
+              },
+              "type": "object[]",
+              "name": "foo",
+              "desc": "",
+              "children": [
+                {
+                  "type": "string",
+                  "name": "IC1",
+                  "desc": "",
+                  "defaultValue": "",
+                  "subTypes": [],
+                  "example": "",
+                  "link": "",
+                  "quote": "",
+                  "children": [],
+                  "isRequired": true,
+                  "required": [],
+                  "default": null
+                },
+                {
+                  "type": "number",
+                  "name": "IC2",
+                  "desc": "",
+                  "defaultValue": "",
+                  "subTypes": [],
+                  "example": "",
+                  "link": "",
+                  "quote": "",
+                  "children": [],
+                  "isRequired": false,
+                  "required": [],
+                  "default": null
+                }
+              ],
+              "defaultValue": "",
+              "subTypes": [],
+              "example": "",
+              "link": "",
+              "quote": "",
+              "isRequired": true,
+              "required": [],
+              "default": null
+            }
+          ],
+          "defaultValue": "",
+          "subTypes": [],
+          "example": "",
+          "link": "",
+          "quote": "",
+          "isRequired": true,
+          "default": null
+        }
+      ],
+      "defaultValue": "",
+      "subTypes": [],
+      "example": "",
+      "link": "",
+      "quote": "",
+      "isRequired": false,
+      "default": null
+    },
+    {
+      "items": {
+        "type": "object",
+        "properties": {
+          "IC1": {
+            "type": "string"
+          },
+          "IC2": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "IC1"
+        ]
+      },
+      "type": "object[]",
+      "name": "array",
+      "desc": "",
+      "children": [
+        {
+          "type": "string",
+          "name": "IC1",
+          "desc": "",
+          "defaultValue": "",
+          "subTypes": [],
+          "example": "",
+          "link": "",
+          "quote": "",
+          "children": [],
+          "isRequired": true,
+          "required": [],
+          "default": null
+        },
+        {
+          "type": "number",
+          "name": "IC2",
+          "desc": "",
+          "defaultValue": "",
+          "subTypes": [],
+          "example": "",
+          "link": "",
+          "quote": "",
+          "children": [],
+          "isRequired": false,
+          "required": [],
+          "default": null
+        }
+      ],
+      "defaultValue": "",
+      "subTypes": [],
+      "example": "",
+      "link": "",
+      "quote": "",
+      "isRequired": false,
+      "required": [],
+      "default": null
+    }
+  ],
+  "defaultValue": "",
+  "example": "",
+  "link": "",
+  "quote": "",
+  "isRequired": false,
+  "required": [],
+  "default": null
+}

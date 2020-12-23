@@ -1,0 +1,127 @@
+{
+  "required": [
+    "value"
+  ],
+  "type": "object",
+  "name": "MyObject",
+  "desc": "",
+  "children": [
+    {
+      "type": "intersection",
+      "subTypes": [
+        "Type1",
+        "Type2"
+      ],
+      "name": "value",
+      "desc": "",
+      "children": [
+        {
+          "required": [
+            "value1",
+            "value2"
+          ],
+          "type": "object",
+          "name": "Type1",
+          "desc": "",
+          "children": [
+            {
+              "type": "string",
+              "name": "value1",
+              "desc": "",
+              "defaultValue": "",
+              "subTypes": [],
+              "example": "",
+              "link": "",
+              "quote": "",
+              "children": [],
+              "isRequired": true,
+              "required": [],
+              "default": null
+            },
+            {
+              "type": "number",
+              "name": "value2",
+              "desc": "",
+              "defaultValue": "",
+              "subTypes": [],
+              "example": "",
+              "link": "",
+              "quote": "",
+              "children": [],
+              "isRequired": true,
+              "required": [],
+              "default": null
+            }
+          ],
+          "defaultValue": "",
+          "subTypes": [],
+          "example": "",
+          "link": "",
+          "quote": "",
+          "isRequired": false,
+          "default": null
+        },
+        {
+          "required": [
+            "value2",
+            "value3"
+          ],
+          "type": "object",
+          "name": "Type2",
+          "desc": "",
+          "children": [
+            {
+              "type": "number",
+              "name": "value2",
+              "desc": "",
+              "defaultValue": "",
+              "subTypes": [],
+              "example": "",
+              "link": "",
+              "quote": "",
+              "children": [],
+              "isRequired": true,
+              "required": [],
+              "default": null
+            },
+            {
+              "type": "boolean",
+              "name": "value3",
+              "desc": "",
+              "defaultValue": "",
+              "subTypes": [],
+              "example": "",
+              "link": "",
+              "quote": "",
+              "children": [],
+              "isRequired": true,
+              "required": [],
+              "default": null
+            }
+          ],
+          "defaultValue": "",
+          "subTypes": [],
+          "example": "",
+          "link": "",
+          "quote": "",
+          "isRequired": false,
+          "default": null
+        }
+      ],
+      "defaultValue": "",
+      "example": "",
+      "link": "",
+      "quote": "",
+      "isRequired": true,
+      "required": [],
+      "default": null
+    }
+  ],
+  "defaultValue": "",
+  "subTypes": [],
+  "example": "",
+  "link": "",
+  "quote": "",
+  "isRequired": false,
+  "default": null
+}

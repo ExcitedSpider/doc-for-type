@@ -31,3 +31,7 @@ export type DefinitionWithName =
   | boolean;
 /** 去掉所有 $ref 的 schema */
 export type TypeDefWithNoRef = DefinitionWithName;
+
+export enum OuputFormat {
+  'markdown', 'json'
+}

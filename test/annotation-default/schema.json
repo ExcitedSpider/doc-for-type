@@ -1,0 +1,190 @@
+{
+  "required": [
+    "varBoolean",
+    "varBooleanArray",
+    "varFloat",
+    "varFloatArray",
+    "varInteger",
+    "varIntegerArray",
+    "varMixedArray",
+    "varString",
+    "varStringArray"
+  ],
+  "type": "object",
+  "name": "MyObject",
+  "desc": "",
+  "children": [
+    {
+      "default": true,
+      "type": "boolean",
+      "name": "varBoolean",
+      "desc": "",
+      "defaultValue": "true",
+      "subTypes": [],
+      "example": "",
+      "link": "",
+      "quote": "",
+      "children": [],
+      "isRequired": true,
+      "required": []
+    },
+    {
+      "default": 123,
+      "type": "number",
+      "name": "varInteger",
+      "desc": "",
+      "defaultValue": "123",
+      "subTypes": [],
+      "example": "",
+      "link": "",
+      "quote": "",
+      "children": [],
+      "isRequired": true,
+      "required": []
+    },
+    {
+      "default": 3.21,
+      "type": "number",
+      "name": "varFloat",
+      "desc": "",
+      "defaultValue": "3.21",
+      "subTypes": [],
+      "example": "",
+      "link": "",
+      "quote": "",
+      "children": [],
+      "isRequired": true,
+      "required": []
+    },
+    {
+      "default": "foo",
+      "type": "string",
+      "name": "varString",
+      "desc": "",
+      "defaultValue": "foo",
+      "subTypes": [],
+      "example": "",
+      "link": "",
+      "quote": "",
+      "children": [],
+      "isRequired": true,
+      "required": []
+    },
+    {
+      "default": [
+        true,
+        false,
+        true
+      ],
+      "items": {
+        "type": "boolean"
+      },
+      "type": "boolean[]",
+      "name": "varBooleanArray",
+      "desc": "",
+      "defaultValue": "true,false,true",
+      "subTypes": [],
+      "example": "",
+      "link": "",
+      "quote": "",
+      "children": [],
+      "isRequired": true,
+      "required": []
+    },
+    {
+      "default": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "items": {
+        "type": "number"
+      },
+      "type": "number[]",
+      "name": "varIntegerArray",
+      "desc": "",
+      "defaultValue": "1,2,3,4,5",
+      "subTypes": [],
+      "example": "",
+      "link": "",
+      "quote": "",
+      "children": [],
+      "isRequired": true,
+      "required": []
+    },
+    {
+      "default": [
+        1.23,
+        65.21,
+        -123.4,
+        0,
+        1000000.0001
+      ],
+      "items": {
+        "type": "number"
+      },
+      "type": "number[]",
+      "name": "varFloatArray",
+      "desc": "",
+      "defaultValue": "1.23,65.21,-123.4,0,1000000.0001",
+      "subTypes": [],
+      "example": "",
+      "link": "",
+      "quote": "",
+      "children": [],
+      "isRequired": true,
+      "required": []
+    },
+    {
+      "default": [
+        "a",
+        "b",
+        "c",
+        "..."
+      ],
+      "items": {
+        "type": "string"
+      },
+      "type": "string[]",
+      "name": "varStringArray",
+      "desc": "",
+      "defaultValue": "a,b,c,...",
+      "subTypes": [],
+      "example": "",
+      "link": "",
+      "quote": "",
+      "children": [],
+      "isRequired": true,
+      "required": []
+    },
+    {
+      "default": [
+        true,
+        123,
+        3.21,
+        "foo"
+      ],
+      "items": {},
+      "type": "undefined[]",
+      "name": "varMixedArray",
+      "desc": "",
+      "defaultValue": "true,123,3.21,foo",
+      "subTypes": [],
+      "example": "",
+      "link": "",
+      "quote": "",
+      "children": [],
+      "isRequired": true,
+      "required": []
+    }
+  ],
+  "defaultValue": "",
+  "subTypes": [],
+  "example": "",
+  "link": "",
+  "quote": "",
+  "isRequired": false,
+  "default": null
+}

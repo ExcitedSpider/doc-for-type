@@ -1,7 +1,6 @@
 const { join } = require("path");
 const { spawn } = require("child_process");
 const { stdout, stderr } = require("process");
-const { describe } = require("yargs");
 
 const spwanStdIO = (...spwanArgs) => {
   return new Promise((res, rej) => {
@@ -28,21 +27,40 @@ const spwanStdIO = (...spwanArgs) => {
  * @param {*} typename 提取的类型名称
  */
 const spwanDoc4Type = async (dir, typename) => {
-  await spwanStdIO(
-    "node",
-    [
-      CLI_PATH,
-      "--output",
-      `${dir}/schema.md`,
-      "--path",
-      `${dir}/main.ts`,
-      "--type-name",
-      typename,
-    ],
-    {
-      cwd: "../",
-    }
-  );
+  return Promise.all([
+    spwanStdIO(
+      "node",
+      [
+        CLI_PATH,
+        "--output",
+        `${dir}/schema`,
+        "--path",
+        `${dir}/main.ts`,
+        "--type-name",
+        typename,
+      ],
+      {
+        cwd: "../",
+      }
+    ),
+    spwanStdIO(
+      "node",
+      [
+        CLI_PATH,
+        "--output",
+        `${dir}/schema`,
+        "--path",
+        `${dir}/main.ts`,
+        "--type-name",
+        typename,
+        "--format",
+        "json",
+      ],
+      {
+        cwd: "../",
+      }
+    )
+  ]);
 };
 
 const CLI_PATH = join(__dirname, "../lib/doc4type/bin");

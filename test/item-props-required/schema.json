@@ -1,0 +1,109 @@
+{
+  "required": [
+    "arrayField"
+  ],
+  "type": "object",
+  "name": "MyObject",
+  "desc": "",
+  "children": [
+    {
+      "items": {
+        "type": "object",
+        "properties": {
+          "requiredField1": {
+            "type": "string"
+          },
+          "requiredField2": {
+            "type": "string"
+          },
+          "optionalField3": {
+            "type": "string"
+          },
+          "optionalField4": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "requiredField1",
+          "requiredField2"
+        ]
+      },
+      "type": "object[]",
+      "name": "arrayField",
+      "desc": "",
+      "children": [
+        {
+          "type": "string",
+          "name": "requiredField1",
+          "desc": "",
+          "defaultValue": "",
+          "subTypes": [],
+          "example": "",
+          "link": "",
+          "quote": "",
+          "children": [],
+          "isRequired": true,
+          "required": [],
+          "default": null
+        },
+        {
+          "type": "string",
+          "name": "requiredField2",
+          "desc": "",
+          "defaultValue": "",
+          "subTypes": [],
+          "example": "",
+          "link": "",
+          "quote": "",
+          "children": [],
+          "isRequired": true,
+          "required": [],
+          "default": null
+        },
+        {
+          "type": "string",
+          "name": "optionalField3",
+          "desc": "",
+          "defaultValue": "",
+          "subTypes": [],
+          "example": "",
+          "link": "",
+          "quote": "",
+          "children": [],
+          "isRequired": false,
+          "required": [],
+          "default": null
+        },
+        {
+          "type": "string",
+          "name": "optionalField4",
+          "desc": "",
+          "defaultValue": "",
+          "subTypes": [],
+          "example": "",
+          "link": "",
+          "quote": "",
+          "children": [],
+          "isRequired": false,
+          "required": [],
+          "default": null
+        }
+      ],
+      "defaultValue": "",
+      "subTypes": [],
+      "example": "",
+      "link": "",
+      "quote": "",
+      "isRequired": true,
+      "required": [],
+      "default": null
+    }
+  ],
+  "defaultValue": "",
+  "subTypes": [],
+  "example": "",
+  "link": "",
+  "quote": "",
+  "isRequired": false,
+  "default": null
+}
