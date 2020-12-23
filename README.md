@@ -1,9 +1,34 @@
-# 类型自动生成文档
+# Doc-4-Type
+
+一个根据 typescript 类型+代码注释自动生成代码文档的工具。支持生成 markdown, html, 以及 json。
+
+## 背景
+
+Inspired and builds upon [typescript-json-schema](https://github.com/YousefED/typescript-json-schema).
+
+## 安装
+
+暂时还未发布包，发布计划中。目前想安装需要用 submodules 方式。
+
+## CLI
+
+```
+node lib/doc4type/bin/doc4type
+Options:
+      --version        Show version number                             [boolean]
+  -p, --input, --path  The path of input file                [string] [required]
+  -o, --output         The path of output file                          [string]
+  -r, --root           The root of files                                [string]
+  -t, --typeName       The type name that to be doc          [string] [required]
+  -f, --format         The doc format, one of: [0,1,2,markdown,json,html]
+                                                  [string] [default: "markdown"]
+      --help           Show help                                       [boolean]
+```
 
 ## TIP
 
 - 推荐多使用 `Interface`，这样可以在编译解析时保留接口名称，而 `Type` 会被丢弃。 
-- 顶层 `Type` 的注释信息存在 bug，无法解析 <- 依赖库的问题，等待PR
+
 
 ## 注释 API
 
@@ -143,9 +168,11 @@ interface MyObject {
 - [ ] ejs 可读性太差
 - [x] 输出 JSON
   - [x] 支持文件名后缀自动生成
-  - [ ] 接 remark 库，可以让用户指定 markdown 拓展
-- [ ] 输出其他更多格式
-- [ ] 提供 dir + name 替代 outputPath ？感觉似乎没有必要
+  - [x] 接 remark 库，可以生成 html、也可以支持开发插件
+- [x] 输出其他更多格式
+- [ ] unified 插件支持
+- [ ] 提供 dir + name 替代 outputPath
 - [ ] 自定义生成的文档片段格式
 - [ ] Union 类型的文档生成如何与 Object prop 区分
-- [ ] 顶层 union type 问题 - 已提 issue
+- [x] 顶层 union type 问题 - 已提 issue
+- [ ] 发布 npm 包
