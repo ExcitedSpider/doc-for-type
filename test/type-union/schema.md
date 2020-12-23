@@ -3,12 +3,12 @@
 *   类型: `object`
 *   描述: Hello
 
-## var1 <sup>required</sup>
+## var1 <sup>`required`</sup>
 
 *   类型: `string,number`
 *   描述: Simple union (generates "type": \[...])
 
-## var2 <sup>required</sup>
+## var2 <sup>`required`</sup>
 
 *   类型: `union`
     *   可选: `array`

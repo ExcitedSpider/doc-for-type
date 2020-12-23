@@ -10,12 +10,12 @@
 *   类型: `object`
 *   描述: 暂无描述
 
-### IB1 <sup>required</sup>
+### IB1 <sup>`required`</sup>
 
 *   类型: `object`
 *   描述: this is IB1
 
-#### IB11 <sup>required</sup>
+#### IB11 <sup>`required`</sup>
 
 *   类型: `object`
 *   描述: 暂无描述
@@ -27,23 +27,23 @@
     }
     ```
 
-#### IB12 <sup>required</sup>
+#### IB12 <sup>`required`</sup>
 
 *   类型: `string`
 *   描述: 暂无描述
 *   默认值: `'hehe'`
 
-### IB2 <sup>required</sup>
+### IB2 <sup>`required`</sup>
 
 *   类型: `number`
 *   描述: don't use @description
 
-### IB3 <sup>required</sup>
+### IB3 <sup>`required`</sup>
 
 *   类型: `object`
 *   描述: 暂无描述
 
-#### foo <sup>required</sup>
+#### foo <sup>`required`</sup>
 
 *   类型: `object[]`
 *   描述: 暂无描述
@@ -60,7 +60,7 @@
 *   类型: `object[]`
 *   描述: 暂无描述
 
-### IC1 <sup>required</sup>
+### IC1 <sup>`required`</sup>
 
 *   类型: `string`
 *   描述: 暂无描述

@@ -10,12 +10,12 @@
 *   类型: `object`
 *   描述: 暂无描述
 
-### value1 <sup>required</sup>
+### value1 <sup>`required`</sup>
 
 *   类型: `number`
 *   描述: 暂无描述
 
-### value2 <sup>required</sup>
+### value2 <sup>`required`</sup>
 
 *   类型: `number`
 *   描述: 暂无描述

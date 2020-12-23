@@ -8,7 +8,7 @@ Inspired and builds upon [typescript-json-schema](https://github.com/YousefED/ty
 
 ## 安装
 
-暂时还未发布包，发布计划中。目前想安装需要用 submodules 方式。
+暂时还未发布包，计划中。目前想安装需要用 submodules 方式。
 
 ## CLI
 
@@ -176,3 +176,4 @@ interface MyObject {
 - [ ] Union 类型的文档生成如何与 Object prop 区分
 - [x] 顶层 union type 问题 - 已提 issue
 - [ ] 发布 npm 包
+- [ ] 发布主页

@@ -17,12 +17,12 @@
 { kind: 'square', size: 10} 
 ```
 
-### kind <sup>required</sup>
+### kind <sup>`required`</sup>
 
 *   类型: `string`
 *   描述: 类型枚举
 
-### size <sup>required</sup>
+### size <sup>`required`</sup>
 
 *   类型: `number`
 *   描述: 尺寸
@@ -32,17 +32,17 @@
 *   类型: `object`
 *   描述: 绘制矩形
 
-### kind <sup>required</sup>
+### kind <sup>`required`</sup>
 
 *   类型: `string`
 *   描述: 类型枚举
 
-### width <sup>required</sup>
+### width <sup>`required`</sup>
 
 *   类型: `number`
 *   描述: 宽度
 
-### height <sup>required</sup>
+### height <sup>`required`</sup>
 
 *   类型: `number`
 *   描述: 高度
@@ -57,12 +57,12 @@
 { kind: 'circle', radius: 5} 
 ```
 
-### kind <sup>required</sup>
+### kind <sup>`required`</sup>
 
 *   类型: `string`
 *   描述: 暂无描述
 
-### radius <sup>required</sup>
+### radius <sup>`required`</sup>
 
 *   类型: `number`
 *   描述: 暂无描述

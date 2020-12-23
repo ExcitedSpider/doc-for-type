@@ -3,7 +3,7 @@
 *   类型: `object`
 *   描述: 暂无描述
 
-## value <sup>required</sup>
+## value <sup>`required`</sup>
 
 *   类型: `intersection`
     *   可选: `Type1`
@@ -15,12 +15,12 @@
 *   类型: `object`
 *   描述: 暂无描述
 
-#### value1 <sup>required</sup>
+#### value1 <sup>`required`</sup>
 
 *   类型: `string`
 *   描述: 暂无描述
 
-#### value2 <sup>required</sup>
+#### value2 <sup>`required`</sup>
 
 *   类型: `number`
 *   描述: 暂无描述
@@ -30,12 +30,12 @@
 *   类型: `object`
 *   描述: 暂无描述
 
-#### value2 <sup>required</sup>
+#### value2 <sup>`required`</sup>
 
 *   类型: `number`
 *   描述: 暂无描述
 
-#### value3 <sup>required</sup>
+#### value3 <sup>`required`</sup>
 
 *   类型: `boolean`
 *   描述: 暂无描述

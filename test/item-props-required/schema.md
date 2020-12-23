@@ -3,17 +3,17 @@
 *   类型: `object`
 *   描述: 暂无描述
 
-## arrayField <sup>required</sup>
+## arrayField <sup>`required`</sup>
 
 *   类型: `object[]`
 *   描述: 暂无描述
 
-### requiredField1 <sup>required</sup>
+### requiredField1 <sup>`required`</sup>
 
 *   类型: `string`
 *   描述: 暂无描述
 
-### requiredField2 <sup>required</sup>
+### requiredField2 <sup>`required`</sup>
 
 *   类型: `string`
 *   描述: 暂无描述
