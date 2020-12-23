@@ -1,6 +1,5 @@
 const rollup = require("rollup");
 const typescript = require("rollup-plugin-typescript2");
-const replace = require("@rollup/plugin-replace");
 const filePath = require("./rollup-plugin-file-path");
 const banner = require('rollup-plugin-license');
 const chokidar = require("chokidar");
@@ -16,10 +15,6 @@ const buildCompiler = async () => {
         tsconfigOverride: {
           compilerOptions: { declaration: false },
         },
-      }),
-      replace({
-        /** 编译结果：CLI 或是 API */
-        "process.env.APP_TARGET": "'CLI'",
       }),
       /** 支持 import ejs 文件，获得文件路径 */
       filePath({
@@ -44,9 +39,6 @@ const buildCompiler = async () => {
     input: "src/compiler/index.ts",
     plugins: [
       typescript(),
-      replace({
-        "process.env.APP_TARGET": "'API'",
-      }),
       filePath({
         include: ["**/*.ejs"],
       }),

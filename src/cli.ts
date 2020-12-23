@@ -4,10 +4,10 @@ import yargs from "yargs";
 import { doc4Type, OuputFormat, supportFormat } from "./compiler";
 
 async function cliMain() {
-  const { path = "", root = "", typeName, output, format } = yargs
+  const { input = "", root = "", typeName, output, format } = yargs
     .options({
-      path: {
-        alias: ["p", "input"],
+      input: {
+        alias: ["p", "path"],
         type: "string",
         desc: "The path of input file",
         demandOption: true,
@@ -40,7 +40,7 @@ async function cliMain() {
   const outputFormat = supportFormat[format] || OuputFormat.markdown;
 
   doc4Type({
-    path,
+    path: input,
     root,
     typeName,
     output,
