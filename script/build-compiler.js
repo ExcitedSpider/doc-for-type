@@ -10,7 +10,7 @@ const env = process.env.NODE_ENV || "development";
 
 const buildCompiler = async () => {
   const cliBundle = await rollup.rollup({
-    input: "src/compiler/index.ts",
+    input: "src/cli.ts",
     plugins: [
       typescript({
         tsconfigOverride: {
@@ -35,8 +35,8 @@ const buildCompiler = async () => {
     ],
   });
   await cliBundle.write({
-    dir: "lib/doc4type/bin",
     format: "cjs",
+    file: 'lib/doc4type/bin/doc4type',
     sourcemap: "inline",
   });
 

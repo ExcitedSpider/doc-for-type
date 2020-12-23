@@ -2,6 +2,8 @@ const { join } = require("path");
 const { spawn } = require("child_process");
 const { stdout, stderr } = require("process");
 
+const CLI_PATH = join(__dirname, "../lib/doc4type/bin/doc4type");
+
 const spwanStdIO = (...spwanArgs) => {
   return new Promise((res, rej) => {
     const cp = spawn(...spwanArgs);
@@ -20,6 +22,7 @@ const spwanStdIO = (...spwanArgs) => {
     });
   });
 };
+
 
 /**
  * 测试一个文件夹下的 case
@@ -63,7 +66,6 @@ const spwanDoc4Type = async (dir, typename) => {
   ]);
 };
 
-const CLI_PATH = join(__dirname, "../lib/doc4type/bin");
 
 test("complex-type", async () => {
   const testDir = join(__dirname, "./complex-type");
