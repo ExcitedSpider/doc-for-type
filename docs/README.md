@@ -14,13 +14,9 @@
 
 ```ts
 /** 绘制一个基本图形 */
-Shape {
+type Shape {
   /** 椭圆还是矩形 */
   type: 'circle' | 'square',
-  width: number,
-  height: number,
-  fill: Color,
-  stroke: Color
 }
 ```
 
@@ -77,7 +73,7 @@ interface MyObject {
 
 本工具有两种方式可供使用: JS API 或 CLI。功能完整度相同，都会生成一样的 markdown 文档。
 
-## JS API
+### JS API
 ```bash
 $ npm i doc-for-type
 ```
@@ -98,7 +94,7 @@ doc4Type({
 $ node src/main.js
 ```
 
-## CLI
+### CLI
 
 ```bash
 $ npm i doc-for-type -g
@@ -106,6 +102,8 @@ $ doc4type --input ./src/type.ts --typeName MyObject
 ```
 
 ## API 详解
+
+请参考 [APIOption 章节](/APIOption.html)
 
 ```
 Options:
