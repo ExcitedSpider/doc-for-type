@@ -1,7 +1,7 @@
 /** node script/doc-by-type.js --path <type-export-file> --type-name <type-name or *> --root <optional-file-root> */
 
 import yargs from "yargs";
-import { doc4Type, OuputFormat, supportFormat } from "./compiler";
+import { doc4Type, OuputFormat, supportFormat } from ".";
 
 async function cliMain() {
   const { input = "", root = "", typeName, output, format } = yargs

@@ -1,13 +1,13 @@
 import ejs from "ejs";
 import { readFileSync } from "fs";
 import { TypeDocData, OuputFormat } from "./type";
+import { join } from "path";
 import remark from "remark";
 import mdParse from "remark-parse";
 import html from "remark-html";
+import { THEME_PATH } from "../index";
 
 const guide = require("remark-preset-lint-markdown-style-guide");
-
-import templatePath from "../../public/template/type-doc.ejs";
 
 export const renderer = (data: TypeDocData, format: OuputFormat) => {
   return {
@@ -25,8 +25,8 @@ export const renderer = (data: TypeDocData, format: OuputFormat) => {
 
 /** 输入 JSON 对象，输出 Markdown 字符串 */
 const ejsRender = (data: TypeDocData) => {
+  const templatePath = join(THEME_PATH, "markdown/type-doc.ejs");
   const templateString = readFileSync(templatePath, { encoding: "utf-8" });
-
   const renderedString = ejs.render(templateString, data, {
     filename: templatePath,
   });

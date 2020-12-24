@@ -1,15 +1,17 @@
 import { flowRight, curryRight } from "lodash";
-import { join, dirname } from "path";
-import { normalize } from "./normalize";
-import { generateSchema } from "./generateSchema";
-import { getDocDataFromNormalized } from "./getDocData";
-import { renderer } from "./renderer";
-import { errorLogger, successLogger } from "./logger";
-import { OuputFormat } from "./type";
-import { write2fs } from './writer2fs'
+import { join, dirname, resolve } from "path";
+import { normalize } from "./compiler/normalize";
+import { generateSchema } from "./compiler/generateSchema";
+import { getDocDataFromNormalized } from "./compiler/getDocData";
+import { renderer } from "./compiler/renderer";
+import { errorLogger, successLogger } from "./compiler/logger";
+import { OuputFormat } from "./compiler/type";
+import { write2fs } from "./compiler/writer2fs";
 
-export * from "./type";
-export * from "./const";
+export * from "./compiler/type";
+export * from "./compiler/const";
+
+export const THEME_PATH = resolve(__dirname, "./theme");
 
 export async function doc4Type(option: {
   path: string;

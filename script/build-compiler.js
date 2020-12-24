@@ -1,9 +1,12 @@
 const rollup = require("rollup");
 const typescript = require("rollup-plugin-typescript2");
 const filePath = require("./rollup-plugin-file-path");
-const banner = require('rollup-plugin-license');
+const banner = require("rollup-plugin-license");
 const chokidar = require("chokidar");
-const chalk = require('chalk')
+const chalk = require("chalk");
+const copy = require('rollup-plugin-copy')
+
+const pkg = require("../package.json");
 
 const env = process.env.NODE_ENV || "development";
 
@@ -23,20 +26,25 @@ const buildCompiler = async () => {
       /** add excutable banner */
       banner({
         banner: {
-          commentStyle: 'none',
-          content: '#!/usr/bin/env node'
-        }
+          commentStyle: "none",
+          content: "#!/usr/bin/env node",
+        },
+      }),
+      copy({
+        targets: [
+          { src: 'src/theme', dest: 'lib' },
+        ]
       })
     ],
   });
   await cliBundle.write({
     format: "cjs",
-    file: 'lib/bin/doc4type',
+    file: pkg.bin.doc4type,
     sourcemap: "inline",
   });
 
   const apiBundle = await rollup.rollup({
-    input: "src/compiler/index.ts",
+    input: "src/index.ts",
     plugins: [
       typescript(),
       filePath({
@@ -46,12 +54,12 @@ const buildCompiler = async () => {
   });
 
   await apiBundle.write({
-    dir: "lib",
+    file: pkg.main,
     format: "cjs",
     sourcemap: "inline",
   });
   await apiBundle.write({
-    dir: "lib",
+    file: pkg.module,
     format: "esm",
     sourcemap: "inline",
   });
