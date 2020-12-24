@@ -2,6 +2,8 @@
 
 > 🎉 本项目已发布 beta 版，[欢迎试用](https://www.npmjs.com/package/doc-for-type)
 
+[![npm version](https://img.shields.io/npm/v/doc-for-type.svg)](https://www.npmjs.com/package/doc-for-type)
+
 根据 TypeScript 类型+代码注释自动生成代码文档的工具。支持生成的文档类型包括 markdown, html, 以及 json。
 
 与 markdown 静态页面生成器(e.g. [vuepress](https://vuepress.vuejs.org/))搭配使用，可以实现类型文档自动化。可以查看 example 中的示例。
