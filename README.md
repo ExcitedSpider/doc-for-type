@@ -211,6 +211,7 @@ interface MyObject {
 - [ ] 自定义生成的文档片段格式
 - [ ] Union 类型的文档生成如何与 Object prop 区分
 - [x] 顶层 union type 问题 - 已提 issue
-- [ ] 发布 npm 包
+- [x] 发布 npm 包
+- [x] API 支持输入字符串 format 而不仅是枚举
 - [ ] 发布主页
 - [ ] 复杂文档片段的生成

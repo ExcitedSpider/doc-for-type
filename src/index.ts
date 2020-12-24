@@ -7,6 +7,7 @@ import { renderer } from "./compiler/renderer";
 import { errorLogger, successLogger } from "./compiler/logger";
 import { OuputFormat } from "./compiler/type";
 import { write2fs } from "./compiler/writer2fs";
+import { supportFormat } from './compiler/const'
 
 export * from "./compiler/type";
 export * from "./compiler/const";
@@ -18,14 +19,22 @@ export async function doc4Type(option: {
   root: string;
   typeName: string;
   output?: string;
-  format: OuputFormat;
+  format: OuputFormat | 'markdown'| 'md' | 'json' | 'html';
 }) {
   const { path, root, typeName, output, format } = option;
   const docPath = output || join(dirname(path), "schema");
 
+  let outputFormat = OuputFormat.markdown;
+
+  if (typeof format === "number") {
+    outputFormat = format;
+  } else {
+    outputFormat = supportFormat[format] || OuputFormat.markdown;
+  }
+
   const getTypeDocDataFromFile = flowRight([
-    curryRight(write2fs)(format, docPath),
-    curryRight(renderer)(format),
+    curryRight(write2fs)(outputFormat, docPath),
+    curryRight(renderer)(outputFormat),
     curryRight(getDocDataFromNormalized)(typeName),
     normalize,
     generateSchema,
@@ -38,7 +47,7 @@ export async function doc4Type(option: {
       root,
       typeName,
       output,
-      format,
+      format: outputFormat,
     });
   } catch (error) {
     errorLogger(error);
