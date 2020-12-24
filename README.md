@@ -1,12 +1,14 @@
 # Doc-4-Type
 
+> 🎉 本项目已发布 beta 版，[欢迎试用](https://www.npmjs.com/package/doc-for-type)
+
 根据 TypeScript 类型+代码注释自动生成代码文档的工具。支持生成的文档类型包括 markdown, html, 以及 json。
 
 与 markdown 静态页面生成器(e.g. [vuepress](https://vuepress.vuejs.org/))搭配使用，可以实现类型文档自动化。可以查看 example 中的示例。
 
 ## Type as Doc / 类型即文档
 
-传说中有一句话叫"类型是最好的注释"。例如以下类型，不看任何注释，我们也可以清晰明了地知道这个图形绘制配置项对象大概怎么使用。
+江湖中有一句话叫"类型是最好的注释"。例如以下类型，不看任何注释，我们也可以清晰明了地知道这个图形绘制配置项对象大概怎么使用。
 
 ```ts
 /** 绘制一个基本图形 */
@@ -20,7 +22,7 @@ Shape {
 }
 ```
 
-更进一步，我们希望可以做到类型直接生成文档，这样我们就有了一个漂亮的文档，搭配一些页面生成器，甚至就有了主页。
+更进一步，我们希望可以做到通过类型直接生成文档，免去耗时的手工文档工作。搭配一些页面生成器就能轻易生成主页。
 
 ```md
 # Shape
@@ -33,30 +35,84 @@ Shape {
 * type: `'circle' | 'square'`
 * 描述: 椭圆还是矩形
 
-...
 ```
 
-这就是本项目的愿景。
+这就是本项目的基本愿景。
 
 ## Background
 
 Inspired and builds upon [typescript-json-schema](https://github.com/YousefED/typescript-json-schema).
 
-## 安装
+## QuickStart
 
-暂时还未发布包，计划中。目前想安装需要用 submodules 方式。
+假设我们的目录结构:
+
+```
+.
+├── package-lock.json
+├── package.json
+└── src
+    ├── main.js
+    └── type.ts <- 想要生成文档的类型文件 
+```
+
+其中，type.ts 中定义了一个类型 `MyObject`:
+
+```ts
+interface Type1 {
+  value1: string;
+  value2: number;
+}
+interface Type2 {
+  value2: number;
+  value3: boolean;
+}
+
+interface MyObject {
+  value: Type1 & Type2;
+}
+```
+
+本工具有两种方式可供使用: JS API 或 CLI。功能完整度相同，都会生成一样的 markdown 文档。
+
+## JS API
+```bash
+$ npm i doc-for-type
+```
+
+```js
+// main.js
+const { doc4Type } = require("doc-for-type");
+const { join } = require("path");
+
+doc4Type({
+  path: join(__dirname, "./type.ts"),
+  typeName: "MyObject",
+  format: 'markdown',
+});
+```
+
+```bash
+$ node src/main.js
+```
 
 ## CLI
 
+```bash
+$ npm i doc-for-type -g
+$ doc4type --input ./src/type.ts --typeName MyObject
 ```
-node lib/doc4type/bin/doc4type
+
+## API 详解
+
+```
 Options:
       --version        Show version number                             [boolean]
   -p, --input, --path  The path of input file                [string] [required]
   -o, --output         The path of output file                          [string]
   -r, --root           The root of files                                [string]
   -t, --typeName       The type name that to be doc          [string] [required]
-  -f, --format         The doc format, one of: [0,1,2,markdown,json,html]
+  -f, --format         The doc format, one of:        [0,1,2,markdown,json,html]
                                                   [string] [default: "markdown"]
       --help           Show help                                       [boolean]
 ```
@@ -213,5 +269,5 @@ interface MyObject {
 - [x] 顶层 union type 问题 - 已提 issue
 - [x] 发布 npm 包
 - [x] API 支持输入字符串 format 而不仅是枚举
-- [ ] 发布主页
+- [ ] 主页
 - [ ] 复杂文档片段的生成
