@@ -207,7 +207,7 @@ interface MyObject {
   - [x] 接 remark 库，可以生成 html、也可以支持开发插件
 - [x] 输出其他更多格式
 - [ ] unified 插件支持
-- [ ] 提供 dir + name 替代 outputPath
+- [ ] 提供 dir + name 替代 outputPath - 不太需要
 - [ ] 自定义生成的文档片段格式
 - [ ] Union 类型的文档生成如何与 Object prop 区分
 - [x] 顶层 union type 问题 - 已提 issue

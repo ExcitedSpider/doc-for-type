@@ -14,7 +14,7 @@ async function cliMain() {
       },
       output: {
         alias: "o",
-        desc: "The path of output file",
+        desc: "The path of output file. If not provided, use inputdir and typename as output path",
         type: "string",
       },
       root: {
@@ -35,7 +35,7 @@ async function cliMain() {
         desc: `The doc format, one of: [${Object.keys(OuputFormat).join(",")}]`,
       },
     })
-    .help().argv;
+    .help().version().argv;
 
   const outputFormat = supportFormat[format] || OuputFormat.markdown;
 
