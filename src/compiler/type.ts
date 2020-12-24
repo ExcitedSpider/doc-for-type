@@ -39,12 +39,13 @@ export enum OuputFormat {
 /** 
  * doc-for-type 的调用参数 
  * @example
- * doc4Type({
- *  path: join(__dirname, "./type.ts"),
+ * const option:APIOption = {
+ *  input: join(__dirname, "./type.ts"),
  *  typeName: "MyObject",
  *  format: 'markdown',
- * });
+ * }
  * 
+ * doc4Type(option);
  */
 export interface APIOption {
   /** 输入的类型文件路径 */

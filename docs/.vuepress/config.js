@@ -5,9 +5,10 @@ const sidebarConfig = getConfig(root, { addReadMeToFirstGroup: false }).sidebar;
 
 module.exports = {
   head: [],
+  base: 'doc-for-type',
   themeConfig: {
     /** 列出全部标题 */
-    displayAllHeaders: true,
+    displayAllHeaders: false,
     sidebarDepth: 6,
     /** 开放搜索 */
     search: true,
