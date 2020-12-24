@@ -40,7 +40,7 @@ async function cliMain() {
   const outputFormat = supportFormat[format] || OuputFormat.markdown;
 
   doc4Type({
-    path: input,
+    input,
     root,
     typeName,
     output,

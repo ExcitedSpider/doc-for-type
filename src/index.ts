@@ -5,7 +5,7 @@ import { generateSchema } from "./compiler/generateSchema";
 import { getDocDataFromNormalized } from "./compiler/getDocData";
 import { renderer } from "./compiler/renderer";
 import { errorLogger, successLogger } from "./compiler/logger";
-import { OuputFormat } from "./compiler/type";
+import { OuputFormat, APIOption } from "./compiler/type";
 import { write2fs } from "./compiler/writer2fs";
 import { supportFormat } from './compiler/const'
 
@@ -14,21 +14,15 @@ export * from "./compiler/const";
 
 export const THEME_PATH = resolve(__dirname, "./theme");
 
-export async function doc4Type(option: {
-  path: string;
-  root: string;
-  typeName: string;
-  output?: string;
-  format: OuputFormat | 'markdown'| 'md' | 'json' | 'html';
-}) {
-  const { path, root, typeName, output, format } = option;
-  const docPath = output || join(dirname(path), "schema");
+export async function doc4Type(option: APIOption) {
+  const { input: path, root, typeName, output, format } = option;
+  const docPath = output || join(dirname(path), option.typeName);
 
   let outputFormat = OuputFormat.markdown;
 
   if (typeof format === "number") {
     outputFormat = format;
-  } else {
+  } else if(format){
     outputFormat = supportFormat[format] || OuputFormat.markdown;
   }
 
@@ -46,7 +40,7 @@ export async function doc4Type(option: {
       path,
       root,
       typeName,
-      output,
+      output: docPath,
       format: outputFormat,
     });
   } catch (error) {

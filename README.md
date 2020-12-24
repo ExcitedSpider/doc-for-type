@@ -275,3 +275,6 @@ interface MyObject {
 - [x] API 支持输入字符串 format 而不仅是枚举
 - [ ] 主页
 - [ ] 复杂文档片段的生成
+- [ ] 工程化
+  - [ ] 自动发布流水线
+  - [ ] eslint

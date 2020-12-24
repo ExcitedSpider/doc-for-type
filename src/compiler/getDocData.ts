@@ -66,6 +66,19 @@ export function getDocDataFromNormalized(
     "properties",
   ]);
 
+  if(schemaWithNoRef.enum){
+    return defaults(
+      {
+        ...extraInfo,
+        type: schemaWithNoRef.enum.map(value => JSON.stringify(value)).join(' | '),
+        name: typeName,
+        desc: description,
+        defaultValue,
+      },
+      defaultData
+    );
+  }
+
   if (schemaWithNoRef.anyOf || schemaWithNoRef.allOf) {
     const subTypes: string[] = [];
 

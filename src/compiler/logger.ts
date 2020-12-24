@@ -9,13 +9,8 @@ export const successLogger = (args: {
   format?: OuputFormat;
   root?: string;
   typeName?: string;
-  menu?: string;
 }) => {
-  const outputPath =
-    args.output ||
-    `${args.menu}/${args.typeName}${
-      extNameMap[args.format || OuputFormat.markdown]
-    }`;
+  const outputPath = args.output;
 
   args.output ||
     console.log(

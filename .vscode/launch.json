@@ -12,7 +12,7 @@
         "<node_internals>/**"
       ],
       "program": "${workspaceFolder}/lib/cli.js",
-      "args": ["--path", "test/annotation-default/main.ts", "--type-name", "MyObject","--format", "html"],
+      "args": ["--path", "./src/compiler/type.ts", "--type-name", "APIOption"],
       "outputCapture": "console",
       "sourceMaps": true
     }
