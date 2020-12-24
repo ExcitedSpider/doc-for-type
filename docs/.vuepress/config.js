@@ -11,6 +11,7 @@ module.exports = {
   },
   themeConfig: {
     repo: 'https://github.com/ExcitedSpider/doc-for-type',
+    sidebarDepth: 6,
     /** 开放搜索 */
     search: true,
     searchMaxSuggestions: 10,
