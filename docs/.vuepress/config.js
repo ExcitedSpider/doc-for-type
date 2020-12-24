@@ -10,9 +10,7 @@ module.exports = {
     plugins: ['markdown-it-task-lists']
   },
   themeConfig: {
-    /** 列出全部标题 */
-    displayAllHeaders: false,
-    sidebarDepth: 6,
+    repo: 'https://github.com/ExcitedSpider/doc-for-type',
     /** 开放搜索 */
     search: true,
     searchMaxSuggestions: 10,
