@@ -6487,6 +6487,11 @@
   "resolved" "http://mirrors.tencent.com/npm/markdown-it-table-of-contents/-/markdown-it-table-of-contents-0.4.4.tgz"
   "version" "0.4.4"
 
+"markdown-it-task-lists@^2.1.1":
+  "integrity" "sha512-TxFAc76Jnhb2OUu+n3yz9RMu4CwGfaT788br6HhEDlvWfdeJcLUsxk1Hgw2yJio0OXsxv7pyIPmvECY7bMbluA=="
+  "resolved" "https://registry.npmjs.org/markdown-it-task-lists/-/markdown-it-task-lists-2.1.1.tgz"
+  "version" "2.1.1"
+
 "markdown-it@^10.0.0":
   "integrity" "sha512-YWOP1j7UbDNz+TumYP1kpwnP0aEa711cJjrAQrzd0UXlbJfc5aAq0F/PZHjiioqDC1NKgvIMX+o+9Bk7yuM2dg=="
   "resolved" "http://mirrors.tencent.com/npm/markdown-it/-/markdown-it-10.0.0.tgz"

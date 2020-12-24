@@ -275,7 +275,7 @@ interface MyObject {
 - [x] 顶层 union type 问题 - 已提 issue
 - [x] 发布 npm 包
 - [x] API 支持输入字符串 format 而不仅是枚举
-- [ ] 主页
+- [x] 主页
 - [ ] 复杂文档片段的生成
 - [ ] 工程化
   - [ ] 自动发布流水线

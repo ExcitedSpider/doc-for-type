@@ -5,7 +5,12 @@ const sidebarConfig = getConfig(root, { addReadMeToFirstGroup: false }).sidebar;
 
 module.exports = {
   head: [],
-  base: 'doc-for-type',
+  base: '/doc-for-type/',
+  markdown: {
+    config: md => {
+      md.use(require('markdown-it-task-lists'))
+    }
+  },
   themeConfig: {
     /** 列出全部标题 */
     displayAllHeaders: false,

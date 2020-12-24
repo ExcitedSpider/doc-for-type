@@ -24,4 +24,4 @@ jobs:
     steps:
       # Runs a single command using the runners shell
       - name: Deploy pages
-        run: bash ./deploy.sh
+        run: cd doc-for-type & bash ./deploy.sh
