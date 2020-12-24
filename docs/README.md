@@ -88,7 +88,7 @@ const { doc4Type } = require("doc-for-type");
 const { join } = require("path");
 
 doc4Type({
-  path: join(__dirname, "./type.ts"),
+  input: join(__dirname, "./type.ts"),
   typeName: "MyObject",
   format: 'markdown',
 });

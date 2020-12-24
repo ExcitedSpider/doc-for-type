@@ -7,9 +7,7 @@ module.exports = {
   head: [],
   base: '/doc-for-type/',
   markdown: {
-    config: md => {
-      md.use(require('markdown-it-task-lists'))
-    }
+    plugins: ['markdown-it-task-lists']
   },
   themeConfig: {
     /** 列出全部标题 */
