@@ -2,7 +2,7 @@ const { join } = require("path");
 const { spawn } = require("child_process");
 const { stdout, stderr } = require("process");
 
-const CLI_PATH = join(__dirname, "../lib/doc4type/bin/doc4type");
+const CLI_PATH = join(__dirname, "../lib/bin/doc4type");
 
 const spwanStdIO = (...spwanArgs) => {
   return new Promise((res, rej) => {

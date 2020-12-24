@@ -31,7 +31,7 @@ const buildCompiler = async () => {
   });
   await cliBundle.write({
     format: "cjs",
-    file: 'lib/doc4type/bin/doc4type',
+    file: 'lib/bin/doc4type',
     sourcemap: "inline",
   });
 
@@ -46,12 +46,12 @@ const buildCompiler = async () => {
   });
 
   await apiBundle.write({
-    dir: "lib/doc4type",
+    dir: "lib",
     format: "cjs",
     sourcemap: "inline",
   });
   await apiBundle.write({
-    dir: "lib/doc4type",
+    dir: "lib",
     format: "esm",
     sourcemap: "inline",
   });

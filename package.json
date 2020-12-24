@@ -8,6 +8,7 @@
     "public"
   ],
   "main": "lib/index.js",
+  "bin": "lib/bin/doc4type",
   "scripts": {
     "doc-by-type": "node script/doc-by-type",
     "docs:dev": "vuepress dev docs-example",

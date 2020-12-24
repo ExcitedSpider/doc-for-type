@@ -1,14 +1,16 @@
 const { createFilter } = require("@rollup/pluginutils");
+const { relative } = require("path");
 
-const pathTemplate =(path)=> `
+const pathTemplate = (path) => `
   var path = ${path};
   export default path;
-`
+`;
 
 module.exports = function filePath(
   options = {
     include: ["**/*.ejs"],
     exclude: null,
+    relative: true,
   }
 ) {
   const filter = createFilter(options.include, options.exclude);
@@ -20,7 +22,12 @@ module.exports = function filePath(
         return null;
       }
 
-      return pathTemplate(JSON.stringify(id));
+      if (relative) {
+        const relativePath = relative(process.cwd(), id);
+        return pathTemplate(JSON.stringify(relativePath));
+      } else {
+        return pathTemplate(JSON.stringify(id));
+      }
     },
   };
-}
+};
