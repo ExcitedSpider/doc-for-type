@@ -3,6 +3,7 @@
 > 🎉 本项目已发布 beta 版，[欢迎试用](https://www.npmjs.com/package/doc-for-type)
 
 [![npm version](https://img.shields.io/npm/v/doc-for-type.svg)](https://www.npmjs.com/package/doc-for-type)
+![node-test](https://github.com/ExcitedSpider/doc-for-type/workflows/node-test/badge.svg)
 
 根据 TypeScript 类型+代码注释自动生成代码文档的工具。支持生成的文档类型包括 markdown, html, 以及 json。
 
@@ -272,6 +273,11 @@ type Option = { value: number}
 * 描述: 暂无描述 
 ```
 
+## 已知问题
+
+* ~~对递归类型的支持 8 行~~ 现在行了，做了环检测
+* 不展示 index type 的细节类型，只展示 `object`。因为暂时没想好怎么在文档里表现，有建议可以帮我提个 issue。
+
 ## TODO
 
 - [x] 仅能展开到两层
@@ -303,6 +309,8 @@ type Option = { value: number}
 - [ ] 复杂文档片段的生成
 - [ ] 生成 yaml 头内容
 - [x] 生成 title
+- [x] 递归类型的问题
+- [ ] 支持 index type
 - [ ] 工程化
   - [ ] 自动发布流水线
-  - [ ] eslint
+  - [x] eslint
