@@ -1,10 +1,14 @@
-# JSON 格式输出
+# 以 JSON 格式输出
 
-用来生成文档的 raw JSON 格式，可以用于二次开发。
+生成文档的 raw JSON 格式，可以用于二次开发。
 使用 `--format json` 即可获取。
 
 *   类型: `object`
 *   描述: 暂无描述
+*   例子:
+    ```bash
+    $ doc4type --input ./src/type.ts --typeName MyObject --format json
+    ```
 
 ## type <sup>`required`</sup>
 

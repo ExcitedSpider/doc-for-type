@@ -1,4 +1,4 @@
-# API 文档
+# 使用 JS API
 
 *   类型: `object`
 *   描述: doc-for-type 的调用参数
