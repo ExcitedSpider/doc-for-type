@@ -31,6 +31,9 @@ export type TypeDocData = {
   isRequired?: boolean;
   defaultValue?: string | null;
   fragment?: string
+  min?: number | null;
+  max?: number | null;
+  format?: string | RegExp | null;
 };
 
 export type DefinitionWithName =

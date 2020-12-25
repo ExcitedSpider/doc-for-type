@@ -1,29 +1,19 @@
-<%_ /*
-  template data object:
-  {
-    type: string | string[];
-    name: string;
-    subTypes: string[];
-    example: string;
-    link: string;
-    quote: string;
-    desc: string;
-    children?: TypeDocData[];
-    isRequired?: boolean;
-    level: number;
+<%_ function renderIfExsit(value, label, defaultValue){
+  if(value || defaultValue){
+    return `* ${label}: ${JSON.stringify(value || defaultValue)}`
   }
-*/ _%> 
+} _%> 
 
 <%- new Array(level).fill('#').join('') %> <%- !link? name: `[${name}](${link})` -%> <%- isRequired? '<sup>`required`</sup>': ''%> 
 <%- fragment %> 
-* 类型: `<%- type -%>`
+<%- renderIfExsit(type, '类型') -%>
 <%_ if(subTypes.length>0){subTypes.forEach(subType=>{ -%>
   * 可选: `<%- subType -%>`
-<%_ })} _%> 
-* 描述: <%- desc || '暂无描述' -%> 
-<%_ if(defaultValue){ -%>
-* 默认值: `<%- defaultValue -%>`
-<%_ } -%>
+<%_ })} -%> 
+<%- renderIfExsit(desc, '描述', '暂无描述') -%>
+<%- renderIfExsit(defaultValue, '默认值') -%>
+<%- renderIfExsit(max, '最大值') -%>
+<%- renderIfExsit(min, '最小值') -%>
 <%_ if(example){	_%>
 * 示例:
 ```js

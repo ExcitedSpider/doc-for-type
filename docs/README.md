@@ -145,11 +145,13 @@ $ doc4type --input ./src/type.ts --typeName MyObject
 - [x] API 支持输入字符串 format 而不仅是枚举
 - [x] 主页
   - [ ] PlayGround
-- [ ] 复杂文档片段的生成
+- [x] 复杂文档片段的生成
 - [ ] 生成 yaml 头内容
 - [x] 生成 title
 - [x] 递归类型的问题
-- [ ] 支持 index type
+- [ ] 支持 index type - 还未确定如何渲染会好看
+- [ ] 支持自定义标签+渲染片段
 - [ ] 工程化
-  - [ ] 自动发布流水线
-  - [ ] eslint
+  - [x] 测试流水线
+  - [x] eslint
+  - [ ] 发布流水线

@@ -191,3 +191,7 @@ interface MyObject {
 *   描述: 暂无描述
 
 ```
+
+## @max 和 @min
+
+生成最大、最小值描述

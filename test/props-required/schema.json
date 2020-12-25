@@ -19,7 +19,11 @@
       "children": [],
       "isRequired": true,
       "required": [],
-      "default": null
+      "default": null,
+      "fragment": "",
+      "min": null,
+      "max": null,
+      "format": null
     },
     {
       "type": "string",
@@ -33,7 +37,11 @@
       "children": [],
       "isRequired": true,
       "required": [],
-      "default": null
+      "default": null,
+      "fragment": "",
+      "min": null,
+      "max": null,
+      "format": null
     },
     {
       "type": "string",
@@ -47,7 +55,11 @@
       "children": [],
       "isRequired": false,
       "required": [],
-      "default": null
+      "default": null,
+      "fragment": "",
+      "min": null,
+      "max": null,
+      "format": null
     },
     {
       "type": "string",
@@ -61,7 +73,11 @@
       "children": [],
       "isRequired": false,
       "required": [],
-      "default": null
+      "default": null,
+      "fragment": "",
+      "min": null,
+      "max": null,
+      "format": null
     }
   ],
   "defaultValue": "",
@@ -70,5 +86,9 @@
   "link": "",
   "quote": "",
   "isRequired": false,
-  "default": null
+  "default": null,
+  "fragment": "",
+  "min": null,
+  "max": null,
+  "format": null
 }

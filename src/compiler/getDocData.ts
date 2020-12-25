@@ -15,7 +15,10 @@ const defaultData = {
   isRequired: false,
   required: [],
   default: null,
-  fragment: ""
+  fragment: "",
+  min: null,
+  max: null,
+  format: null,
 };
 
 function mergeRequiredIntoChildren(

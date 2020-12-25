@@ -7,5 +7,11 @@ interface MyObject {
    * @fragment
    * ![img](../assets/data.svg)
   */
-  data: string
+  data: string,
+  /**
+   * @default 5
+   * @max 10
+   * @min 1
+   */
+  value: number,
 }
