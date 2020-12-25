@@ -1,4 +1,5 @@
 {
+  "description": "绘制的图形基本类",
   "type": "union",
   "subTypes": [
     "Square",
@@ -6,7 +7,7 @@
     "Circle"
   ],
   "name": "Shape",
-  "desc": "",
+  "desc": "绘制的图形基本类",
   "children": [
     {
       "description": "绘制正方形",

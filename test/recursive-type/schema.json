@@ -1,0 +1,87 @@
+{
+  "required": [
+    "attribute",
+    "children",
+    "innerText",
+    "tag"
+  ],
+  "type": "object",
+  "name": "MyNode",
+  "desc": "",
+  "children": [
+    {
+      "items": {
+        "$ref": "#/definitions/MyNode",
+        "type": "MyNode",
+        "link": "MyNode"
+      },
+      "type": "MyNode[]",
+      "name": "children",
+      "desc": "",
+      "defaultValue": "",
+      "subTypes": [],
+      "example": "",
+      "link": "",
+      "quote": "",
+      "children": [],
+      "isRequired": true,
+      "required": [],
+      "default": null
+    },
+    {
+      "type": "string",
+      "name": "tag",
+      "desc": "",
+      "defaultValue": "",
+      "subTypes": [],
+      "example": "",
+      "link": "",
+      "quote": "",
+      "children": [],
+      "isRequired": true,
+      "required": [],
+      "default": null
+    },
+    {
+      "type": "string",
+      "name": "innerText",
+      "desc": "",
+      "defaultValue": "",
+      "subTypes": [],
+      "example": "",
+      "link": "",
+      "quote": "",
+      "children": [],
+      "isRequired": true,
+      "required": [],
+      "default": null
+    },
+    {
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number"
+        ]
+      },
+      "type": "object",
+      "name": "attribute",
+      "desc": "",
+      "defaultValue": "",
+      "subTypes": [],
+      "example": "",
+      "link": "",
+      "quote": "",
+      "children": [],
+      "isRequired": true,
+      "required": [],
+      "default": null
+    }
+  ],
+  "defaultValue": "",
+  "subTypes": [],
+  "example": "",
+  "link": "",
+  "quote": "",
+  "isRequired": false,
+  "default": null
+}

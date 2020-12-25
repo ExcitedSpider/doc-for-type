@@ -12,7 +12,19 @@
         "<node_internals>/**"
       ],
       "program": "${workspaceFolder}/lib/cli.js",
-      "args": ["--path", "./src/compiler/type.ts", "--type-name", "APIOption"],
+      "args": ["--path", "./src/compiler/type.ts", "--type-name", "TypeDocData"],
+      "outputCapture": "console",
+      "sourceMaps": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "particular test case",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}/lib/cli.js",
+      "args": ["--path", "./test/recursive-type/main.ts", "--type-name", "MyNode"],
       "outputCapture": "console",
       "sourceMaps": true
     }

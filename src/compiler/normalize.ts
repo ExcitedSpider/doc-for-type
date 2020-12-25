@@ -6,7 +6,7 @@ import { RefDefinition, DefinitionWithName } from "./type";
  * @param refTypeSpecObj 引用类型的对象
  * @param definitions 定义列表
  */
-function findAndReplaceRefObj(
+function replaceRefObj(
   refTypeSpecObj: TJS.DefinitionOrBoolean,
   definitions: RefDefinition
 ) {
@@ -38,16 +38,32 @@ function findAndReplaceRefObj(
  */
 function tranverseAndReplaceRefObj(
   propTypeSpec: DefinitionWithName,
-  definitions: RefDefinition
+  definitions: RefDefinition,
+  /** 已经查找过的 ref ，用于处理递归类型*/
+  resolvedRef: { [index: string]: boolean } = {}
 ): DefinitionWithName {
   if (typeof propTypeSpec === "boolean") {
     return propTypeSpec;
   }
 
   if (propTypeSpec.$ref) {
+    if (resolvedRef[propTypeSpec.$ref]) {
+      // 监测到递归类型
+      const refName = propTypeSpec.$ref.match(/^#\/definitions\/(.*)$/)?.[1];
+      return {
+        ...propTypeSpec,
+        type: refName,
+        link: `${refName}`
+      }
+    }
+
     const ObjWithNoRef = tranverseAndReplaceRefObj(
-      findAndReplaceRefObj(propTypeSpec, definitions),
-      definitions
+      replaceRefObj(propTypeSpec, definitions),
+      definitions,
+      {
+        ...resolvedRef,
+        [propTypeSpec.$ref]: true,
+      }
     );
 
     return ObjWithNoRef;
@@ -57,7 +73,7 @@ function tranverseAndReplaceRefObj(
     return {
       ...propTypeSpec,
       [propTypeSpec.anyOf ? "anyOf" : "allOf"]: typeList.map((child) =>
-        tranverseAndReplaceRefObj(child, definitions)
+        tranverseAndReplaceRefObj(child, definitions, { ...resolvedRef })
       ),
     };
   }
@@ -67,14 +83,24 @@ function tranverseAndReplaceRefObj(
     const properties = propTypeSpec.properties;
     if (properties) {
       Object.keys(properties).forEach((iPropName) => {
-        const replacedObjSpec = findAndReplaceRefObj(
-          properties[iPropName],
-          definitions
-        );
-        objectTypeProp[iPropName] = tranverseAndReplaceRefObj(
-          replacedObjSpec,
-          definitions
-        );
+        const subProps = properties[iPropName];
+        if (typeof subProps === "boolean") {
+          return;
+        }
+        if (subProps.$ref) {
+          const replacedObjSpec = replaceRefObj(subProps, definitions);
+          objectTypeProp[iPropName] = tranverseAndReplaceRefObj(
+            replacedObjSpec,
+            definitions,
+            { ...resolvedRef, [subProps.$ref]: true }
+          );
+        } else {
+          objectTypeProp[iPropName] = tranverseAndReplaceRefObj(
+            subProps,
+            definitions,
+            { ...resolvedRef }
+          );
+        }
       });
       return {
         ...propTypeSpec,
@@ -91,18 +117,32 @@ function tranverseAndReplaceRefObj(
       return propTypeSpec;
     }
     if (!Array.isArray(arrayItems)) {
-      const itemType = findAndReplaceRefObj(arrayItems, definitions);
-      return {
-        ...propTypeSpec,
-        type: "array",
-        items: tranverseAndReplaceRefObj(itemType, definitions),
-      };
+      let itemType: DefinitionWithName = arrayItems;
+      if (arrayItems.$ref && !resolvedRef[arrayItems.$ref]) {
+        itemType = replaceRefObj(arrayItems, definitions);
+        return {
+          ...propTypeSpec,
+          type: "array",
+          items: tranverseAndReplaceRefObj(itemType, definitions, {
+            ...resolvedRef,
+            [arrayItems.$ref]: true
+          }),
+        };
+      }else{
+        return {
+          ...propTypeSpec,
+          type: "array",
+          items: tranverseAndReplaceRefObj(itemType, definitions, {
+            ...resolvedRef,
+          }),
+        }
+      }
     } else {
       return {
         ...propTypeSpec,
         type: "array",
         items: arrayItems.map((itemType) =>
-          tranverseAndReplaceRefObj(itemType, definitions)
+          tranverseAndReplaceRefObj(itemType, definitions, { ...resolvedRef })
         ),
       };
     }
@@ -117,10 +157,13 @@ export function normalize(
     return defOrBool;
   }
 
-  const { properties, items, definitions, anyOf } = defOrBool;
-  const defWithNoRef = defOrBool;
+  const { properties, items, definitions, anyOf, $ref } = defOrBool;
 
-  if (!definitions) {
+  const defWithNoRef = $ref
+    ? tranverseAndReplaceRefObj(defOrBool, defOrBool.definitions || {})
+    : defOrBool;
+
+  if (!definitions || typeof defWithNoRef === "boolean") {
     return defWithNoRef;
   }
 
@@ -148,7 +191,6 @@ export function normalize(
     if (typeof items === "boolean") {
       return defWithNoRef;
     } else if (Array.isArray(items)) {
-      // TODO：支持元祖
       return defWithNoRef;
     } else if (items.properties) {
       const propsWithNoRef: { [index: string]: TJS.DefinitionOrBoolean } = {};

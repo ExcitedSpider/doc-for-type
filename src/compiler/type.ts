@@ -14,7 +14,11 @@ export type RefDefinition = {
   [key: string]: DefinitionOrBoolean;
 };
 
-/** 生成文档的 raw json */
+/** 
+ * @title JSON 格式输出
+ * 用来生成文档的 raw JSON 格式，可以用于二次开发。
+ * 使用 `--format json` 即可获取。
+ */
 export type TypeDocData = {
   type: string | string[];
   title?:string,

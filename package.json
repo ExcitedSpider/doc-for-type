@@ -30,6 +30,7 @@
     "@types/node-emoji": "^1.8.1",
     "@types/yargs": "^15.0.11",
     "chokidar": "^2.1.8",
+    "cross-env": "^7.0.3",
     "jest": "^27.0.0-next.1",
     "markdown-it-task-lists": "^2.1.1",
     "rollup": "^2.34.2",
@@ -50,7 +51,7 @@
     "remark-html": "^13.0.1",
     "remark-parse": "^9.0.0",
     "remark-preset-lint-markdown-style-guide": "^4.0.0",
-    "typescript-json-schema": "^0.43.0",
+    "typescript-json-schema": "^0.46.0",
     "yargs": "^16.1.1"
   },
   "jest": {

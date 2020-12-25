@@ -123,3 +123,8 @@ test("annotation-default", async () => {
   const testDir = join(__dirname, "./annotation-default");
   await spwanDoc4Type(testDir, "MyObject");
 });
+
+test("recursive-type", async () => {
+  const testDir = join(__dirname, "./recursive-type");
+  await spwanDoc4Type(testDir, "MyNode");
+});

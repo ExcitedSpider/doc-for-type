@@ -272,6 +272,10 @@ type Option = { value: number}
 * 描述: 暂无描述 
 ```
 
+## 已知问题
+
+* 对递归类型的支持 8 行
+
 ## TODO
 
 - [x] 仅能展开到两层
@@ -303,6 +307,8 @@ type Option = { value: number}
 - [ ] 复杂文档片段的生成
 - [ ] 生成 yaml 头内容
 - [x] 生成 title
+- [x] 递归类型的问题
+- [ ] 支持 index type
 - [ ] 工程化
   - [ ] 自动发布流水线
   - [ ] eslint

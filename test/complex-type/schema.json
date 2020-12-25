@@ -1,4 +1,5 @@
 {
+  "example": "lugangxiaozhen",
   "type": "union",
   "subTypes": [
     "object",
@@ -253,7 +254,6 @@
     }
   ],
   "defaultValue": "",
-  "example": "",
   "link": "",
   "quote": "",
   "isRequired": false,

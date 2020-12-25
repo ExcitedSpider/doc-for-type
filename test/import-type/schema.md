@@ -8,7 +8,7 @@
 ## object
 
 *   类型: `object`
-*   描述: 暂无描述
+*   描述: This is subtype
 
 ### value1 <sup>`required`</sup>
 

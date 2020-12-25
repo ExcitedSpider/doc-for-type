@@ -8,13 +8,14 @@
   "desc": "",
   "children": [
     {
+      "description": "This is subtype",
       "required": [
         "value1",
         "value2"
       ],
       "type": "object",
       "name": "object",
-      "desc": "",
+      "desc": "This is subtype",
       "children": [
         {
           "type": "number",

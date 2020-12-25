@@ -4,6 +4,11 @@
     *   可选: `object`
     *   可选: `array`
 *   描述: 暂无描述
+*   示例:
+
+```js
+lugangxiaozhen 
+```
 
 ## object
 
