@@ -259,7 +259,7 @@ interface MyObject {
  */
 type Option = { value: number}
 ```
- 
+
 输出
 
 ```markdown
