@@ -12,3 +12,5 @@ export const supportFormat: { [index: string]: OuputFormat } = {
   md: OuputFormat.markdown,
   html: OuputFormat.html
 };
+
+export const annotationKeywords = ['link','public', 'example', 'title'];

@@ -14,6 +14,7 @@ export type RefDefinition = {
   [key: string]: DefinitionOrBoolean;
 };
 
+/** 生成文档的 raw json */
 export type TypeDocData = {
   type: string | string[];
   name: string;
@@ -37,7 +38,8 @@ export enum OuputFormat {
 }
 
 /** 
- * doc-for-type 的调用参数 
+ * @name API 文档
+ * @description doc-for-type 的调用参数 
  * @example
  * const option:APIOption = {
  *  input: join(__dirname, "./type.ts"),
@@ -64,4 +66,9 @@ export interface APIOption {
    * @default 'markdown'
    */
   format?: OuputFormat | 'markdown'| 'md' | 'json' | 'html';
+  /** 
+   * 生成的文档 title。默认使用类型名称
+   * @default typeName
+   */
+  title?: string
 }

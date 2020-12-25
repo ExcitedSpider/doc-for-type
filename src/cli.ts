@@ -4,10 +4,10 @@ import yargs from "yargs";
 import { doc4Type, OuputFormat, supportFormat } from ".";
 
 async function cliMain() {
-  const { input = "", root = "", typeName, output, format } = yargs
+  const { input = "", root = "", typeName, output, format, title } = yargs
     .options({
       input: {
-        alias: ["p", "path"],
+        alias: ["p", "path", "i"],
         type: "string",
         desc: "The path of input file",
         demandOption: true,
@@ -34,6 +34,10 @@ async function cliMain() {
         default: "markdown",
         desc: `The doc format, one of: [${Object.keys(OuputFormat).join(",")}]`,
       },
+      title:{
+        type: 'string',
+        desc: 'The title (first h1 element) of output document'
+      }
     })
     .help().version().argv;
 
@@ -44,6 +48,7 @@ async function cliMain() {
     root,
     typeName,
     output,
+    title,
     format: outputFormat || OuputFormat.markdown,
   });
 }

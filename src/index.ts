@@ -15,7 +15,7 @@ export * from "./compiler/const";
 export const THEME_PATH = resolve(__dirname, "./theme");
 
 export async function doc4Type(option: APIOption) {
-  const { input: path, root, typeName, output, format } = option;
+  const { input: path, root, typeName, output, format, title } = option;
   const docPath = output || join(dirname(path), option.typeName);
 
   let outputFormat = OuputFormat.markdown;
@@ -26,9 +26,11 @@ export async function doc4Type(option: APIOption) {
     outputFormat = supportFormat[format] || OuputFormat.markdown;
   }
 
+  let docTitle = title || typeName
+
   const getTypeDocDataFromFile = flowRight([
     curryRight(write2fs)(outputFormat, docPath),
-    curryRight(renderer)(outputFormat),
+    curryRight(renderer)(outputFormat, docTitle),
     curryRight(getDocDataFromNormalized)(typeName),
     normalize,
     generateSchema,
@@ -38,10 +40,8 @@ export async function doc4Type(option: APIOption) {
     getTypeDocDataFromFile(path, root, typeName);
     successLogger({
       path,
-      root,
       typeName,
       output: docPath,
-      format: outputFormat,
     });
   } catch (error) {
     errorLogger(error);

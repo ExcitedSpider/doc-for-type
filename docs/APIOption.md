@@ -1,4 +1,4 @@
-# APIOption
+# API 文档
 
 *   类型: `object`
 *   描述: doc-for-type 的调用参数
@@ -40,3 +40,9 @@ doc4Type(option);
 *   类型: `0 | 1 | 2 | "html" | "json" | "markdown" | "md"`
 *   描述: 生成的文档类型
 *   默认值: `'markdown'`
+
+## title
+
+*   类型: `string`
+*   描述: 生成的文档 title。默认使用类型名称
+*   默认值: `typeName`

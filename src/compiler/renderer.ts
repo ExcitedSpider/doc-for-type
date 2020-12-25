@@ -9,7 +9,12 @@ import { THEME_PATH } from "../index";
 
 const guide = require("remark-preset-lint-markdown-style-guide");
 
-export const renderer = (data: TypeDocData, format: OuputFormat) => {
+export const renderer = (
+  data: TypeDocData,
+  format: OuputFormat,
+  title: string
+) => {
+  Object.assign(data, { name: title });
   return {
     [OuputFormat.markdown]: () => {
       return remarkRender(ejsRender(data), format);

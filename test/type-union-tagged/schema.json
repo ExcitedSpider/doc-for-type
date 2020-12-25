@@ -24,7 +24,7 @@
           "enum": [
             "square"
           ],
-          "type": "string",
+          "type": "\"square\"",
           "name": "kind",
           "desc": "类型枚举",
           "defaultValue": "",
@@ -77,7 +77,7 @@
           "enum": [
             "rectangle"
           ],
-          "type": "string",
+          "type": "\"rectangle\"",
           "name": "kind",
           "desc": "类型枚举",
           "defaultValue": "",
@@ -143,7 +143,7 @@
           "enum": [
             "circle"
           ],
-          "type": "string",
+          "type": "\"circle\"",
           "name": "kind",
           "desc": "",
           "defaultValue": "",

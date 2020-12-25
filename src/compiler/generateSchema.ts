@@ -1,7 +1,6 @@
 import TJS from "typescript-json-schema";
 import { omit } from 'lodash'
-
-const annotationKeywords = ['link','public', 'example'];
+import { annotationKeywords } from './const'
 
 export function generateSchema(filePath: string, fileRoot: string, typeName: string) {
   const program = TJS.getProgramFromFiles(

@@ -274,7 +274,10 @@ interface MyObject {
 - [x] 发布 npm 包
 - [x] API 支持输入字符串 format 而不仅是枚举
 - [x] 主页
+  - [ ] PlayGround
 - [ ] 复杂文档片段的生成
+- [ ] 生成 yaml 头内容
+- [x] 生成 title
 - [ ] 工程化
   - [ ] 自动发布流水线
   - [ ] eslint

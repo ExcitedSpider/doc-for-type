@@ -19,7 +19,7 @@
 
 ### kind <sup>`required`</sup>
 
-*   类型: `string`
+*   类型: `"square"`
 *   描述: 类型枚举
 
 ### size <sup>`required`</sup>
@@ -34,7 +34,7 @@
 
 ### kind <sup>`required`</sup>
 
-*   类型: `string`
+*   类型: `"rectangle"`
 *   描述: 类型枚举
 
 ### width <sup>`required`</sup>
@@ -59,7 +59,7 @@
 
 ### kind <sup>`required`</sup>
 
-*   类型: `string`
+*   类型: `"circle"`
 *   描述: 暂无描述
 
 ### radius <sup>`required`</sup>
