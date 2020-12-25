@@ -104,18 +104,22 @@ $ doc4type --input ./src/type.ts --typeName MyObject
 
 ## API 详解
 
-请参考 [APIOption 章节](/APIOption.html)
+JS API 请参考 [APIOption 章节](/APIOption.html):
 
+CLI API:
 ```
 Options:
-      --version        Show version number                             [boolean]
-  -p, --input, --path  The path of input file                [string] [required]
-  -o, --output         The path of output file                          [string]
-  -r, --root           The root of files                                [string]
-  -t, --typeName       The type name that to be doc          [string] [required]
-  -f, --format         The doc format, one of:        [0,1,2,markdown,json,html]
+  -p, -i, --input, --path  The path of input file            [string] [required]
+  -t, --typeName           The type name that to be doc      [string] [required]
+  -o, --output             The path of output file. If not provided, use
+                           inputdir and typename as output path         [string]
+  -r, --root               The root of files                            [string]
+  -f, --format             The doc format, one of:          [markdown,json,html]
                                                   [string] [default: "markdown"]
-      --help           Show help                                       [boolean]
+      --title              The title (first h1 element) of output document
+                                                                        [string]
+      --help               Show help                                   [boolean]
+      --version            Show version number                         [boolean]
 ```
 
 ## TIP
