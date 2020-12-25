@@ -17,6 +17,7 @@ export type RefDefinition = {
 /** 生成文档的 raw json */
 export type TypeDocData = {
   type: string | string[];
+  title?:string,
   name: string;
   subTypes: string[];
   example: string;
@@ -38,7 +39,7 @@ export enum OuputFormat {
 }
 
 /** 
- * @name API 文档
+ * @title API 文档
  * @description doc-for-type 的调用参数 
  * @example
  * const option:APIOption = {

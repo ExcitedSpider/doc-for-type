@@ -14,7 +14,13 @@ export const renderer = (
   format: OuputFormat,
   title: string
 ) => {
-  Object.assign(data, { name: title });
+  if (title !== data.name) {
+    Object.assign(data, { name: title });
+  }
+  if(data.title){
+    Object.assign(data, { name: data.title });
+  }
+
   return {
     [OuputFormat.markdown]: () => {
       return remarkRender(ejsRender(data), format);

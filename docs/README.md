@@ -247,6 +247,31 @@ interface MyObject {
 * 默认值: `3.21`
 ```
 
+## `@title`
+
+仅能够用于顶层类型。为生成的文档配置标题。除了使用 `@title`，也可以在 API 或 CLI 调用时使用 `--title` 参数。详情可参考 [API 文档](APIOption.html#title)
+
+输入:
+
+```ts
+/** 
+ * @title 配置项文档
+ */
+type Option = { value: number}
+```
+
+输出
+
+```markdown
+# 配置项文档
+* 类型: `object`
+* 描述: 暂无描述 
+
+## value
+* 类型: `number`
+* 描述: 暂无描述 
+```
+
 ## TODO
 
 - [x] 仅能展开到两层
@@ -274,7 +299,10 @@ interface MyObject {
 - [x] 发布 npm 包
 - [x] API 支持输入字符串 format 而不仅是枚举
 - [x] 主页
+  - [ ] PlayGround
 - [ ] 复杂文档片段的生成
+- [ ] 生成 yaml 头内容
+- [x] 生成 title
 - [ ] 工程化
   - [ ] 自动发布流水线
   - [ ] eslint
