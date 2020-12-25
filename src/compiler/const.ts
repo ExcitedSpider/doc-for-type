@@ -13,4 +13,4 @@ export const supportFormat: { [index: string]: OuputFormat } = {
   html: OuputFormat.html
 };
 
-export const annotationKeywords = ['link','public', 'example', 'title'];
+export const annotationKeywords = ['link','public', 'example', 'title', 'fragment', 'min', 'max', 'format'];

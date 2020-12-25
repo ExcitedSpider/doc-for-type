@@ -149,3 +149,45 @@ type Option = { value: number}
 * 类型: `number`
 * 描述: 暂无描述 
 ```
+
+## @fragment
+
+在标题下部直接嵌入一段 markdown 片段，用于生成一些比较复杂的片段。本项目会对 markdown 输出的格式进行 lint，可能出现多余的空行、缩进，属于正常现象。
+
+输入:
+
+```ts
+/**
+ * @fragment
+ * 这是一个 `markdown` 片段
+ * > 用于测试
+ */
+interface MyObject {
+  /** 
+   * @fragment
+   * ![img](../assets/data.svg)
+  */
+  data: string
+}
+```
+
+输出:
+
+```md
+# MyObject
+
+这是一个 `markdown` 片段
+
+> 用于测试
+
+*   类型: `object`
+*   描述: 暂无描述
+
+## data <sup>`required`</sup>
+
+![img](../assets/data.svg)
+
+*   类型: `string`
+*   描述: 暂无描述
+
+```

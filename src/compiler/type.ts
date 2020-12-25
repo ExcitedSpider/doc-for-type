@@ -30,6 +30,7 @@ export type TypeDocData = {
   children?: TypeDocData[];
   isRequired?: boolean;
   defaultValue?: string | null;
+  fragment?: string
 };
 
 export type DefinitionWithName =

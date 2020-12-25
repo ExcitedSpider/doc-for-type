@@ -106,7 +106,7 @@ $ doc4type --input ./src/type.ts --typeName MyObject
 
 ## 了解详细使用方法
 
-请查看我们的[JS API 文档](/doc-for-type/document/)。以及[注释 API 文档](doc-for-type/document/annotation.html) 
+请查看我们的[JS API 文档](document)。以及[注释 API 文档](document/annotation.html) 
 
 ## TIP
 

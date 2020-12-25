@@ -15,7 +15,7 @@
 */ _%> 
 
 <%- new Array(level).fill('#').join('') %> <%- !link? name: `[${name}](${link})` -%> <%- isRequired? '<sup>`required`</sup>': ''%> 
-
+<%- fragment %> 
 * 类型: `<%- type -%>`
 <%_ if(subTypes.length>0){subTypes.forEach(subType=>{ -%>
   * 可选: `<%- subType -%>`
