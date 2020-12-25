@@ -16,7 +16,9 @@
     "doc-by-type": "node script/doc-by-type",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "build:tools": "node script/build-compiler.js"
+    "dev": "cross-env NODE_ENV=development node script/build-compiler.js",
+    "build": "cross-env NODE_ENV=production node script/build-compiler.js",
+    "deploy:page": "bash ./deploy.sh"
   },
   "devDependencies": {
     "@rollup/plugin-replace": "^2.3.4",
