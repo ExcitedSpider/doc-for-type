@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>使用 CLI</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/doc-for-type/assets/css/0.styles.3e076d2e.css" as="style"><link rel="preload" href="/doc-for-type/assets/js/app.8a616885.js" as="script"><link rel="preload" href="/doc-for-type/assets/js/2.2d31b58f.js" as="script"><link rel="preload" href="/doc-for-type/assets/js/11.688b3971.js" as="script"><link rel="prefetch" href="/doc-for-type/assets/js/10.90b981bf.js"><link rel="prefetch" href="/doc-for-type/assets/js/3.d7fe1a17.js"><link rel="prefetch" href="/doc-for-type/assets/js/4.380b5fee.js"><link rel="prefetch" href="/doc-for-type/assets/js/5.1fba1e6a.js"><link rel="prefetch" href="/doc-for-type/assets/js/6.c9ba3333.js"><link rel="prefetch" href="/doc-for-type/assets/js/7.7b97b87d.js"><link rel="prefetch" href="/doc-for-type/assets/js/8.0a0a04eb.js"><link rel="prefetch" href="/doc-for-type/assets/js/9.ad459959.js">
+    <link rel="stylesheet" href="/doc-for-type/assets/css/0.styles.3e076d2e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/doc-for-type/" class="home-link router-link-active"></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"> <a href="https://github.com/ExcitedSpider/doc-for-type" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"> <a href="https://github.com/ExcitedSpider/doc-for-type" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/doc-for-type/" aria-current="page" class="sidebar-link">Doc-4-Type</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Document</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/doc-for-type/document/" aria-current="page" class="sidebar-link">使用 JS API</a></li><li><a href="/doc-for-type/document/TypeDocData.html" class="sidebar-link">以 JSON 格式输出</a></li><li><a href="/doc-for-type/document/annotation.html" class="sidebar-link">使用注释 API</a></li><li><a href="/doc-for-type/document/cliAPI.html" aria-current="page" class="active sidebar-link">使用 CLI</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="使用-cli"><a href="#使用-cli" class="header-anchor">#</a> 使用 CLI</h1> <p>如果只想将本工具手工使用，或者用来和其他语言集成，那么 CLI 是一个非常好的选择。CLI 具备 JS API 完全的功能，可以互相替代。</p> <div class="language-bash extra-class"><pre class="language-bash"><code>doc4type -i main.ts -t mytype
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code>Options:
+  -p, -i, --input, --path  The path of input file            [string] [required]
+  -t, --typeName           The type name that to be doc      [string] [required]
+  -o, --output             The path of output file. If not provided, use
+                           inputdir and typename as output path         [string]
+  -r, --root               The root of files                            [string]
+  -f, --format             The doc format, one of:          [markdown,json,html]
+                                                  [string] [default: &quot;markdown&quot;]
+      --title              The title (first h1 element) of output document
+                                                                        [string]
+      --help               Show help                                   [boolean]
+      --version            Show version number                         [boolean]
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/doc-for-type/assets/js/app.8a616885.js" defer></script><script src="/doc-for-type/assets/js/2.2d31b58f.js" defer></script><script src="/doc-for-type/assets/js/11.688b3971.js" defer></script>
+  </body>
+</html>

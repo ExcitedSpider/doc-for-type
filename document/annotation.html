@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>使用注释 API</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/doc-for-type/assets/css/0.styles.3e076d2e.css" as="style"><link rel="preload" href="/doc-for-type/assets/js/app.8a616885.js" as="script"><link rel="preload" href="/doc-for-type/assets/js/2.2d31b58f.js" as="script"><link rel="preload" href="/doc-for-type/assets/js/10.90b981bf.js" as="script"><link rel="prefetch" href="/doc-for-type/assets/js/11.688b3971.js"><link rel="prefetch" href="/doc-for-type/assets/js/3.d7fe1a17.js"><link rel="prefetch" href="/doc-for-type/assets/js/4.380b5fee.js"><link rel="prefetch" href="/doc-for-type/assets/js/5.1fba1e6a.js"><link rel="prefetch" href="/doc-for-type/assets/js/6.c9ba3333.js"><link rel="prefetch" href="/doc-for-type/assets/js/7.7b97b87d.js"><link rel="prefetch" href="/doc-for-type/assets/js/8.0a0a04eb.js"><link rel="prefetch" href="/doc-for-type/assets/js/9.ad459959.js">
+    <link rel="stylesheet" href="/doc-for-type/assets/css/0.styles.3e076d2e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/doc-for-type/" class="home-link router-link-active"></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"> <a href="https://github.com/ExcitedSpider/doc-for-type" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"> <a href="https://github.com/ExcitedSpider/doc-for-type" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/doc-for-type/" aria-current="page" class="sidebar-link">Doc-4-Type</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Document</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/doc-for-type/document/" aria-current="page" class="sidebar-link">使用 JS API</a></li><li><a href="/doc-for-type/document/TypeDocData.html" class="sidebar-link">以 JSON 格式输出</a></li><li><a href="/doc-for-type/document/annotation.html" aria-current="page" class="active sidebar-link">使用注释 API</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/doc-for-type/document/annotation.html#description" class="sidebar-link">@description</a></li><li class="sidebar-sub-header"><a href="/doc-for-type/document/annotation.html#example" class="sidebar-link">@example</a></li><li class="sidebar-sub-header"><a href="/doc-for-type/document/annotation.html#link" class="sidebar-link">@link</a></li><li class="sidebar-sub-header"><a href="/doc-for-type/document/annotation.html#default" class="sidebar-link">@default</a></li><li class="sidebar-sub-header"><a href="/doc-for-type/document/annotation.html#title" class="sidebar-link">@title</a></li><li class="sidebar-sub-header"><a href="/doc-for-type/document/annotation.html#fragment" class="sidebar-link">@fragment</a></li><li class="sidebar-sub-header"><a href="/doc-for-type/document/annotation.html#max-和-min" class="sidebar-link">@max 和 @min</a></li></ul></li><li><a href="/doc-for-type/document/cliAPI.html" class="sidebar-link">使用 CLI</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="使用注释-api"><a href="#使用注释-api" class="header-anchor">#</a> 使用注释 API</h1> <p>使用注释 API 可以在生成的文档中插入对应的内容</p> <p>不使用注释也可以按照类型生成文档的基本结构，但使用注释会让生成的文档可读性更高。</p> <p>本项目实现的注释是 jsdoc 的子集，语法相同。</p> <h2 id="description"><a href="#description" class="header-anchor">#</a> @description</h2> <p>生成一段说明文档。没有任何 jsdoc 标注的注释内容也将被视为 <code>@description</code> 内容。</p> <p>输入：</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token comment">/** 
+ * @description This is a Circle
+ */</span>
+<span class="token keyword">interface</span> <span class="token class-name">Circle</span> <span class="token punctuation">{</span>
+  kind<span class="token operator">:</span> <span class="token string">&quot;circle&quot;</span><span class="token punctuation">;</span>
+  radius<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>输出：</p> <div class="language-md extra-class"><pre class="language-md"><code><span class="token title important"><span class="token punctuation">##</span> Circle</span>
+<span class="token list punctuation">*</span> 类型: <span class="token code keyword">`object`</span>
+<span class="token list punctuation">*</span> 描述: This is a Circle
+</code></pre></div><h2 id="example"><a href="#example" class="header-anchor">#</a> @example</h2> <p>生成一段代码示例文档</p> <p>输入：</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token comment">/** 
+ * @example { kind: 'circle', radius: 5}
+ */</span>
+<span class="token keyword">interface</span> <span class="token class-name">Circle</span> <span class="token punctuation">{</span>
+  kind<span class="token operator">:</span> <span class="token string">&quot;circle&quot;</span><span class="token punctuation">;</span>
+  radius<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>输出：</p> <div class="language-md extra-class"><pre class="language-md"><code><span class="token title important"><span class="token punctuation">##</span> Circle </span>
+<span class="token list punctuation">*</span> 类型: <span class="token code keyword">`object`</span>
+<span class="token list punctuation">*</span> 描述: 暂无描述 
+<span class="token list punctuation">*</span> 示例:
+{ kind: 'circle', radius: 5} 
+</code></pre></div><h2 id="link"><a href="#link" class="header-anchor">#</a> @link</h2> <p>生成链接，用于处理一些比较复杂深层的类型。使用了 @link 的类型，将不会生成 json 子类型描述。</p> <p>输入：</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token comment">/** 
+ * @link /components/Circle
+ */</span>
+<span class="token keyword">interface</span> <span class="token class-name">Circle</span> <span class="token punctuation">{</span>
+  kind<span class="token operator">:</span> <span class="token string">&quot;circle&quot;</span><span class="token punctuation">;</span>
+  radius<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>输出：</p> <div class="language-md extra-class"><pre class="language-md"><code><span class="token title important"><span class="token punctuation">##</span> [Circle](/components/Circle)</span>
+<span class="token list punctuation">*</span> 类型: <span class="token code keyword">`object`</span>
+<span class="token list punctuation">*</span> 描述: 暂无描述 
+</code></pre></div><h2 id="default"><a href="#default" class="header-anchor">#</a> @default</h2> <p>生成默认值描述。</p> <p>输入:</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">interface</span> <span class="token class-name">MyObject</span> <span class="token punctuation">{</span>
+  <span class="token comment">/**
+   * @default true
+   */</span>
+  varBoolean<span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">;</span>
+  <span class="token comment">/**
+   * @default 123
+   */</span>
+  varInteger<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+  <span class="token comment">/**
+   * @default &quot;foo&quot;
+   */</span>
+  varString<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>输出:</p> <div class="language-md extra-class"><pre class="language-md"><code><span class="token title important"><span class="token punctuation">##</span> varBoolean &lt;small&gt;</span><span class="token code keyword">`required`</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>small</span><span class="token punctuation">&gt;</span></span> 
+
+<span class="token list punctuation">*</span> 类型: <span class="token code keyword">`boolean`</span>
+<span class="token list punctuation">*</span> 描述: 暂无描述 
+<span class="token list punctuation">*</span> 默认值: <span class="token code keyword">`true`</span>
+
+<span class="token title important"><span class="token punctuation">##</span> varInteger &lt;small&gt;</span><span class="token code keyword">`required`</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>small</span><span class="token punctuation">&gt;</span></span> 
+
+<span class="token list punctuation">*</span> 类型: <span class="token code keyword">`number`</span>
+<span class="token list punctuation">*</span> 描述: 暂无描述 
+<span class="token list punctuation">*</span> 默认值: <span class="token code keyword">`123`</span>
+
+<span class="token title important"><span class="token punctuation">##</span> varFloat &lt;small&gt;</span><span class="token code keyword">`required`</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>small</span><span class="token punctuation">&gt;</span></span> 
+
+<span class="token list punctuation">*</span> 类型: <span class="token code keyword">`number`</span>
+<span class="token list punctuation">*</span> 描述: 暂无描述 
+<span class="token list punctuation">*</span> 默认值: <span class="token code keyword">`3.21`</span>
+</code></pre></div><h2 id="title"><a href="#title" class="header-anchor">#</a> @title</h2> <p>仅能够用于顶层类型。为生成的文档配置标题。除了使用 <code>@title</code>，也可以在 API 或 CLI 调用时使用 <code>--title</code> 参数。详情可参考 <a href="/doc-for-type/document/APIOption.html#title">API 文档</a></p> <p>输入:</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token comment">/** 
+ * @title 配置项文档
+ */</span>
+<span class="token keyword">type</span> <span class="token class-name">Option</span> <span class="token operator">=</span> <span class="token punctuation">{</span> value<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">}</span>
+</code></pre></div><p>输出</p> <div class="language-markdown extra-class"><pre class="language-markdown"><code><span class="token title important"><span class="token punctuation">#</span> 配置项文档</span>
+<span class="token list punctuation">*</span> 类型: <span class="token code keyword">`object`</span>
+<span class="token list punctuation">*</span> 描述: 暂无描述 
+
+<span class="token title important"><span class="token punctuation">##</span> value</span>
+<span class="token list punctuation">*</span> 类型: <span class="token code keyword">`number`</span>
+<span class="token list punctuation">*</span> 描述: 暂无描述 
+</code></pre></div><h2 id="fragment"><a href="#fragment" class="header-anchor">#</a> @fragment</h2> <p>在标题下部直接嵌入一段 markdown 片段，用于生成一些比较复杂的片段。本项目会对 markdown 输出的格式进行 lint，可能出现多余的空行、缩进，属于正常现象。</p> <p>输入:</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token comment">/**
+ * @fragment
+ * 这是一个 `markdown` 片段
+ * &gt; 用于测试
+ */</span>
+<span class="token keyword">interface</span> <span class="token class-name">MyObject</span> <span class="token punctuation">{</span>
+  <span class="token comment">/** 
+   * @fragment
+   * ![img](../assets/data.svg)
+  */</span>
+  data<span class="token operator">:</span> <span class="token builtin">string</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>输出:</p> <div class="language-md extra-class"><pre class="language-md"><code><span class="token title important"><span class="token punctuation">#</span> MyObject</span>
+
+这是一个 <span class="token code keyword">`markdown`</span> 片段
+
+<span class="token blockquote punctuation">&gt;</span> 用于测试
+
+<span class="token list punctuation">*</span>   类型: <span class="token code keyword">`object`</span>
+<span class="token list punctuation">*</span>   描述: 暂无描述
+
+<span class="token title important"><span class="token punctuation">##</span> data &lt;sup&gt;</span><span class="token code keyword">`required`</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>sup</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token url">![<span class="token content">img</span>](../assets/data.svg)</span>
+
+<span class="token list punctuation">*</span>   类型: <span class="token code keyword">`string`</span>
+<span class="token list punctuation">*</span>   描述: 暂无描述
+
+</code></pre></div><h2 id="max-和-min"><a href="#max-和-min" class="header-anchor">#</a> @max 和 @min</h2> <p>生成最大、最小值描述</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/doc-for-type/assets/js/app.8a616885.js" defer></script><script src="/doc-for-type/assets/js/2.2d31b58f.js" defer></script><script src="/doc-for-type/assets/js/10.90b981bf.js" defer></script>
+  </body>
+</html>
