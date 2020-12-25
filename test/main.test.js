@@ -128,3 +128,8 @@ test("recursive-type", async () => {
   const testDir = join(__dirname, "./recursive-type");
   await spwanDoc4Type(testDir, "MyNode");
 });
+
+test("index-type", async () => {
+  const testDir = join(__dirname, "./index-type");
+  await spwanDoc4Type(testDir, "MyObject");
+});

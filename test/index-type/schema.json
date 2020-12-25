@@ -1,0 +1,17 @@
+{
+  "additionalProperties": {
+    "type": "string"
+  },
+  "type": "object",
+  "name": "MyObject",
+  "desc": "",
+  "defaultValue": "",
+  "subTypes": [],
+  "example": "",
+  "link": "",
+  "quote": "",
+  "children": [],
+  "isRequired": false,
+  "required": [],
+  "default": null
+}
