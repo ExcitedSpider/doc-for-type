@@ -44,11 +44,11 @@
   "dependencies": {
     "chalk": "^2.4.2",
     "ejs": "^3.1.5",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "mkdirp": "^1.0.4",
     "node-emoji": "^1.10.0",
     "remark": "^13.0.0",
-    "remark-html": "^13.0.1",
+    "remark-html": "^15.0.0",
     "remark-parse": "^9.0.0",
     "remark-preset-lint-markdown-style-guide": "^4.0.0",
     "typescript-json-schema": "^0.46.0",
